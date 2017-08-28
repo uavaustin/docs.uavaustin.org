@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<title>UAV Austin Documentation</title>
+
+<!-- Latest compiled and minified Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<style>
+body {
+padding-top: 0.2em;
+}   
+</style>
+
+<style>
+.docs-grid  div[class^="col"] {
+    border: 1px solid white;
+    background: #ffffff;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.container-fluid {
+  padding-right: 15%; 
+  padding-left: 15%;
+}
+
+h1 {
+    padding: 0.2em;
+    font-size: 40pt;
+}
+
+.row.equal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project {
+  width: 8em;
+  position: relative;
+  height: 8em;
+  margin: 0 auto;
+}
+
+img.project {
+  max-width:100%;
+}
+
+img.lang {
+  height: 30px;
+  width: 30px; 
+  position: absolute;
+  z-index:1;
+  right:-2em;
+  top:-10%;
+}
+</style>
+
+
+<div class="container-fluid">
+
+  <h1 class="text-center">UAV Austin Documentation</h1> 
+
+  <div class="docs-grid">
+      <div class="row equal">
+
+        <div class="col-sm-4">
+          <div class="project">
+            <a href="./auvsisuas-client-node">
+              <img class="img-responsive project" src="./assets/plane.svg">
+            </a>
+            <a href="//github.com/uavaustin/auvsisuas-client-node">
+              <img class="img-responsive lang" src="./assets/nodejs.svg">
+            </a>
+          </div>
+          <a href="/auvsisuas-client-node">auvsisuas-client-node</a>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="project">
+            <a href="./pigeon">
+              <img class="img-responsive project" src="./assets/pigeon.svg">
+            </a>
+            <a href="//github.com/uavaustin/pigeon">
+              <img class="img-responsive lang" src="./assets/rust-logo-512x512-colored.png">
+            </a>
+          </div>
+          <a href="./pigeon">pigeon</a>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="project">
+            <a href="./Ops">
+              <img class="img-responsive project" src="./assets/meta.png">
+            </a>
+            <a href="//github.com/uavaustin/ops">
+              <img class="img-responsive lang" src="./assets/markdown.svg">
+            </a>
+          </div>
+          <a href="./Ops">Ops</a>
+        </div>
+
+      </div>
+  </div>
+
+</div>
+        
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<!-- Popper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<!-- Initialize Bootstrap functionality -->
+<script>
+// Initialize tooltip component
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+// Initialize popover component
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
