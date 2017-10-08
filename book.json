@@ -1,0 +1,15 @@
+{
+    "root": "./src",
+    "plugins": [
+        "-sharing",
+        "hints",
+        "mathjax",
+        "youtube",
+        "github"
+    ],
+    "pluginsConfig": {
+        "github": {
+            "url": "https://github.com/uavaustin/docs.uavaustin.org"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+    - '6'
+sudo: false
+install:
+    - npm install
+script:
+    - npm run build
+before_deploy:
+    - shopt -s extglob
+    - GLOBIGNORE='.git'
+    - rm -rf !(.nojekyll|CNAME|LICENSE|README.md|_book)
+    - cp -r _book/* .
+    - rm -rf _book
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: "$GITHUB_TOKEN"
+    on:
+        branch: master
+notifications:
+    email: false
+    slack:
+        secure: EUU0SRjSF3ZHs48hG3NrGwu6LJpX6h6OA3ubbcpkG6XNY1crqW9SaTEmE0jhPqE8el17oEVkgsXLeiQazRlUQFPwZ25Zxy39jJEYCrKuTfgytgYczkgR5eXAFb2OAmyd43AOgrV2O0Mrlj5l6pzL6JRw5iHcW5252bbcBP/XRiF2UDE4aDqs/TEMNDY+d03skC1jfyh1G2pfdww3pAaGbqY6Axi7jxevd2idzO11dCi+FoTXdJprlWlIRNf3+QO50AtbKEjiIKWl223HvIWfj1oDZ6GabOmSpESh8cqrqQM+G66zx8euHYJ+Bx8MUYndZ6Rc6luv74dP1hvyfn3LXcEgn6ofxDS1TIGxIXGH5VWnHacaMvKIHnNrFBMcPvs2kfDaAjQxTdlGys+x9ArUvs9dPHXrkP1tqNqLP7k7v9B9mgxdExrz0Ce9l40Ub3rkBuqfdCyFQtMeGWhVkI3MrbPGzsMnt/7tWzlKGHbFCoydLSVlDC6aHAPmDTZerSkYnHbQCdjRVzK1H6Y8WQknKM1fywxrPss3a2EoDLCOBl7t4QXyUQyGdhvxRELMpDMKn/ff8PVJb0mrVXrCoQ2zlZqWCcpCCe6d33WOjhECwDdd7otEif6xDkP3yDEr44yyNvhBKl4jH8fbqLLduwrNIeBOvUqM0B52DfgUhFeIkkI=

@@ -1,0 +1,22 @@
+{
+  "name": "docs.uavaustin.org",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uavaustin/docs.uavaustin.org"
+  },
+  "scripts": {
+    "postinstall": "gitbook install ./",
+    "build": "gitbook build",
+    "serve": "gitbook serve"
+  },
+  "author": "UAV Austin",
+  "dependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-github": "^2.0.0",
+    "gitbook-plugin-hints": "^1.0.2",
+    "gitbook-plugin-mathjax": "^1.1.2",
+    "gitbook-plugin-youtube": "^1.1.0"
+  }
+}
