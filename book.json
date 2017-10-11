@@ -2,12 +2,16 @@
     "root": "./src",
     "plugins": [
         "-sharing",
+        "theme-api",
         "hints",
         "mathjax",
         "youtube",
         "github"
     ],
     "pluginsConfig": {
+        "theme-api": {
+            "theme": "dark"
+        },
         "github": {
             "url": "https://github.com/uavaustin/docs.uavaustin.org"
         }
