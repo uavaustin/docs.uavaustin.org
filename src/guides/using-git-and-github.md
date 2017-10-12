@@ -144,8 +144,7 @@ will show all the changes made as well.
 
 <br>
 <center>
-    <img src="https://i.imgur.com/TbrSGnu.png" alt="GitHub UI]"
-            style="width:75%">
+    <img src="../images/github-branch-ui.png" alt="GitHub" style="width:60%">
 </center>
 <br>
 
@@ -195,6 +194,34 @@ $ git push origin add-cat-picture
 
 Now this is on the remote repository. Note that we don't need the `-u` flag as
 that was just for the first push.
+
+{% endmethod %}
+
+{% method -%}
+
+### Making a Pull Request
+
+Alrighty, so we've gotten to the point where we think are changes are nearly
+done, and we're readying to merge this in with the rest of the repository. Now
+everyone can enjoy our cute cat picture with the caption.
+
+This point is when we'll make a *pull request*.
+
+{% common -%}
+
+So there are things out there that'll allow you to create a pull request
+though the command-line, but we're not going to do that.
+
+To make the pull request, simply go to the main GitHub page for the repository
+and click "New pull request".
+
+The "base" should simply be *master*, and "compare" should be our
+*add-cat-picture* branch.
+
+Put a nice title a short description as well, if needed, for the pull request.
+
+Now luckily with changes like the ones we made, we shouldn't have any merge
+conflicts.
 
 {% endmethod %}
 
