@@ -17,6 +17,7 @@
     "gitbook-plugin-github": "^2.0.0",
     "gitbook-plugin-hints": "^1.0.2",
     "gitbook-plugin-mathjax": "^1.1.2",
+    "gitbook-plugin-theme-api": "^1.1.2",
     "gitbook-plugin-youtube": "^1.1.0"
   }
 }
