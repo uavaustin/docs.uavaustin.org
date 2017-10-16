@@ -13,6 +13,50 @@ it while it is in development. When it's just about finished, you'll add a
 *pull request* (or *PR*) to merge it into the *master* branch. A team lead will
 review the code real fast, make sure it's good, and then merge it in.
 
+## Merging
+
+*Directed towards team leads.*
+
+Make sure to use the `--no-ff` flag when merging by the command line, this will
+preserve the branch history on the graph.
+
+## Exceptions to Branching
+
+If you're just starting a repository, or are in very early states in
+development on it, it may simply be appropriate to commit directly to master.
+
+Flight View is also an exception to some of these rules, essentially we're
+doing git-flow *lite* here.
+
+- Feature branches should split off of the *develop* branch.
+- Release branches should be made before pulling new features from the
+*develop* branch to *master*.
+- Hotfix branches are made for small bug fixes after a release.
+
+See this link for how to do release and hotfix branches as well:
+http://nvie.com/posts/a-successful-git-branching-model/
+
+The Flight View *master* branch is for tagging releases only, it is intended to
+be kept stable.
+
+## Version Tagging
+
+Only team leads should make version tags. I'll take care of doing the release
+part of it. Releases are to be in the following formats:
+
+- *v1.0*
+- *v1.0-beta.1*
+- *v1.0-rc.1*
+- *v1.2.1*
+- *v1.2.1-beta.1*
+- *v1.2.1-rc.1*
+
+Smaller code bases use the Major.Minor versioning numbers, and larger use
+Major.Minor.Patch.
+
+Team leads should only be making tags for non-dev versions, i.e. *v1.0* or
+*v1.2.1*.
+
 ## An Example
 
 We'll do an example of all this real fast.
@@ -218,57 +262,10 @@ and click "New pull request".
 The "base" should simply be *master*, and "compare" should be our
 *add-cat-picture* branch.
 
-Put a nice title a short description as well, if needed, for the pull request.
+Put a nice title and a short description as well, if needed, for the pull
+request.
 
 Now luckily with changes like the ones we made, we shouldn't have any merge
 conflicts.
 
 {% endmethod %}
-
-## Merging without a PR
-
-*Directed towards team leads.*
-
-Make sure to use the `--no-ff` flag when merging by the command line, this will
-preserve the branch history on the graph.
-
-## Repositories with a Development Branch
-
-Flight View is an exception to some of these rules.
-
-Feature branches like an *add-rhino* branch should split off of the
-*development* branch only.
-
-Release branches should be made before pulling new features from the
-*development* branch to *master*.
-
-Hotfix branches for small bug fixes after a release.
-
-See this link for how to do release and hotfix branches as well:
-http://nvie.com/posts/a-successful-git-branching-model/
-
-The Flight View *master* branch is for tagging releases only, it is intended to
-be kept very stable.
-
-## Exceptions
-
-If you're just starting a repository, or are in very early states in
-development on it, it may simply be appropriate to commit directly to master.
-
-## Version Tagging
-
-Only team leads should make version tags. I'll take care of doing the release
-part of it. Releases are to be in the following formats:
-
-- *v1.0*
-- *v1.0-beta.1*
-- *v1.0-rc.1*
-- *v1.2.1*
-- *v1.2.1-beta.1*
-- *v1.2.1-rc.1*
-
-Smaller code bases use the Major.Minor versioning numbers, and larger use
-Major.Minor.Patch.
-
-Contact me (Bradley Bridges) about releasing non-dev versions, i.e. *v1.0* or
-*v1.2.1*.
