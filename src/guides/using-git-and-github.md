@@ -1,5 +1,38 @@
 # Using Git and GitHub
 
+## *Getting* Git
+
+[Check this out](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+to install Git on your computer.
+
+If you're just getting it for the first time, make sure to get your name and
+your email address.
+
+```
+$ git config --global user.name "Mr. Dudeface McGee IV"
+$ git config --global user.email "xXepic_programmer1337Xx@hotmail.com"
+```
+
+I'd recommend using your actual name and email and not those above.
+
+Something like [GitHub Desktop](http://desktop.github.com) is fairly convenient
+if you don't care to use the command-line version. Another pro is that you can
+easily make a pull request on there without having to go to the GitHub website.
+
+## What to Know
+
+There are a ton of good resources out there on how to use Git. You shouldn't
+have a problem with finding any. At a bare minimum to make commits and things,
+you should know how to use the following:
+
+- `git add`
+- `git commit`
+- `git pull`
+- `git push`
+- `git checkout`
+- `git branch`
+- `git merge`
+
 ## Branching
 
 In order for us to all work together on the same project, we use Git branching
@@ -13,14 +46,12 @@ it while it is in development. When it's just about finished, you'll add a
 *pull request* (or *PR*) to merge it into the *master* branch. A team lead will
 review the code real fast, make sure it's good, and then merge it in.
 
-## Merging
-
-*Directed towards team leads.*
+### Merging
 
 Make sure to use the `--no-ff` flag when merging by the command line, this will
 preserve the branch history on the graph.
 
-## Exceptions to Branching
+### Exceptions to Branching
 
 If you're just starting a repository, or are in very early states in
 development on it, it may simply be appropriate to commit directly to master.
@@ -41,8 +72,9 @@ be kept stable.
 
 ## Version Tagging
 
-Only team leads should make version tags. I'll take care of doing the release
-part of it. Releases are to be in the following formats:
+*Directed towards team leads.*
+
+Releases are to be in the following formats:
 
 - *v1.0*
 - *v1.0-beta.1*
@@ -52,10 +84,7 @@ part of it. Releases are to be in the following formats:
 - *v1.2.1-rc.1*
 
 Smaller code bases use the Major.Minor versioning numbers, and larger use
-Major.Minor.Patch.
-
-Team leads should only be making tags for non-dev versions, i.e. *v1.0* or
-*v1.2.1*.
+Major.Minor.Patch. Note the *v* in front of tag names.
 
 ## An Example
 
