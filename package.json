@@ -14,6 +14,7 @@
   "author": "UAV Austin",
   "dependencies": {
     "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-advanced-emoji": "^0.2.2",
     "gitbook-plugin-github": "^2.0.0",
     "gitbook-plugin-hints": "^1.0.2",
     "gitbook-plugin-mathjax": "^1.1.2",
