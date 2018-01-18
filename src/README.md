@@ -27,7 +27,7 @@ Here's just some of the things we do:
 
 {% hint style="info" %}
 
-If you're interesting in joining, come to our first meeting for Spring 2017!
+If you're interesting in joining, come to our first meeting for Spring 2018!
 
 **Sunday, 21 Jan 2018, 3:00 PM in WRW 113**
 
