@@ -1,0 +1,6 @@
+[book]
+title = "Image Recognition Primer"
+author = "UAV Austin"
+
+[output.html]
+mathjax-support = true
