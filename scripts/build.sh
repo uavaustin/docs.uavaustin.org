@@ -15,9 +15,6 @@ rm -rf book
 
 # Move everything into a master book directory.
 cp -R homepage/book book
-rm -r book/guides
-mkdir book/guides
-cp -R guides/nodejs/book book/guides/nodejs
 
 touch book/.nojekyll
 cp CNAME LICENSE book/
