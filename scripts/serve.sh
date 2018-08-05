@@ -1,3 +1,5 @@
+#!/bin/sh -e
+
 if [ ! command -v docker > /dev/null 2>&1 ]; then
   echo >&2 "docker is required for serving the docs"
   exit 1
