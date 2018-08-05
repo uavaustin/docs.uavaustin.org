@@ -1,0 +1,15 @@
+# Summary
+
+- [Introduction](README.md)
+- [Getting Started](getting-started/README.md)
+  - [Installation](getting-started/installation.md)
+  - [Hello World](getting-started/hello-world.md)
+  - [Resources](getting-started/resources.md)
+- [The Basics](the-basics/README.md)
+  - [Comments](the-basics/comments.md)
+  - [Data Types and Variables](the-basics/data-types-and-variables.md)
+  - [Control Flow](the-basics/control-flow.md)
+  - [Functions](the-basics/functions.md)
+- [File I/O](file-io.md)
+- [List Operations](list-operations.md)
+- [Objects](objects.md)

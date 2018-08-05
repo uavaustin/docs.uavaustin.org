@@ -1,0 +1,6 @@
+[book]
+title = "UAV Austin Python Guide"
+author = "UAV Austin"
+
+[output.html]
+mathjax-support = true
