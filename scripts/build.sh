@@ -15,7 +15,7 @@ cd $(dirname "$0")"/.."
 
 # Move everything into a master book directory.
 mkdir -p book
-rm -r book/*
+[ -z "$(ls -A book)" ] || rm -r book/*
 cp -a home/book/. book/
 rm -r book/guides
 mkdir book/guides
