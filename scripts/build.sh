@@ -14,7 +14,9 @@ cd $(dirname "$0")"/.."
 (cd guides/image-rec && mdbook build)
 
 # Move everything into a master book directory.
-cp -R homepage/book book
+mkdir -p book
+rm -r book/*
+cp -a homepage/book/. book/
 rm -r book/guides
 mkdir book/guides
 cp -R guides/python/book book/guides/python
