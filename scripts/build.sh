@@ -1,11 +1,5 @@
 #!/bin/sh -e
 
-if ! command -v mdbook > /dev/null 2>&1; then
-  echo >&2 "mdbook is required for building the docs"
-  echo >&2 'hint: try `cargo install mdbook --vers "^0.1.0"`'
-  exit 1
-fi
-
 # Start in the repo directory.
 cd $(dirname "$0")"/.."
 
