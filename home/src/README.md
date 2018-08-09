@@ -20,7 +20,7 @@ For other information, you can contact us via Slack or email:
 
 - Hyeonseung "Shawn" Lee - Program Manager
 
-  *[@Shawn Lee*](https://uavaustin.slack.com/messages/U6X0R86FJ) |
+  *[@Shawn Lee](https://uavaustin.slack.com/messages/U6X0R86FJ)* |
   *[hyeonseung.lee@utexas.edu](mailto:hyeonseung.lee@utexas.edu)*
 - Sabrina Alvarez - Chief Engineer
 

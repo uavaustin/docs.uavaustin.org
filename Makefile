@@ -12,7 +12,7 @@ all: book
 .PHONY: dependencies
 dependencies:
 ifndef MD
-	$(info hint: try `cargo install mdbook --vers "^0.1.0"`)
+	$(info hint: try `cargo install mdbook --vers "^0.2.0"`)
 	$(error mdbook is required for building the docs)
 endif
 
