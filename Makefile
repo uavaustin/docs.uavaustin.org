@@ -19,11 +19,11 @@ ifndef MD
 endif
 
 %.guide: dependencies
-	$(MD) build guides/$(basename $@) --dest-dir $(OUT)/guides/$(basename $@)
+	@$(MD) build guides/$(basename $@) --dest-dir $(OUT)/guides/$(basename $@)
 	@mkdir -p home/src/guides/$(basename $@) && touch home/src/guides/$(basename $@)/index.html
 
 %.design: dependencies
-	$(MD) build design/$(basename $@) --dest-dir $(OUT)/design/$(basename $@)
+	@$(MD) build design/$(basename $@) --dest-dir $(OUT)/design/$(basename $@)
 	@mkdir -p home/src/design/$(basename $@) && touch home/src/design/$(basename $@)/index.html
 
 .PHONY: sub-books
@@ -39,5 +39,6 @@ serve: dependencies
 
 .PHONY: clean
 clean: dependencies
-	rm -rf home/src/{guides,design-docs}
-	$(MD) clean home
+	-$(MD) clean home
+	@rm -rf home/src/guides
+	@rm -rf home/src/design-docs
