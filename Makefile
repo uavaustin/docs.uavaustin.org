@@ -1,10 +1,10 @@
 MD  := $(shell command -v $(or $(MDBOOK),mdbook) 2>/dev/null)
 OUT := $(abspath $(or $(DEST),book))
 
+$(info $(OUT))
+
 GUIDES := $(wildcard guides/*)
 DESIGNS := $(wildcard design/*)
-
-SUB_BOOKS := $(addsuffix .guide,$(notdir $(GUIDES))) $(addsuffix .design,$(notdir $(DESIGNS)))
 
 .PHONY: all
 all: book
@@ -16,32 +16,43 @@ ifndef MD
 	$(error mdbook is required for building the docs)
 endif
 
-%.guide: dependencies
-	@$(MD) test guides/$(basename $@) --dest-dir $(OUT)/guides/$(basename $@)
-	@$(MD) build guides/$(basename $@) --dest-dir $(OUT)/guides/$(basename $@)
-	@mkdir -p home/src/guides/$(basename $@) && touch home/src/guides/$(basename $@)/index.html
+.PHONY: stubs
+stubs:
+	@$(foreach book,$(GUIDES)$(DESIGN),mkdir -p home/src/$(book) && touch home/src/$(book)/index.html;)
 
-%.design: dependencies
-	@$(MD) test design/$(basename $@) --dest-dir $(OUT)/design/$(basename $@)
-	@$(MD) build design/$(basename $@) --dest-dir $(OUT)/design/$(basename $@)
-	@mkdir -p home/src/design/$(basename $@) && touch home/src/design/$(basename $@)/index.html
+guides/%: dependencies
+	@$(MD) test $@ --dest-dir $(OUT)/$@
+	@$(MD) build $@ --dest-dir $(OUT)/$@
+
+design/%: dependencies
+	@$(MD) test $@ --dest-dir $(OUT)/$@
+	@$(MD) build $@ --dest-dir $(OUT)/$@
 
 .PHONY: sub-books
-sub-books: $(SUB_BOOKS)
+sub-books: $(GUIDES) $(DESIGNS)
+
+.PHONY: home
+home: stubs
+	$(MD) build home --dest-dir $(OUT)
 
 .PHONY: book
-book: sub-books
-	@$(MD) build home --dest-dir $(OUT)
+book: home | sub-books
 
-.PHONY: serve
-serve: dependencies sub-books # sub-books to satisfy SUMMARY.md
-	-@$(MD) serve home --dest-dir $(OUT)
+.PHONY: start
+start: dependencies stubs # sub-books to satisfy SUMMARY.md
+	-@$(MD) serve home --dest-dir $(OUT) &
 	-@$(foreach book,$(GUIDES),$(MD) watch $(book) --dest-dir $(OUT)/guides/$(notdir $(book)) &)
 	-@$(foreach book,$(DESIGNS),$(MD) watch $(book) --dest-dir $(OUT)/design/$(notdir $(book)) &)
+	$(MAKE) sub-books
 
 .PHONY: stop
 stop: dependencies
 	pkill $(notdir $(MD))
+
+.PHONY: up
+serve: start
+	@read -p "Press enter to kill.." _
+	-$(MAKE) stop
 
 .PHONY: clean
 clean: dependencies
