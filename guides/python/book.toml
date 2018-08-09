@@ -4,3 +4,6 @@ author = "UAV Austin"
 
 [output.html]
 mathjax-support = true
+
+[build]
+build-dir = "../../book/guides/python"
