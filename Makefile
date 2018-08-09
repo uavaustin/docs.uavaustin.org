@@ -1,8 +1,6 @@
 MD  := $(shell command -v $(or $(MDBOOK),mdbook) 2>/dev/null)
 OUT := $(abspath $(or $(DEST),book))
 
-# TESTS = rust python
-
 GUIDES := $(wildcard guides/*)
 DESIGNS := $(wildcard design/*)
 
@@ -19,10 +17,12 @@ ifndef MD
 endif
 
 %.guide: dependencies
+	@$(MD) test guides/$(basename $@) --dest-dir $(OUT)/guides/$(basename $@)
 	@$(MD) build guides/$(basename $@) --dest-dir $(OUT)/guides/$(basename $@)
 	@mkdir -p home/src/guides/$(basename $@) && touch home/src/guides/$(basename $@)/index.html
 
 %.design: dependencies
+	@$(MD) test design/$(basename $@) --dest-dir $(OUT)/design/$(basename $@)
 	@$(MD) build design/$(basename $@) --dest-dir $(OUT)/design/$(basename $@)
 	@mkdir -p home/src/design/$(basename $@) && touch home/src/design/$(basename $@)/index.html
 
