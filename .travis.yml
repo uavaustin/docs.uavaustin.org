@@ -9,6 +9,7 @@ before_script:
   - cargo install-update -a
 script:
   - ./scripts/build.sh
+  - touch book/.nojekyll && cp CNAME LICENSE book/
 deploy:
   provider: pages
   skip_cleanup: true

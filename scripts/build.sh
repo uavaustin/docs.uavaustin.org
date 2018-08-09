@@ -22,6 +22,3 @@ rm -r book/guides
 mkdir book/guides
 cp -R guides/python/book book/guides/python
 cp -R guides/image-rec/book book/guides/image-rec
-
-touch book/.nojekyll
-cp CNAME LICENSE book/
