@@ -4,6 +4,7 @@ author = "UAV Austin"
 
 [output.html]
 mathjax-support = true
+no-section-label = true
 
 [build]
 build-dir = "../book"

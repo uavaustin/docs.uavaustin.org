@@ -58,4 +58,4 @@ serve: start
 clean: dependencies
 	-@$(MD) clean home --dest-dir $(OUT) 2>/dev/null
 	@rm -rf home/src/guides
-	@rm -rf home/src/design-docs
+	@rm -rf home/src/design
