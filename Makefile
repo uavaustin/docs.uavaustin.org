@@ -1,12 +1,12 @@
 MD  := $(shell command -v $(or $(MDBOOK),mdbook) 2>/dev/null)
-OUT := $(or $(realpath $(DEST)),$(realpath .)/book)
+OUT := $(abspath $(or $(DEST),book))
 
 # TESTS = rust python
 
-GUIDES := $(notdir $(wildcard guides/*))
-DESIGNS := $(notdir $(wildcard design/*))
+GUIDES := $(wildcard guides/*)
+DESIGNS := $(wildcard design/*)
 
-SUB_BOOKS := $(addsuffix .guide,$(GUIDES)) $(addsuffix .design,$(DESIGNS))
+SUB_BOOKS := $(addsuffix .guide,$(notdir $(GUIDES))) $(addsuffix .design,$(notdir $(DESIGNS)))
 
 .PHONY: all
 all: book
@@ -31,14 +31,19 @@ sub-books: $(SUB_BOOKS)
 
 .PHONY: book
 book: sub-books
-	$(MD) build home --dest-dir $(OUT)
+	@$(MD) build home --dest-dir $(OUT)
 
 .PHONY: serve
-serve: dependencies
-	./scripts/serve.sh
+serve: dependencies sub-books # sub-books to satisfy SUMMARY.md
+	-@$(foreach book,$(GUIDES) $(DESIGNS),$(MD) watch $(book) &)
+	-@$(MD) serve home
+
+.PHONY: stop
+stop: dependencies
+	pkill $(notdir $(MD))
 
 .PHONY: clean
 clean: dependencies
-	-$(MD) clean home
+	-@$(MD) clean home --dest-dir $(OUT) 2>/dev/null
 	@rm -rf home/src/guides
 	@rm -rf home/src/design-docs
