@@ -35,8 +35,9 @@ book: sub-books
 
 .PHONY: serve
 serve: dependencies sub-books # sub-books to satisfy SUMMARY.md
-	-@$(foreach book,$(GUIDES) $(DESIGNS),$(MD) watch $(book) &)
-	-@$(MD) serve home
+	-@$(MD) serve home --dest-dir $(OUT)
+	-@$(foreach book,$(GUIDES),$(MD) watch $(book) --dest-dir $(OUT)/guides/$(notdir $(book)) &)
+	-@$(foreach book,$(DESIGNS),$(MD) watch $(book) --dest-dir $(OUT)/design/$(notdir $(book)) &)
 
 .PHONY: stop
 stop: dependencies
