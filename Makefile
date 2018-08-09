@@ -39,7 +39,7 @@ home: stubs
 book: home | sub-books
 
 .PHONY: start
-start: dependencies stubs # sub-books to satisfy SUMMARY.md
+start: dependencies stubs
 	-@$(MD) serve home --dest-dir $(OUT) &
 	-@$(foreach book,$(GUIDES),$(MD) watch $(book) --dest-dir $(OUT)/guides/$(notdir $(book)) &)
 	-@$(foreach book,$(DESIGNS),$(MD) watch $(book) --dest-dir $(OUT)/design/$(notdir $(book)) &)
@@ -52,7 +52,7 @@ stop: dependencies
 .PHONY: up
 serve: start
 	@read -p "Press enter to kill.." _
-	-$(MAKE) stop
+	-@$(MAKE) stop
 
 .PHONY: clean
 clean: dependencies
