@@ -1,8 +1,6 @@
 MD  := $(shell command -v $(or $(MDBOOK),mdbook) 2>/dev/null)
 OUT := $(abspath $(or $(DEST),book))
 
-$(info $(OUT))
-
 GUIDES := $(wildcard guides/*)
 DESIGNS := $(wildcard design/*)
 
@@ -32,8 +30,8 @@ design/%: dependencies
 sub-books: $(GUIDES) $(DESIGNS)
 
 .PHONY: home
-home: stubs
-	$(MD) build home --dest-dir $(OUT)
+home: dependencies stubs
+	@$(MD) build home --dest-dir $(OUT)
 
 .PHONY: book
 book: home | sub-books
@@ -47,12 +45,16 @@ start: dependencies stubs
 
 .PHONY: stop
 stop: dependencies
-	pkill $(notdir $(MD))
+	@pkill $(notdir $(MD))
 
-.PHONY: up
+.PHONY: start
 serve: start
 	@read -p "Press enter to kill.." _
 	-@$(MAKE) stop
+
+.PHONY: serve-single
+serve-single: dependencies
+	-@bash -c "select book in $(GUIDES) $(DESIGNS); do $(MD) serve \$$book ; break; done"
 
 .PHONY: clean
 clean: dependencies
