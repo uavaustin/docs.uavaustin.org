@@ -26,3 +26,6 @@ given topic:
   about the foundations of topics needed for working within the Image
   Recognition team, including computer vision with OpenCV and machine learning
   with Tensorflow.
+- [Intro to Obstacle Avoidance](guides/obs-avd/index.html) - This guide covers
+  what to know to get started working in the `pathfinder` library for the
+  Autopilot team.
