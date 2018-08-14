@@ -19,10 +19,10 @@ This guide is broken up into 3 sections.
   to split up code into different files, the creation of classes, and the use
   of functional programming in JavaScript.
 
-- Afterwards, asynchronicity is introduced, which will shown primarily through
-  the use of the Node.js file system (`fs`) module. There are many different
-  patterns of modeling asynchronous behavior in JavaScript, which can be a
-  somewhat steep learning curve for some.
+- Afterwards, asynchronicity is introduced, which will be shown primarily
+  through the use of the Node.js file system (`fs`) module. There are many
+  different patterns of modeling asynchronous behavior in JavaScript, which can
+  be a somewhat steep learning curve for some.
 
 - To close, the Node Package Manager&mdash;known as NPM&mdash;is introduced,
   which allows for the downloading of JavaScript packages from a massive
