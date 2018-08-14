@@ -26,14 +26,14 @@ The first step is to install the most recent version of `nvm` (Node Version
 Manager). `nvm` allows for the easy installation and switching of Node.js
 versions.
 
-```
+```text
 $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 ```
 
 Next, we'll clone the `nvm` repository to `~/.nvm` and make sure it is loaded
 to your profile.
 
-```
+```text
 $ export NVM_DIR="$HOME/.nvm"
 $ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```
@@ -45,13 +45,13 @@ recommended version of Node.js. We'll install the latest version of Node.js 8
 using `nvm`. This will also set your default version. (Carbon is the name for
 the Node.js 8 LTS.)
 
-```
+```text
 $ nvm install lts/carbon
 ```
 
 To test that our install works, run the following:
 
-```
+```text
 $ node --version
 $ npm --version
 ```
