@@ -7,7 +7,7 @@ text editor to work with to get our hello world going in the next chapter.
 
 > *Note:* Throughout the guide there are references to terminal commands. Lines
 > that you enter start with a `$`. You don't actually need to enter it, it is
-> simply shown for convenience.
+> simply shown for convenience. `>` is used for a Windows-specific section.
 
 ## Installing Node.js
 
@@ -15,7 +15,45 @@ Follow the guide for your system to get going.
 
 ### Windows
 
-> // TODO
+Follow the
+[installation instructions for `nvm-windows`](https://github.com/coreybutler/nvm-windows#installation--upgrades).
+
+Afterwards, run `nvm version` in Command Prompt or PowerShell to confirm that
+`nvm-windows` has been installed.
+
+Next, fetch the list of currently available Node.js versions that can be
+installed.
+
+```shell
+> nvm list available
+```
+
+Install the latest version of Node.js 8. Substitute the most recent version you
+see from the command above.
+
+```shell
+> nvm install 8.x.x
+```
+
+Next, run the command prompted to make this your current Node.js version.
+
+```shell
+> nvm use 8.x.x
+```
+
+To test that our install works, run the following:
+
+```shell
+> node --version
+> npm --version
+```
+
+At the time of writing, I get the Node.js version `v8.11.3` and NPM `v5.6.0`.
+Yours might be more recent.
+
+If you're having difficulties installing with this method, you can try
+installing Node.js directly from the installers on nodejs.org.
+[See here.](https://nodejs.org/en/download/)
 
 ### macOS and Linux
 
