@@ -12,7 +12,7 @@
   - [Control Flow](the-basics/control-flow.md)
   - [Functions](the-basics/functions.md)
 - [Modules](modules.md)
-- [Classes](classes.md)
+- [Objects and Classes](objects-and-classes.md)
 - [Functional Programming](functional-programming.md)
 - [Async Patterns](async-patterns/README.md)
   - [Callbacks](async-patterns/callbacks.md)
