@@ -13,7 +13,7 @@ following free sources:
 For general documentation, the following are very useful:
 
 - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [W3 Schools](https://www.w3schools.com/jsref/default.asp)
+- [W3Schools](https://www.w3schools.com/jsref/default.asp)
 
 Note that these tend to be more focused on browser JavaScript rather than
 server-side like in Node.js.
