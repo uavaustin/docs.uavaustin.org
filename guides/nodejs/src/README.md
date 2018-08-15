@@ -12,7 +12,10 @@ very flexible and can come to a shock from backgrounds like C++ or Java.
 
 ## Structure
 
-This guide is broken up into 3 sections.
+This guide assumes some prior programming language experience in a language
+such as Java, Python, or C++. Concepts common to most programming languages are
+run through quickly in the beginning. After that come topics more unique to
+Node.js. All of this is broken up into 3 sections:
 
 - The first chapters of this guide cover the ideas of JavaScript in general. In
   this, the basics of the languages are covered, followed by the use of modules
