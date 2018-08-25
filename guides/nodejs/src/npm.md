@@ -128,7 +128,10 @@ added 7 packages in 1.186s
 ```
 
 7 packages were installed since `npm` handled the sub-depedencies of `chalk`
-itself. You can ignore the `package-lock.json` file it created.
+itself. You can ignore the `package-lock.json` file it created. You can see
+that a folder called `node_modules/` has been created in your directory. This
+is where `npm` installs its packages. These dependencies only work in the
+current project and don't affect other's on your machine.
 
 Now we'll go ahead and use it. In our `index.js` file, we'll need to `require`
 the `chalk` library. Afterwards, we'll use chalk to make our text blue.
