@@ -97,6 +97,28 @@ import Example from './other-module';
 As with `require(...)`, setting the value of `module.exports` or the properties
 of `exports` will still work.
 
+## Upcoming Changes in Node.js
+
+The reason why the `import` syntax is not yet generally available is because
+`import` is asynchronous while `require(...)` is synchronous. When you
+`require` a CommonJS module in Node.js, the `require(...)` function doesn't
+return until the module is done loading, however, `import` does not work as a
+function call and can handle asynchronous loading, which is quite useful in
+browsers. In browser JavaScript, this allows a website to load before all the
+JavaScript has been loaded.
+
+ES6 Modules are
+[currently experimental in Node.js](https://nodejs.org/api/all.html#esm_ecmascript_modules)
+(at the time of writing) and
+need a flag to be used on the command-line to be enabled. While you can still
+use `import` to get a standard CommonJS module, `require(...)` will not work
+with ES6 modules. Because of this incompatibility, the current plan in Node.js
+is to use a different file extension for ES6 Node.js modules (`.mjs`). This
+will definitely take some getting used to in the future.
+
+> Many people have referenced to `.mjs` as standing for *Michael Jackson
+> Script*, myself included. :)
+
 ## Configuring Babel
 
 Babel is configured through [plugins](https://babeljs.io/docs/en/plugins).
