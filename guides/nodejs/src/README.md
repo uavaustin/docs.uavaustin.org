@@ -4,7 +4,7 @@ This guide gives an introduction to Node.js, a server-side JavaScript runtime.
 
 JavaScript serves as the scripting language for the browser. Node.js provides a
 set of libraries that enable the use of JavaScript to have file system access,
-host http servers, etc. for the server. Node.js uses the V8 JavaScript engine
+host HTTP servers, etc. for the server. Node.js uses the V8 JavaScript engine
 from Chrome.
 
 JavaScript is a dynamically and weakly typed language. The language itself is
