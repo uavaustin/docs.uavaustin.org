@@ -6,8 +6,8 @@ we'll make sure the `node` command works from the terminal, and that we have a
 text editor to work with to get our hello world going in the next chapter.
 
 > *Note:* Throughout the guide there are references to terminal commands. Lines
-> that you enter start with a `$`. You don't actually need to enter it, it is
-> simply shown for convenience. `>` is used for a Windows-specific section.
+> that you enter start with a `$`. You don't actually need to type the `$`, it
+> is simply shown for convenience. `>` is used for a Windows-specific section.
 
 ## Installing Node.js
 
