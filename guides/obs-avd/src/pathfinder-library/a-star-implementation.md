@@ -1,1 +1,1 @@
-# A* Implementation
+# Implementation Details
