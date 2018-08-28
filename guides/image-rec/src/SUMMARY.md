@@ -1,3 +1,21 @@
 # Summary
 
 - [Introduction](README.md)
+- [OpenCV and PIL](opencv-and-pil/README.md)
+  - [Basic Image Manipulation](opencv-and-pil/basic-image-manipulation.md)
+  - [Edge Detection](opencv-and-pil/edge-detection.md)
+  - [Masking Images](opencv-and-pil/masking-images.md)
+- [Neural Networks and Inception](neural-networks-and-inception/README.md)
+  - [Intro to Neural Nets](neural-networks-and-inception/inter-to-neural-nets.md)
+  - [Convolutional Neural Networks](neural-networks-and-inception/convolutional-neural-networks.md)
+  - [Hidden Layers](neural-networks-and-inception/hidden-layers.md)
+  - [Inception-V3](neural-networks-and-inception/inception-v3.md)
+- [Neural Network Generation](neural-network-generation/README.md)
+  - [Tensorflow](neural-network-generation/tensorflow.md)
+  - [Retraining Inception's Final Layer](neural-network-generation/retraining-inceptions-final-layer.md)
+  - [Generating Training Data](neural-network-generation/generating-training-data.md)
+- [Classification](classification/README.md)
+  - [Shape Classification](classification/shape-classification.md)
+  - [Color Classification](classification/color-classification.md)
+  - [Alphanumeric Classification](classification/alphanumeric-classification.md)
+  
