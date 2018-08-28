@@ -3,12 +3,12 @@
 Generating training data is the most tedious yet necessary steps of image recognition.
 To begin, you need a folder for your training data containing one empty folder per shape you would like to classify.
 
-![Example](../img/folders.png)
+![Example](../img/folders.PNG)
 
 You will then need to make a separate folder and fill it with base shapes - 
 Or you can just download the one we have available on [github](add this link when ready).
 
-![Base Shapes](../img/base_shapes.png)
+![Base Shapes](../img/base_shapes.PNG)
 
 If you have decided to make your own shapes, make sure they are plain shapes on a white background, just like they are in our example.
 You should also try to have at LEAST one unique base shape per thousand training shapes you plan to generate.
