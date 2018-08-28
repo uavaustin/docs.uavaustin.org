@@ -5,12 +5,12 @@ This means we can use the Inception-V3 model to extract all the features of our 
 There's even a handy Python script (retrain.py) that will do all the heavy lifting for us.
 All we need to do is generate our training data and run the following command:
 
-```
+```shell
 sudo python absolute//path//to//retrain.py --bottleneck_dir=//absolute//path//to//bottleneck_dir --output_graph=absolute//path//to//output_graph.pb --output_labels=absolute//path//to//output_labels.txt --image_dir=absolute//path//to//training_data_dir --how_many_training_steps=8000
 ```
 
 Or, for Windows:
-```
+```shell
 python absolute//path//to//retrain.py --bottleneck_dir=//absolute//path//to//bottleneck_dir --output_graph=absolute//path//to//output_graph.pb --output_labels=absolute//path//to//output_labels.txt --image_dir=absolute//path//to//training_data_dir --how_many_training_steps=8000
 ```
 
