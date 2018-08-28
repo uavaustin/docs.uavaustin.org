@@ -11,6 +11,5 @@
   - [Functions](the-basics/functions.md)
 - [Modules](modules.md)
 - [File I/O](file-io.md)
-- [List Operations](list-operations.md)
 - [Objects](objects.md)
 - [pip](pip.md)
