@@ -60,8 +60,8 @@ Here is an example:
 
 We will adjust our weight using the following formulas: 
  
-\\(New Weight = Weight + ∆Weight\\)  
-\\(∆Weight = Error * Input\\)
+\\[New Weight = Weight + ∆Weight\\]
+\\[∆Weight = Error * Input\\]
 
 Go ahead and run the code you have so far.
 Why doesn't it work?
@@ -78,8 +78,8 @@ Since we are using 1,000 data points to train our model,
 let's set our learning rate to 1/1000<sup>2</sup>.
 Our new set of equations should look like this:
 
-\\(New Weight = Weight + ∆Weight\\)  
-\\(∆Weight = Error * Input * Learning Rate\\)
+\\[New Weight = Weight + ∆Weight\\]
+\\[∆Weight = Error * Input * Learning Rate\\]
 
 Now you have a simple neural net!
 Each layer of an artificial neural network will consist of many rows of what we've just built,

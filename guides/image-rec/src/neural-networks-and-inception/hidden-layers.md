@@ -44,7 +44,6 @@ The output is a less descriptive but also less computationally taxing descriptio
 
 ![Pooling Layer](../img/pooling.png)
 
-
 ## Fully Connected Layer
 This final step connects all neurons, just like a regular neural network.
 It is the hidden layer where classification actually takes place.
@@ -53,3 +52,5 @@ See the section on intro to neural nets for information on how they work.
 ## Softmax Layer
 This "layer" is less of a layer and more of a scaling function.
 It takes the outputs from the fully connected layer and scales them relative to each other in a way that they all add up to 1.
+
+![Softmax](../img/softmax.png)
