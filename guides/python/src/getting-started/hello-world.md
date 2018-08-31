@@ -24,8 +24,8 @@ Your output should look like the following (though some data on the top might
 be different for your system):
 
 ```text
-Python 3.7.0 (default, Aug 27 2018, 13:03:14)
-[Clang 9.0.0 (clang-900.0.39.2)] on darwin
+Python 3.6.5 (default, Aug 31 2018, 12:24:25)
+[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> print('Hello, World!')
 Hello, World!

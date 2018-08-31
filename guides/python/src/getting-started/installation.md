@@ -10,14 +10,16 @@ Though for this guide and for most UAV Austin code, Python 3 is required.
 
 ## Installing Python
 
-Follow the guide for your system to install the latest version of Python 3. At
-the time of writing, this is Python 3.7.0.
+Follow the guide for your system to install Python 3.6. At the time of writing,
+Python 3.7 cannot be used because
+[some libraries still do not support Python 3.7](https://github.com/tensorflow/tensorflow/issues/20517).
 
 ### Windows
 
-Go the [Python installation page](https://www.python.org/downloads/windows/)
-and click on the link for the latest Python 3 release. At the bottom of the
-next page you should be able to find the *Windows x86-64 executable installer*.
+Go the
+[Python installation page for Python 3.6.6](https://www.python.org/downloads/release/python-366/)
+At the bottom of the page you should be able to find the
+*Windows x86-64 executable installer*.
 
 During installation, if prompted, *make sure to check the box indicated that you
 want Python added to your PATH*.
@@ -48,13 +50,14 @@ $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 $ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 ```
 
-Now, to get Python 3 you can simply use `brew` to install it.
+Now, to get Python 3.6 you can simply use `brew` to install it. This is using
+the Homebrew formula for Python 3.6.5 (the latest version of Python 3.6 that
+Homebrew offers) by pulling it off GitHub. Using `brew install python` installs
+a newer version that we cannot use.
 
 ```shell
-$ brew install python3
+$ brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f2a764ef944b1080be64bd88dca9a1d80130c558/Formula/python.rb
 ```
-
-Homebrew keeps it's Python 3 bottle fairly up to date.
 
 ### Linux
 
@@ -64,9 +67,6 @@ Homebrew keeps it's Python 3 bottle fairly up to date.
 
 For Linux, we'll need to build from source since the package managers currently
 use older Python versions. This might take a while.
-
-At the time of writing, the latest stable Python is 3.7.0. The installation can
-be adapted for newer versions.
 
 - Update apt.
 
@@ -95,29 +95,27 @@ be adapted for newer versions.
       libbz2-dev        \
       libexpat1-dev     \
       liblzma-dev       \
-      libffi-dev        \
-      uuid-dev          \
       tk-dev
   ```
 
 - Fetch the Python source and decompress.
 
   ```shell
-  $ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz
-  $ tar xf Python-3.7.0.tar.xz
+  $ wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
+  $ tar xf Python-3.6.6.tar.xz
   ```
 
 - Build from source.
 
   ```shell
-  $ cd Python-3.7.0
+  $ cd Python-3.6.6
   $ ./configure
   $ make -j8
   ```
 
 - Install. If you wish to not replace your current `python3` installation in
   your path, then use `sudo make altinstall` instead. If using this method, you
-  will need to refer to this version of Python as `python3.7`.
+  will need to refer to this version of Python as `python3.6`.
 
   ```shell
   $ sudo make install
@@ -140,10 +138,10 @@ $ python --version
 This should print out the version you installed above. If this printed out a
 Python 2 version because of a pre-existing installation, or did printed that
 this was not a valid command, you might need to specify to use Python 3. For
-that, use `python3` or `python3.7` instead as your Python command.
+that, use `python3` or `python3.6` instead as your Python command.
 
 ```shell
-$ python3.7 --version
+$ python3.6 --version
 ```
  
 The above is more gauranteed to work with multiple Python installations.

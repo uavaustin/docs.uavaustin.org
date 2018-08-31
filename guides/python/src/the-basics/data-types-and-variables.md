@@ -6,7 +6,7 @@ Python.
 These examples are best done in the Python interpreter. You can start this like
 in the first part of the
 [Hello World Chapter](../getting-started/hello-world.md) with `python` (or
-`python3` or `python3.7`) in your terminal. Lines that start with `>>>` are
+`python3` or `python3.6`) in your terminal. Lines that start with `>>>` are
 intended to be typed into the interpreter.
 
 ## Numbers
