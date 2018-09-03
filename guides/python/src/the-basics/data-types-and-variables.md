@@ -49,7 +49,7 @@ division, use the `//` operator.
 > *Note*: In Python 2, `5 / 2` will evaluate to `2` since by default, integer
 > divison will truncate. Python 3 will give `2.5`.
 
-The '%' operators gives a remainder after division.
+The `%` operator gives a remainder after division.
 
 ```python
 >>> 17 % 12
@@ -270,8 +270,150 @@ and will throw errors.
 
 ## Lists and Tuples
 
-> // TODO
+Lists and tuples both can be used to hold a collection of values.
+
+### Lists
+
+Lists can be created with square brackets. The following is a simple list of
+things:
+
+```python
+>>> my_list = [55, 'hello', None, 'cheese']
+```
+
+As you can see, lists can be composed of different types.
+
+Lists can also have lists inside them:
+
+```python
+>>> another_list = [1, 2, 3, [4, 5, 6]]
+```
+
+Lists are zero-indexed. You can index them using square brackets as well.
+
+```python
+>>> my_list[1]
+hello
+```
+
+Indicies can also be negative (where `-1` is the last element) and you can
+slice a list as well.
+
+```python
+>>> my_list[-2]
+None
+```
+
+```python
+>>> my_list[2:]
+[None, 'cheese']
+
+>>> my_list[1:3]
+['hello', None]
+
+>>> my_list[::-1]
+['cheese', None, 'hello', 55]
+```
+
+[See here](https://stackoverflow.com/a/509295) for a more in-depth description
+of slices.
+
+### List Operations
+
+`len` returns the length of a list:
+
+```python
+>>> len(my_list)
+4
+```
+
+You can use the `+` operator to add lists together to make a new list.
+
+```python
+>>> my_list + another_list
+[55, 'hello', None, 'cheese', 1, 2, 3, [4, 5, 6]]
+```
+
+`in` will check if an item is in a list.
+
+```python
+>>> 55 in my_list
+True
+```
+
+`not in` does the opposite.
+
+```python
+>>> 55 not in my_list
+False
+```
+
+You can reassign an element of a list.
+
+```python
+>>> my_list[2] = 'a new value!'
+>>> my_list
+[55, 'hello', 'a new value!', 'cheese']
+```
+
+`del` can remove an element.
+
+```python
+>>> del my_list[1]
+>>> my_list
+[55, 'a new value!', 'cheese']
+```
+
+There are a bunch of methods you can use on lists as well. See the
+[data structures page](https://docs.python.org/3.6/tutorial/datastructures.html)
+in the offical Python tutorial for more details.
+
+### Tuples
+
+Tuples are similar to lists, except that they cannot be modified after they are
+created. Elements inside a tuple can still be mutated, however.
+
+Tuples are created with parenthesis instead of square brackets.
+
+```python
+>>> a = (1, 2, 'hey')
+>>> a
+(1, 2, 'hey')
+```
+
+The same operators such as indexing, `len`, `in`, and `+` still work on tuples,
+however, you cannot add or remove elements with a tuple.
 
 ## Dictionaries
 
-> // TODO
+Dictionaries use key-value pairs to store elements.
+
+```python
+>>> person = {
+        'Name': 'PersonFace McGee',
+        'Likes': ['memes'],
+        'Dislikes': ['their name']
+    }
+>>> person
+{'Name': 'PersonFace McGee', 'Likes': ['memes'], 'Dislikes': ['their name']}
+```
+
+The syntax for accessing elements, updating, and deleting elements works
+similarly to lists.
+
+```python
+>>> person['Name']
+'PersonFace McGee'
+
+>>> person['Name'] = 'Something Better'
+>>> person
+{'Name': 'Something Better', 'Likes': ['memes'], 'Dislikes': ['their name']}
+
+>>> del person['Dislikes']
+>>> person
+{'Name': 'Something Better', 'Likes': ['memes']}
+```
+
+As with lists, there's methods you can use with dictionaries. See the
+[data structures page](https://docs.python.org/3.6/tutorial/datastructures.html)
+in the offical Python tutorial for more details as well.
