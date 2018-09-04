@@ -47,10 +47,14 @@ start: dependencies stubs
 stop: dependencies
 	@pkill $(notdir $(MD))
 
-.PHONY: start
-serve: start
+.PHONY: serve-naive
+serve-naive: start
 	@read -p "Press enter to kill.." _
 	-@$(MAKE) stop
+
+.PHONY: serve
+serve:
+	-@bash -c "trap 'trap - SIGINT SIGQUIT ERR; echo \"Stopping server...\" && $(MAKE) stop >/dev/null 2>&1' SIGINT SIGQUIT ERR; $(MAKE) serve-naive"
 
 .PHONY: serve-single
 serve-single: dependencies
