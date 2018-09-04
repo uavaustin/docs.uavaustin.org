@@ -4,7 +4,7 @@ Functions are neat things. Let's do those.
 
 ## A Basic Function
 
-Here's a basic case of wrapping our hello world example into it's own function.
+Here's a basic case of wrapping our hello world example into its own function.
 
 ```python
 def say_hello():
@@ -24,7 +24,7 @@ as before.
 > and variables.
 
 The function above has no return value! It's just is printing something out.
-Use `return` to return a value like in t
+Use `return` to return a value like in the `pow` example.
 
 ## Arguments
 

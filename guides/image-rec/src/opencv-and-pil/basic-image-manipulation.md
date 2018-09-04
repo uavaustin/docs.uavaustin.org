@@ -81,3 +81,22 @@ img = img.resize((120, 100))
 </p>
 </details>
 
+Although we primarily use PIL for these steps, all of these operations can also be done in OpenCV.
+We will not go through these steps a second time for OpenCV, but I will include the code at the end of this section for future reference.
+
+## Basic Image Manipulation Using OpenCV
+
+```python
+import cv2
+# Opening an image using cv2
+img = cv2.imread("//path//to//comp_photo.jpg")
+```  
+
+The syntax for cropping an image using OpenCV is pretty different from PIL.
+It takes in the location information in the following format:
+
+```python
+# Don't forget that the y goes first when cropping with OpenCV
+img = img[y:y+h,x:x+w]
+```
+

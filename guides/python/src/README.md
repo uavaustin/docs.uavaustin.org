@@ -3,8 +3,8 @@
 This guide gives a brief introduction to the Python programming language.
 
 Python is a general-purpose, interpreted programming language. Python is often
-seen as a great introductary language, and also a great asset to know for many
-serious projects. Many things difficult in other languages can be simplied in
+seen as a great introductory language, and also a great asset to know for many
+serious projects. Many things difficult in other languages can be simplified in
 Python.
 
 ![xkcd 353](https://imgs.xkcd.com/comics/python.png)

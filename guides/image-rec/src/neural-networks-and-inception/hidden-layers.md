@@ -36,6 +36,7 @@ That is, by increasing the number of pixels your window moves with each step.
 ## Rectified Linear Units (ReLU) Layer
 The ReLU layer applies the function \\(f(x) = max(0,x)\\). 
 This gets rid of anything below zero because it will not be relevant in our final prediction.
+This is similar to the sign function we applied to our perceptron in the previous section.
 
 ## Pooling Layer
 The pooling layer is an optional layer that takes as input a filter and a stride of the same length.
@@ -52,5 +53,7 @@ See the section on intro to neural nets for information on how they work.
 ## Softmax Layer
 This "layer" is less of a layer and more of a scaling function.
 It takes the outputs from the fully connected layer and scales them relative to each other in a way that they all add up to 1.
+This takes our outputs from the previous layer and converts them into probabilities,
+which will be used as weights in the following layer.
 
 ![Softmax](../img/softmax.png)
