@@ -115,16 +115,15 @@ modules_intro
 ├── one.py
 ├── two.py
 └── nested
-    ├── three.py
-    └── four.py
+    └── three.py
 ```
 
 So what are all these files for?
 
 - `one.py` and `two.py` are just two normal Python modules. Nothing special
   here.
-- `three.py` and `four.py` are Python modules inside a nested directory. This
-  makes importing a little different.
+- `three.py` is a Python module inside a nested directory. This makes importing
+  a little different.
 - `__init__.py` and `__main__.py` are special module names that we'll talk
   about in a bit.
 
@@ -162,9 +161,6 @@ import the `one.py` module, it'll print out the numbers when you import!
 
 ```text
 $ python3.6
-Python 3.6.5 (default, Aug 31 2018, 12:24:25)
-[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
 >>> import modules_intro.one
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 >>> modules_intro.one.get_numbers(4)
@@ -208,9 +204,6 @@ $ python3.6 modules_intro/one.py
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 $ python3.6
-Python 3.6.5 (default, Aug 31 2018, 12:24:25)
-[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
 >>> import modules_intro.one
 >>> modules_intro.one.get_numbers(4)
 [0, 1, 2, 3, 4]
@@ -243,7 +236,8 @@ different.
 
 In `two.py` we'll have a simple factorial implementation, and a function that
 returns the factorial of numbers up to a value. For the second, function, we'll
-use the `get_numbers` function.
+use the `get_numbers` function. Our factorial implementation is intended to be
+private and not used outside the module.
 
 ```python
 # two.py
@@ -251,8 +245,8 @@ use the `get_numbers` function.
 from . import one
 
 
-def fac(n):
-    """Return the factorial of a number."""
+# By convention, private functions start with an underscore.
+def _fac(n):
     if n == 0:
         return 1
     else:
@@ -261,7 +255,7 @@ def fac(n):
 
 def get_fac(upper):
     """Return integer factorials up to and including a limit."""
-    return [fac(i) for i in one.get_numbers(upper)]
+    return [_fac(i) for i in one.get_numbers(upper)]
 ```
 
 So to import an entire module from the same directory, we import the module
@@ -271,28 +265,129 @@ Of course, we can test this with an interactive Python session:
 
 ```text
 $ python3.6
-Python 3.6.5 (default, Aug 31 2018, 12:24:25)
-[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
 >>> import modules_intro.two
->>> modules_intro.two.fac(3)
-6
 >>> modules_intro.two.get_fac(6)
 [1, 1, 2, 6, 24, 120, 720]
 ```
 
 ### Going into the Nested Folder with `three.py`
 
-> // TODO
+Now we'll move into the nested folder in `modules_intro/nested/three.py`. For
+this file we'll make a function that returns the sum of the factorials for a
+number and below:
+
+\\[ \text{fac_sum}(n) = \sum_{i = 0}^{n}{i!} \\]
+
+```python
+# three.py
+
+from ..two import get_fac
+
+
+def fac_sum(n):
+    """Return the sum of the factorials up to and including a value.
+
+    This justs the built-in sum function in Python to do the work.
+    """
+
+    return sum(get_fac(n))
+```
+
+In the above we can see that we use a `from` ... `import` to import the
+`get_fac` function directly. `..` is the directory above, and we can put the
+module name after that to be able to import `get_fac` out of it.
 
 ### Making the Directory Work Like a Module with `__init__.py`
 
-> // TODO
+So to use our `get_fac` function from the outside, we'd have to import it all
+way as `modules_intro.nested.three.get_fac`
+(or `from modules_intro.nested.three import get_fac`). Well, this is
+ridiculous, especially considering this is the highest level function.
 
-### Putting it all Together in `four.py`
+So what we can do is create a special file called `__init__.py` inside our
+directory. This allows for some custom behavior when we want to use our folder
+as a Python module. This file essentially represents the directory.
 
-> // TODO
+Let's create it and import the `fac_sum` function:
+
+```python
+# __init__.py
+
+from .nested.three import fac_sum
+```
+
+So if we open up a Python interpreter we can now use it without having to go
+down deep where `fac_sum` is defined.
+
+```text
+$ python3.6
+>>> import modules_intro
+>>> modules_intro.fac_sum(10)
+4037914
+```
+
+This is a little bit of a weird behavior. Things in a Python module are
+accessible from the outside, including imports. We can use this to be able to
+lift functions and classes and whatnot to the top level.
+
+While you can use `__init__.py` as a simple thing that lifts up the
+definitions, some libraries use it to actually define a lot of there functions
+and whatnot there. It's a matter of style really.
 
 ### Giving our Module an Entrypoint with `__main__.py`
 
-> // TODO
+We know how to run a regular Python script... but how do you run a directory?
+Since we can make a directory work like a module with `__init__.py` will that
+run if we do `python3.6 modules_intro`? The short answer is no, but we can use
+another special file name to make this kind of setup work: `__main__.py`.
+
+As you might expect, `__main__.py` is a file that runs when you run a module
+from the command-line. As an example, we can just use the following contents
+to print out the sum of `fac_sum(10)`:
+
+```python
+# __main__.py
+
+from . import fac_sum
+
+
+print(fac_sum(10))
+```
+
+So now we can run try to run `modules_intro` from the command-line:
+
+```shell
+$ python3.6 modules_intro
+python3.6 modules_intro
+Traceback (most recent call last):
+  File "/path/to/.../python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/path/to/.../python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "modules_intro/__main__.py", line 3, in <module>
+    from . import fac_sum
+ImportError: attempted relative import with no known parent package
+```
+
+...So we need to do one more thing. Python doesn't like this at all. What you
+actually need to do to run this is to pass the `-m` flag on the command-line
+which indicates that you are running a module. Why the error appears above is
+kind of complicated because Python has a convoluted import system, but just
+trust me on this.
+
+```shell
+$ python3.6 -m modules_intro
+4037914
+```
+
+You can make this more exciting if you were to ask for input for the number, or
+even better, to accept it as a command-line argument, though this is just a
+simple example.
+
+> *Note*: The `-m` flag extends more to just a module in your current
+> directory: it also extends to any module in Python. For example, you run
+> `pytest` (a popular Python testing framework) this way. This can resolve
+> problems for when you have the same thing installed across multiple Python
+> versions, e.g., `python3.6 -m pytest` and `python3.5 -m pytest` will allow
+> both to work, when one of the versions will shadow the other when just using
+> `pytest`.
