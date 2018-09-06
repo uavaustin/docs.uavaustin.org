@@ -23,7 +23,7 @@ interactive Node.js session, you'll get the same print out as before.
 Just like in the rest of the language, you don't provide return types for the
 functions.
 
-> *NOTE:* The convention is JavaScript is to use `camelCase` naming for
+> *NOTE:* The convention in JavaScript is to use `camelCase` naming for
 > normal functions (as well as variables in general).
 
 ## Arguments

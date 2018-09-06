@@ -14,5 +14,5 @@ simply waiting on an I/O operation. Hence, the async paradigm is the driving
 force of the "event-driven I/O" concept that originally propelled 
 Node.js to fame.
 
-This section covers common patterns and approaches for async, including
+This section covers common async patterns and approaches in Node.js, including
 callbacks, promises, `async`/`await` syntax, and event emitters.

@@ -1,7 +1,7 @@
 # `async`/`await`
 
 Despite the prevalence of asynchronous functions, most of our programming
-remains linear in practice - hence the plight of "callback hell."
+remains linear in practice&mdash;hence the plight of "callback hell."
 
 Instead of wrapping our promises with callbacks, why can't we just *wait* for
 the promise to be fulfilled, all the while keeping the event loop going (so as

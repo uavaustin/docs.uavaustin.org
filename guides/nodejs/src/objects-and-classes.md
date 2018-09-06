@@ -39,7 +39,7 @@ let dog = {
 dog.bark(); // ReferenceError: volume is not defined
 ```
 
-This will not work - the interpreter thinks that we are trying to reference
+This will not work&mdash;the interpreter thinks that we are trying to reference
 a variable called `volume`. But in reality, we wish to reference
 the property `volume` inside the object `dog`.
 
