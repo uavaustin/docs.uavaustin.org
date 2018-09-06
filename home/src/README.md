@@ -24,7 +24,7 @@ For other information, you can contact us via Slack or email:
   *[hyeonseung.lee@utexas.edu](mailto:hyeonseung.lee@utexas.edu)*
 - Sabrina Alvarez - Chief Engineer
 
-  *[@sab000](https://uavaustin.slack.com/messages/U6XKWA20J)* |
+  *[@Sabrina](https://uavaustin.slack.com/messages/U6XKWA20J)* |
   *[alvarez.sabrina84@utexas.edu](mailto:alvarez.sabrina84@utexas.edu)*
 - Bradley Bridges - Chief Software Engineer
 
