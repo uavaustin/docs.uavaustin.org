@@ -250,7 +250,7 @@ def _fac(n):
     if n == 0:
         return 1
     else:
-        return n * fac(n - 1)
+        return n * _fac(n - 1)
 
 
 def get_fac(upper):
