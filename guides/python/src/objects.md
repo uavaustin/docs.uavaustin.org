@@ -103,7 +103,7 @@ cat_2 = Cat(1)
 
 cat_2.kill()
 
-print(cat.is_alive)  # False
+print(cat_2.is_alive)  # False
 ```
 
 Some things to note:
