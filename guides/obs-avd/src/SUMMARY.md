@@ -10,5 +10,5 @@
 - [Pathfinder Library](pathfinder-library/README.md)
   - [Library Overview](pathfinder-library/library-overview.md)
   - [Map Representation](pathfinder-library/map-presentation.md)
-  - [Implementation Details](pathfinder-library/a-star-implementation.md)
+  - [Implementation Details](pathfinder-library/implementation-details.md)
   - [Future Goals](pathfinder-library/future-goals.md)

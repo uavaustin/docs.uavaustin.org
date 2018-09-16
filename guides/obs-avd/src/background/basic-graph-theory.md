@@ -40,6 +40,15 @@ a tree where a node is indicated as the root node and all other nodes are define
 **Leaf node**
 a node in a rooted tree with no children
 
+## Graph representation
+A graph needs to be somehow represented in memory.  The main representations are adjacency list and adjacency matrix.
+
+**Adjacency list**  
+Each node keeps track of their connected neighbor and their weights.  Good for sparse graphs.
+
+**Adjacency matrix**
+A matrix keeps track of what whether an edge exists between two nodes.  Good for dense graphs.  Additionally, looking up if two nodes are connected takes constant time at the cost of taking up more space.
+
 ## Heuristics
 To calculating the shortest path, we need to accurately estimate the distance between two nodes.  The common heustrics used for this purpose are Manhattan distance, Euclidean distance, and Diagonal distance.
 
