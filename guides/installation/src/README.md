@@ -12,6 +12,12 @@ The goal of this guide is to eventually be a _compendium_ of the installation pr
 - [Configuring your editor for Rust](rust-pt-2/index.html)
 - [Installing Docker](docker/index.html)
 
+As of now, we're supporting:
+- Windows 10 Version 1803 (Build 17134) or newer (and edition is fine)
+- macOS 10.10 Yosemite or newer
+- Ubuntu 16.04.5 or newer
+If you're running something else, you're on your own.
+
 If you're not sure what to do, start by [configuring your OS](getting-started/index.html).
 
 This guide is currently a best-effort endeavor; it's possible and even likely that information in this guide will be outdated by the time you read it. Unfortunately, there isn't very much we can do about this. Installation involves many cross-cutting elements of the typical software stack and moves too quickly for us to reasonably always be up to date; it simply isn't very practical. 

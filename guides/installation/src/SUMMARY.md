@@ -2,7 +2,7 @@
 
 - [Foreword](README.md)
 - [Getting Started](getting-started/README.md)
-    - [Windows](getting-started/windows.md)
+    - [Windows 10](getting-started/windows.md)
     - [macOS](getting-started/macOS.md)
     - [Linux](getting-started/linux.md)
 - [Git + GitHub](git/README.md)
@@ -11,6 +11,6 @@
     - [Sublime Text](rust-pt-2/subl.md)
     - [CLion](rust-pt-2/clion.md)
 - [Docker](docker/README.md)
-    - [Windows](docker/windows.md)
+    - [Windows 10](docker/windows.md)
     - [macOS](docker/macOS.md)
     - [Linux](docker/linux.md)
