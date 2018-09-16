@@ -6,6 +6,8 @@
     - [macOS](getting-started/macOS.md)
     - [Linux](getting-started/linux.md)
 - [Git + GitHub](git/README.md)
+    - [GitHub](git/github.md)
+    - [Git](git/git.md)
 - [Rust](rust/README.md)
 - [Rust Part 2](rust-pt-2/README.md)
     - [Sublime Text](rust-pt-2/subl.md)
