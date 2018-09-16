@@ -4,6 +4,8 @@ OUT := $(abspath $(or $(DEST),book))
 GUIDES := $(wildcard guides/*)
 DESIGNS := $(wildcard design/*)
 
+BOOKS := $(GUIDES) $(DESIGN)
+
 .PHONY: all
 all: book
 
@@ -18,16 +20,13 @@ endif
 stubs:
 	@$(foreach book,$(GUIDES)$(DESIGN),mkdir -p home/src/$(book) && touch home/src/$(book)/index.html;)
 
-guides/%: dependencies
+$(BOOKS): dependencies
 	@$(MD) test $@ --dest-dir $(OUT)/$@
 	@$(MD) build $@ --dest-dir $(OUT)/$@
-
-design/%: dependencies
-	@$(MD) test $@ --dest-dir $(OUT)/$@
-	@$(MD) build $@ --dest-dir $(OUT)/$@
+	@echo ".content img { max-width: 100%; display:block; margin: 0 auto; }" >> $(OUT)/$@/css/general.css
 
 .PHONY: sub-books
-sub-books: $(GUIDES) $(DESIGNS)
+sub-books: $(BOOKS)
 
 .PHONY: home
 home: dependencies stubs
