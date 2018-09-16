@@ -2,6 +2,7 @@
 
 [UAV Austin Documentation](README.md)
 
+- [Installation](guides/installation/index.html)
 - [Guides](guides.md)
   - [Python Guide](guides/python/index.html)
   - [Node.js Guide](guides/nodejs/index.html)
