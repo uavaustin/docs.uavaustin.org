@@ -1,0 +1,11 @@
+[book]
+title = "UAV Austin Rust Guide"
+authors = ["UAV Austin"]
+multilingual = false
+src = "src"
+
+[output.html]
+mathjax-support = true
+
+[build]
+build-dir = "../../book/guides/rust"

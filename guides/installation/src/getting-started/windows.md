@@ -141,8 +141,6 @@ By default WSL lives in a sandbox and has its files hidden from Windows. However
 First, run this:
 
 ```shell
-$ # b=$(a=$(powershell.exe 'echo $env:USERPROFILE'); echo $a | rev | cut -d\\ -f1 | rev | tr -d '\r'); c="/c/Users/$b/Documents"; [ -e "$c" ] && echo "home=\"$c\"" >> ~/.bashrc && echo "alias home='cd \"\${home}\"'" >> ~/.bashrc && source ~/.bashrc || echo "Something went wrong."
-
 $ c=$(dos2wslPath $(a=$(powershell.exe 'echo $env:USERPROFILE'); echo $a | tr -d '\r')); [ -e "$c" ] && echo "home=\"$c/Documents\"" >> ~/.bashrc && echo "alias home='cd \"\${home}\"'" >> ~/.bashrc && source ~/.bashrc || echo "Something went wrong."
 
 ```
