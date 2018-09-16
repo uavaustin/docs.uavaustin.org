@@ -13,7 +13,7 @@ The goal of this guide is to eventually be a _compendium_ of the installation pr
 - [Installing Docker](docker/index.html)
 
 As of now, we're supporting:
-- Windows 10 Version 1803 (Build 17134) or newer (and edition is fine)
+- Windows 10 Version 1803 (Build 17134) or newer (any edition is fine)
 - macOS 10.10 Yosemite or newer
 - Ubuntu 16.04.5 or newer
 If you're running something else, you're on your own.
