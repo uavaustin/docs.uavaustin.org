@@ -7,8 +7,12 @@ Stems from depth first search.  Depth first search looks at a child of a node an
 unmark all nodes
 let S be a stack
 S.push(start)
+
 while S is not empty
   current_node = S.pop()
+  if current_node == end
+    return path
+  end if
   if current_node is not marked:
     mark current_node as visited
     for all neighbor n of current_node
