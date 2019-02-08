@@ -63,7 +63,7 @@ Now that you've got WSL set up, it's time to start installing things inside the 
 
 To start, let's tell `apt` to update the packages it knows about:
 
-> N.B.: The `$` indicates that you should run a command in your terminal (Ubuntu's Bash in this case). I.e. copy and paste everything after the `$` into your terminal and hit enter. Right-click is paste. Astute readers will notice that above, a `>` was used as the prompt. This indicates that the command is meant to be run in cmd or PowerShell. If you're new to the command line, [here's](https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything) a good place to start.
+> N.B.: The `$` indicates that you should run a command in your terminal (Ubuntu's Bash in this case). I.e. copy and paste everything after the `$` into your terminal and hit enter. *Right-click is paste.* Astute readers will notice that above, a `>` was used as the prompt. This indicates that the command is meant to be run in cmd or PowerShell. If you're new to the command line, [here's](https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything) a good place to start.
 
 ```shell
 $ sudo apt update
