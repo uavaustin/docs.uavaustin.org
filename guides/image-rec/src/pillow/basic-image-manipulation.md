@@ -84,7 +84,7 @@ target_draw.text((x,y), alpha, alpha_rgb, font=font)
 
 # Rotate target 
 angle = 45
-rotated_image = target.rotate(angle, expand=1)
+rotated_image = target.rotate(angle, expand=1)2
 rotated_image.show("Rotated Image")
 
 ```
@@ -93,27 +93,37 @@ rotated_image.show("Rotated Image")
 There is a white background around the target that we want to make transparent to we can paste just the target onto the background image. The code below will remove all white and replace with transparent values.
 
 ```python 
-for x in range(image.width):
-    for y in range(image.height):
+for x in range(rotated_image.width):
+    for y in range(rotated_image.height):
 
-        r, g, b, a = image.getpixel((x, y))
+        r, g, b, a = rotated_image.getpixel((x, y))
 
         if r == 255 and g == 255 and b == 255:
-            image.putpixel((x, y), (0, 0, 0, 0))
+            rotated_image.putpixel((x, y), (0, 0, 0, 0))
 ```
 
 PIL's getbbox funcition finds the smallest bounding box around the non zero region of the image as a 4-tuple. We can then use this 4-tuple to crop the image down to just the target. 
 
 ```python
-image = image.crop(image.getbbox()) 
+rotated_crop = rotated_image.crop(rotated_image.getbbox()) 
 ```
 ![Cropped Target](../img/cropped.png)
 
-bg_at_shape = background.crop((x1 + x, y1 + y, x2 + x, y2 + y))
-bg_at_shape.paste(shape_img, (0, 0), shape_img)
-bg_at_shape = bg_at_shape.filter(ImageFilter.GaussianBlur(blur_radius))
-background.paste(bg_at_shape, (x, y))
+Let's check the size of the target.
+```python
+rotated_image.size
+>> (535, 535)
+```
+We need to downscale the target to make it more realistic on the background image.
+```python 
+rotated_image = rotated_image.resize(60,60)
+```
+Finally, time to paste the target onto the background. We will paste the target's top left pixel to (1500, 1000) on the background.
+```python
+background.paste(rotated_image, (1500, 1000),rotated_image)
+background.show()
+```
+![Background With Target](../img/background_target.jpg)
 
-RESIZE 
 
-PASTE
+
