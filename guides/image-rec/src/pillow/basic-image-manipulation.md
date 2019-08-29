@@ -19,9 +19,9 @@ Now, we need to load in our artifical targets.
 Enter this into your browser to download our fake targets or click [here](
 https://bintray.com/uavaustin/target-finder-assets/download_file?file_path=base-shapes-v1.tar.gz).
 
-```
+
 https://bintray.com/uavaustin/target-finder-assets/download_file?file_path=base-shapes-v1.tar.gz
-```
+
 
 Let's open one of the target images.
 
@@ -41,42 +41,79 @@ Let's start with rotation. PIL's rotation function will return a copy of this im
 
  - expand -- If 1, the image will expand to fit the newly rotated image.
 
+```python
+img = img.rotate(45)
+img.show('Rotated Image')
+```
+
+![Cropped Competition Photo](../img/ex_rotation.png)
+
+Now we need to paste on an alphanumeric to make this a complete target.
+
+```python
+# Create an object which we can edit
+target_draw = ImageDraw.Draw(target)
+
+# Use B for example
+alpha = 'B'
+
+# Define font multiplier to shrink or grow to fit letter to target
+font_multiplier = 0.5
+
+# Path to font image file
+font_file = './fonts/Gudea/Gudea-Bold.ttf'
+
+# Create font height based on target size and scaled by font_multiplier
+font_size = int(round(font_multiplier * target.height))
+
+# Create font to put on target_draw
+font = ImageFont.truetype(font_file, font_size)
+
+# Get width and height of the font 
+w, h = target_draw.textsize(alpha, font=font)
+
+# Get top left coordinate of where to paste alpha onto target
+x = (target.width - w) / 2
+y = (target.height - h) / 2
+
+# Set the rgb color of the alpha
+alpha_rgb = ((64, 115, 64))
+
+# Finally, draw the alpha onto the target
+target_draw.text((x,y), alpha, alpha_rgb, font=font)
+
+# Rotate target 
+angle = 45
+rotated_image = target.rotate(angle, expand=1)
+rotated_image.show("Rotated Image")
+
+```
+![Cropped Competition Photo](../img/pasted.png)
+
+There is a white background around the target that we want to make transparent to we can paste just the target onto the background image. The code below will remove all white and replace with transparent values.
 
 ```python 
-rotated_img = image.rotate(angle, expand=1)
-img.show("Rotated Image")
+for x in range(image.width):
+    for y in range(image.height):
+
+        r, g, b, a = image.getpixel((x, y))
+
+        if r == 255 and g == 255 and b == 255:
+            image.putpixel((x, y), (0, 0, 0, 0))
 ```
 
-![Cropped Competition Photo](../img/comp_photo_cropped.jpg)
-
-<details><summary>Solution</summary>
-<p>
+PIL's getbbox funcition finds the smallest bounding box around the non zero region of the image as a 4-tuple. We can then use this 4-tuple to crop the image down to just the target. 
 
 ```python
-img = img.rotate(180)
-
+image = image.crop(image.getbbox()) 
 ```
+![Cropped Target](../img/cropped.png)
 
-</p>
-</details>
+bg_at_shape = background.crop((x1 + x, y1 + y, x2 + x, y2 + y))
+bg_at_shape.paste(shape_img, (0, 0), shape_img)
+bg_at_shape = bg_at_shape.filter(ImageFilter.GaussianBlur(blur_radius))
+background.paste(bg_at_shape, (x, y))
 
-Let's make this image a little easier to see.
-The function img.resize() takes in a tuple of (width, height) to resize an image to.
-You can use this to squish or stretch an image, but in this case let's use it to double the size of our newly rotated image. 
-_Hint: Don't forget, the input is a tuple._
+RESIZE 
 
-![Resized Image](../img/comp_photo_resized.jpg)
-
-<details><summary>Solution</summary>
-<p>
-
-```python
-img = img.resize((120, 100))
-```
-
-</p>
-</details>
-
-Although we primarily use PIL for these steps, all of these operations can also be done in OpenCV.
-We will not go through these steps a second time for OpenCV, but I will include the code at the end of this section for future reference.
-
+PASTE
