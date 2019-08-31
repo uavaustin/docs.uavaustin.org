@@ -8,7 +8,7 @@ The UAVA Image Rec pipeline operates as follows:
 
 - These tiles are sent to a classification network which determines wether an image tiles has a target or not
 
-- Tiles classified with targets are sent to a YOLO object detection model which detects which shape and alphanumeric (A-Z, 0-9 is present
+- Tiles classified with targets are sent to a YOLO object detection model which detects which shape and alphanumeric (A-Z, 0-9 is present)
 
 - Detected targets are analyzed for most prominent colors to determine shape and alphanumeric color
 

@@ -130,10 +130,12 @@ We need to save the class and location of this target for our model data generat
 
 ```python
 w_target, h_target = rotated_image.size
-shape_bbox = [0, int(paste_loc[0] - (w_target/2)) , int(paste_loc[1] - (h_target/2)), w_target, h_target]
-with open('./target.txt', 'w') as label_file:
+shape_bbox = ['pentagon', int(paste_loc[0] - (w_target/2)) , int(paste_loc[1] - (h_target/2)), w_target, h_target]
+with open('./imgs/background_target.txt', 'w') as label_file:
     label_file.write('{} {} {} {} {}\n'.format(*shape_bbox))
 ```
 
+The output ```background_target.txt``` file should have the single following line:
 
+```pentagon 1470 970 60 60```
 
