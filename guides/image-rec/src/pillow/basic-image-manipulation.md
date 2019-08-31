@@ -120,10 +120,20 @@ rotated_image = rotated_image.resize(60,60)
 ```
 Finally, time to paste the target onto the background. We will paste the target's top left pixel to (1500, 1000) on the background.
 ```python
-background.paste(rotated_image, (1500, 1000),rotated_image)
+paste_loc = (1500,1500)
+background.paste(rotated_image, paste_loc, rotated_image)
 background.show()
 ```
 ![Background With Target](../img/background_target.jpg)
+
+We need to save the class and location of this target for our model data generation later. We will save the target class index, the (x,y) of the center of the target, height, and width. 
+
+```python
+w_target, h_target = rotated_image.size
+shape_bbox = [0, int(paste_loc[0] - (w_target/2)) , int(paste_loc[1] - (h_target/2)), w_target, h_target]
+with open('./target.txt', 'w') as label_file:
+    label_file.write('{} {} {} {} {}\n'.format(*shape_bbox))
+```
 
 
 

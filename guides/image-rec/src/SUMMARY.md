@@ -3,7 +3,7 @@
 - [Introduction](README.md)
 - [Image Augmentation](pillow/README.md)
   - [Data Generation](pillow/basic-image-manipulation.md)
-  - [Edge Detection](pillow/edge-detection.md)
+  - [Classifier Data](pillow/edge-detection.md)
 - [Neural Networks and Inception](convolution-neural-networks/README.md)
   - [Intro to Neural Nets](convolution-neural-networks/inter-to-neural-nets.md)
   - [Convolutional Neural Networks](convolution-neural-networks/convolutional-neural-networks.md)
