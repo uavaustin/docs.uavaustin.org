@@ -7,7 +7,7 @@ To download Rust, in the unix shell simply type:
 
 # Git installation
 
-Before you download git, it is a good idea to go to [Github](hhtps://www.github.com) and create an account if you do not already have one.
+Before you download git, it is a good idea to go to [Github](https://www.github.com) and create an account if you do not already have one.
 
 To download git, simply type this in the unix shell:
 `$ sudo apt install git-all`
