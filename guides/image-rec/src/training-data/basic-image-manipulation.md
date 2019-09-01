@@ -120,7 +120,7 @@ rotated_image = rotated_image.resize(60,60)
 ```
 Finally, time to paste the target onto the background. We will paste the target's top left pixel to (1500, 1000) on the background.
 ```python
-paste_loc = (1500,1500)
+paste_loc = (1500,1000)
 background.paste(rotated_image, paste_loc, rotated_image)
 background.show()
 ```

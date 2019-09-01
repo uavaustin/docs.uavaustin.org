@@ -22,15 +22,21 @@ Seems pretty simple, right? Let's dive deeper.
 
 First, ```[convolutional]``` and ```[maxpool]``` are just names used to tell Darknet what layers we are going to construct.
 
+### Filters 
+
+A filter is the fundemental block of our convolutional layer; it does all the heavy lifting.
+
+![CNN](../img/filter.png)
+
+Here ```filters = 16``` means we will be convolving with 16 different filters. Each filter will have a 3x3 kernel size, convolutional stride of 1, and padding of 1 around the image. Here is a picture of a filter acting on an input layer. The stride determine how far over the filter shifts after convolution. Pad means adding rows of 0's to the top and bottom and columns of 0's to the left and right of the input layers. This helps to preserve image size to our layers don't get too small undesirably quickly. 
+
+The ```activation``` is a function that is applied to the scalar of the output of each convolution. Activation functions are used to help the model's gradient descent converge quicker. Here is a graph of the leaky ReLU activation function.
+
+![CNN](../img/lrelu.jpg)
+
 ### Batch Normalization
 
 Batch normalization is a step which normalizes the output of convolutional layers in order to help the model train. When the activations of layers are not normalized, between different layers, The activations can vary significantly between different layers if they are not normalized, taking longer to train the model.  For more information, [here](https://arxiv.org/pdf/1502.03167.pdf) is a link to the original batch normalization paper.
-
-### Filters 
-
-A filter is the fundemental block of our convolutional layer; it does all the heavy lifting. 
-
-Here ```filters = 16``` means we will be convolving with 16 different filters. Each filter will have a 3x3 kernel size, convolutional stride of 1, and padding of 1 around the image.
 
 ### Max Pooling 
 
