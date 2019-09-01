@@ -8,7 +8,6 @@
 - [Neural Networks](convolution-neural-networks/README.md)
   - [Intro to Neural Nets](convolution-neural-networks/inter-to-neural-nets.md)
   - [Convolutional Neural Networks](convolution-neural-networks/convolutional-neural-networks.md)
-- [YOLO Object Detector](neural-network-generation/README.md)
-  - [YOLO Architecture](neural-network-generation/yolo-architecture.md)
-  - [Retraining Inception's Final Layer](neural-network-generation/retraining-inceptions-final-layer.md)
+- [YOLO Object Detector](yolo-architecture/README.md)
+  - [YOLO Architecture](yolo-architecture/yolo-architecture.md)
   
