@@ -13,8 +13,7 @@ given topic:
   and is well suited for asynchronous programming.
 - [Image Recognition Primer](guides/image-rec/index.html) - This guide talks
   about the foundations of topics needed for working within the Image
-  Recognition team, including computer vision with OpenCV and machine learning
-  with Tensorflow.
+  Recognition team, including the basics of neural networks and the Darknet framework.
 - [Intro to Obstacle Avoidance](guides/obs-avd/index.html) - This guide covers
   what to know to get started working in the `pathfinder` library for the
   Autopilot team.
