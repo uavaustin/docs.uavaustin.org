@@ -18,7 +18,7 @@ endif
 
 .PHONY: stubs
 stubs:
-	@$(foreach book,$(GUIDES)$(DESIGN),mkdir -p home/src/$(book) && sudo touch home/src/$(book)/index.html;)
+	@$(foreach book,$(GUIDES)$(DESIGN),mkdir -p home/src/$(book) && touch home/src/$(book)/index.html;)
 
 $(BOOKS): dependencies
 	@$(MD) test $@ --dest-dir $(OUT)/$@
