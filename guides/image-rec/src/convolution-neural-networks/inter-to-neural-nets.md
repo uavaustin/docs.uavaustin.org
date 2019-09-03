@@ -37,7 +37,7 @@ class NeuralNetwork:
         self.y          = y
         self.output     = np.zeros(y.shape)
 ```
-We will construct the NeuralNetwork object with two pieces of data, or dataset ```x```, and the associated output ```y```. The ```weights1``` is a 2 dimensional array where the number of rows corresponds to the number of columns of our input data and the columns is 4 because there are 4 neurons on our hidden layer. The ```weights2``` the second set of weights that is applied to the four outputs from the hidden layer by the final neuron. 
+We will construct the NeuralNetwork object with two pieces of data, or dataset `x`, and the associated output `y`. The ```weights1``` is a 2 dimensional array where the number of rows corresponds to the number of columns of our input data and the columns is 4 because there are 4 neurons on our hidden layer. The `weights2` the second set of weights that is applied to the four outputs from the hidden layer by the final neuron. 
 
 Now we need a method to pass the input through the model. This is often called "feed-forward."
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     print(nn.output)
 ```
-When you run this function for the 5000 iterations specified by ```range(5000):```, you should get the following output: 
+When you run this function for the 5000 iterations specified by `range(5000):`, you should get the following output: 
 ```python
 [[0.01050021]
  [0.98786207]

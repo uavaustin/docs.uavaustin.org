@@ -10,7 +10,7 @@ YOLO's speed advantage comes from passing the entire start image through feature
 
 The following is a complete YOLOv3 model with two yolo layers:
 
-```md
+```ini
 [net]
 # Testing
 batch=1
@@ -111,33 +111,33 @@ truth_thresh = 1
 random=1
 ```
 
-First, let's go over the sections before the first ```[convolutional]``` layer.
+First, let's go over the sections before the first `[convolutional]` layer.
 
- - ```batch```: number of images to send in to the gpu. GPU with larger memmory means it can train on more images at a time.
- - ```subdivisions```: number chunks to split the batch size up in to
- - ```width```: input size of image. Image will be resized to this dimension upon input if not already this size.
- - ```height```: input size of image. Image will be resized to this dimension upon input if not already this size.
- - ```channels```: number of input layers. It's 3 here because our input image is RGB.
- - ```momentum, decay```: These two parameters apply to the gradient descent algorithm.
+ - `batch`: number of images to send in to the gpu. GPU with larger memmory means it can train on more images at a time.
+ - `subdivisions`: number chunks to split the batch size up in to
+ - `width`: input size of image. Image will be resized to this dimension upon input if not already this size.
+ - `height`: input size of image. Image will be resized to this dimension upon input if not already this size.
+ - `channels`: number of input layers. It's 3 here because our input image is RGB.
+ - `momentum, decay`: These two parameters apply to the gradient descent algorithm.
 
  Angle, saturation, exposure, and hue are all data augmentation parameters that are randomly applied to data during training to increase the robustness of the model.
 
  The next group of paramters all deal with the gradient descent algorithm and are out of the scope of this training documentation. 
 
- Next, you can see the ```[convolutional]``` blocks are the exact same as what we covered in the Convolutional Neural Networks section! After many convolutional layers, we reach the ```[yolo]``` layers. 
+ Next, you can see the `[convolutional]` blocks are the exact same as what we covered in the Convolutional Neural Networks section! After many convolutional layers, we reach the `[yolo]` layers. 
 
- The ```mask``` paramter (poorly named) tells the model which anchor boxes to use to predict targets. For exammple, we have 6 anchors, and in the first ```[yolo]``` layer, ```mask = 3,4,5``` because we want the model to use the last three of our boxes to make predictions. We want the first layer to predict the largest boxes because the input is at its coarsest scale right now i.e. the original input has been downsampled. 
+ The `mask` paramter (poorly named) tells the model which anchor boxes to use to predict targets. For exammple, we have 6 anchors, and in the first `[yolo]` layer, `mask = 3,4,5` because we want the model to use the last three of our boxes to make predictions. We want the first layer to predict the largest boxes because the input is at its coarsest scale right now i.e. the original input has been downsampled. 
 
 
 ![YOLO Model](../img/yolov3_2.png)
 
-When we real the yolo layer, the image is divided into a grid of squares and in each square there are a ```num``` of rectanglular ```anchors``` boxes. The models job is to predict which box or boxes associate with a target in that square. This prediction happens three times. The first time, the input layer is 1/32 the size of the original image, the second yolo layer acts on a input layer 1/6 the original, and lastly a prediction on layer 1/8 the original image. 
+When we real the yolo layer, the image is divided into a grid of squares and in each square there are a `num` of rectanglular `anchors` boxes. The models job is to predict which box or boxes associate with a target in that square. This prediction happens three times. The first time, the input layer is 1/32 the size of the original image, the second yolo layer acts on a input layer 1/6 the original, and lastly a prediction on layer 1/8 the original image. 
 
-You might notice the image is increasing by a factor of 2, which comes from the stride of the ```[unsample]``` layers. The unsampling method is used to increase the size of the previous layer. This helps small object prediction which is of great interest to us. 
+You might notice the image is increasing by a factor of 2, which comes from the stride of the `[unsample]` layers. The unsampling method is used to increase the size of the previous layer. This helps small object prediction which is of great interest to us. 
 
-The ```[route]``` layers are used to bring back previous layers to help guide the unsampling process. This can also be referred to _residual_.
+The `[route]` layers are used to bring back previous layers to help guide the unsampling process. This can also be referred to _residual_. For example, `layers =  -1,8` means to combine the output of the previous layer and eighth layer of the model.
 
-```jitter``` is another data augmentation that randomly changes the aspect ratio and size of images to make the model more robust. 
+`jitter` is another data augmentation that randomly changes the aspect ratio and size of images to make the model more robust. 
 
-We can ignore ```ignore_thresh``` and ```truth_thresh``` as they are not used and are mearly artifacts of experimentation from the source code. 
+We can ignore `ignore_thresh` and `truth_thresh` as they are not used and are mearly artifacts of experimentation from the source code. 
 

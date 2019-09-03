@@ -12,14 +12,12 @@ The UAVA Image Rec pipeline operates as follows:
 
 - Detected targets are analyzed for most prominent colors to determine shape and alphanumeric color
 
+The UAVA Image Recognition software stack consists of two main projects, target-finder-model and target-finder.
 
-
-The UAVA software stack consists of two main projects, target-finder-model and target-finder.
-
-#### Target-Finder-Model
+#### [uavaustin/target-finder-model](https://github.com/uavaustin/target-finder-model)
 
 This portion consists of scripts used to generate data that is used to train our classifier and object detector
 
-#### Target-Finder
+#### [uavaustin/target-finder](https://github.com/uavaustin/target-finder)
 
 This base contains an API used to inference on immages rercieved from the drone-mounted camera.
