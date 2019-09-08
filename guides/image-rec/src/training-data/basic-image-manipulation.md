@@ -116,7 +116,7 @@ rotated_image.size
 ```
 We need to downscale the target to make it more realistic on the background image.
 ```python 
-rotated_image = rotated_image.resize(60,60)
+rotated_image = rotated_image.resize((60,60))
 ```
 Finally, time to paste the target onto the background. We will paste the target's top left pixel to (1500, 1000) on the background.
 ```python
@@ -130,12 +130,12 @@ We need to save the class and location of this target for our model data generat
 
 ```python
 w_target, h_target = rotated_image.size
-shape_bbox = ['pentagon', int(paste_loc[0] - (w_target/2)) , int(paste_loc[1] - (h_target/2)), w_target, h_target]
+shape_bbox = ['pentagon', int(paste_loc[0]), int(paste_loc[1]), w_target, h_target]
 with open('./imgs/background_target.txt', 'w') as label_file:
     label_file.write('{} {} {} {} {}\n'.format(*shape_bbox))
 ```
 Here, we use `*` to unpack the tuple `shape_bbox` so we can paste the values into the file.
 The output ```background_target.txt``` file should have the single following line:
 
-```pentagon 1470 970 60 60```
+```pentagon 1500 1000 60 60```
 
