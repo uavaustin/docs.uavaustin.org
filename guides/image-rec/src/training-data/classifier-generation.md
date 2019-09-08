@@ -1,9 +1,9 @@
 # Classifier Data
 So now we have our background image with an artificial target on it. We need to generate the data to train our classifier. Darknet needs the training images to be labeled as follows: ```//path//to//image//index_classid.ext```. For our purposes we have two classification classes, target (index = 0) and background (index = 1).
 
-Our models cannot look at an approximatly 4000x2000 pixel image without downsampling. Either we could downsample the image to a size more digestible for a model, like 800x800, or we can slice up the larger image into smaller tiles. We will do the former because downsampling the image would make the targets way too small. 
+Passing a 4200x2200 image through our model would take way too long to process. Either we could downsample the image to a size more digestible for a model, like 800x800, or we can slice up the larger image into smaller tiles. We will do the latter because downsampling the entire image would make the targets way too small. 
 
-Let's slice up our larger image into out two different categories, target and background. If the slice contains the target, then we want that image to be separated as a target-containing image and the others background.
+Let's slice up our larger image into our two different classification categories, target and background. If the slice contains the target, then we want that image to be separated as a target-containing image and the others background.
 
 We need to define some constansts that we will use to create the training data:
 
@@ -28,7 +28,7 @@ OVERLAP = 50
 CLASSES = ['background', 'shape_target']
 ```
 
-First, let's make a function to check wether or not a target is inside the image slice or not. This function needs to take in the target and tile dimensions.
+First, let's make a function to check wether or not a target is inside the image slice or not. This function needs to take in the tile dimensions and target information from the txt we previously generatd.
 
 ```python 
 def contains_shape(x1, y1, x2, y2, data):
@@ -76,16 +76,18 @@ def create_clf_data(dataset_name, dataset_path, image_name, image, data):
                             '{}_list.txt'.format(dataset_name))
 
     for i in range(num_data):
-
+	# Name for image with target
         shape_fn = '{}_{}_{}.png'.format(CLASSES[1], image_name, i)
+	# Path for image with target
         shape_path = os.path.join(os.getcwd(), dataset_path, shape_fn)
-
+	# Name for background image
         bg_fn = '{}_{}_{}.png'.format(CLASSES[0], image_name, i)
+	# Full path for background image
         bg_path = os.path.join(os.getcwd(), dataset_path, bg_fn)
-
+	# Save the images
         shapes[i].save(shape_path)
         backgrounds[i].save(bg_path)
-
+	# Write the paths to the images. Need this for model training
         with open(list_fn, 'a') as list_file:
             list_file.write(shape_path + "\n")
             list_file.write(bg_path + "\n")
@@ -101,11 +103,11 @@ def convert_data(img_path):
     # Get paths to new images and image dir
     new_dataset = os.path.join(os.getcwd(),'imgs')
     new_images_path = os.path.join(os.getcwd(), new_dataset, 'clf_imgs')
-
+    # Make new directory
     os.makedirs(new_images_path, exist_ok=True)
     # Get txt for image
     label_fn = img_path.replace('.jpg', '.txt')
-
+    # Initialize list to hold shape parameters
     image_data = []
     # Read in target information for this image
     with open(label_fn, 'r') as label_file:
@@ -113,7 +115,7 @@ def convert_data(img_path):
             shape_desc, x, y, w, h = line.strip().split(' ')
             x, y, w, h = int(x), int(y), int(w), int(h)
             image_data.append((shape_desc, x, y, w, h))
-
+    
     image_name = os.path.basename(img_path).replace('.jpg', '')
     # Create the data!
     create_clf_data(new_dataset,

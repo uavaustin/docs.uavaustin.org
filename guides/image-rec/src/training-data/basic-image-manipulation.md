@@ -33,9 +33,9 @@ shape.show('Example shape')
 ![Target Image](../img/base-shapes-v1/pentagon/pentagon-01.png)
 
 Since we have the background and shape images loaded, let's do some augmentation to the shape and then paste it onto the background image.
-Let's start with rotation. PIL's rotation function will return a copy of this image, rotated the given number of degrees counter clockwise around its centre. The function takes three arguments: 
+Let's start with rotation. PIL's rotation function will return a copy of this image, rotated the given number of degrees counter clockwise around its center. The function takes three arguments: 
 
- - angle --  the degrees to rotate clockwise about the center
+ - angle --  the degrees to rotate clockwise about the center.
 
  - resample --  optional flag to choose which technique to use to interpolate new pixel values expand.
 
@@ -134,7 +134,7 @@ shape_bbox = ['pentagon', int(paste_loc[0] - (w_target/2)) , int(paste_loc[1] - 
 with open('./imgs/background_target.txt', 'w') as label_file:
     label_file.write('{} {} {} {} {}\n'.format(*shape_bbox))
 ```
-
+Here, we use `*` to unpack the tuple `shape_bbox` so we can paste the values into the file.
 The output ```background_target.txt``` file should have the single following line:
 
 ```pentagon 1470 970 60 60```
