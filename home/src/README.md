@@ -11,22 +11,22 @@ Feel free to create a Pull Request on GitHub at
 with your contribution!
 
 For any questions about contributing or about this documentation, please
-contact Bradley Bridges
-(*[@blbridges96](https://uavaustin.slack.com/messages/U502FRMBM)* on Slack).
+contact Bennett Ramirez
+(*[@Bennett Ramirez](https://app.slack.com/team/U7280FABE)* on Slack).
 
 ## Contact
 
 For other information, you can contact us via Slack or email:
 
-- Hyeonseung "Shawn" Lee - Program Manager
+- Aaron Park - Program Manager
 
-  *[@Shawn Lee](https://uavaustin.slack.com/messages/U6X0R86FJ)* |
-  *[hyeonseung.lee@utexas.edu](mailto:hyeonseung.lee@utexas.edu)*
-- Sabrina Alvarez - Chief Engineer
+  *[@Aaron Park](https://app.slack.com/team/U6XML51NG)* |
+  *[aaron.park@utexas.edu](mailto:aaron.park@utexas.edu)*
+- Pranav Sridhar - Chief Engineer
 
-  *[@Sabrina](https://uavaustin.slack.com/messages/U6XKWA20J)* |
-  *[alvarez.sabrina84@utexas.edu](mailto:alvarez.sabrina84@utexas.edu)*
-- Bradley Bridges - Chief Software Engineer
+  *[@psridhar](https://app.slack.com/team/UCL0DHSA1)* |
+  *[pranav.sridhar@utexas.edu](mailto:pranav.sridhar@utexas.edu)*
+- Bennett Ramirez - Chief Software Engineer
 
-  *[@blbridges96](https://uavaustin.slack.com/messages/U502FRMBM)* |
-  *[blbridges96@gmail.com](mailto:blbridges96@gmail.com)*
+  *[@Bennett Ramirez](https://app.slack.com/team/U7280FABE)* |
+  *[bramg@utexas.edu](mailto:bramg@utexas.edu)*
