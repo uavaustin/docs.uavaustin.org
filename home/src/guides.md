@@ -3,6 +3,9 @@
 To help out new members, listed here are the guides available to learn about a
 given topic:
 
+- [The Software Architecture of UAVA](guides/architecture/index.html) - A
+  comprehensive manual regarding the architecture (and some history) of the
+  organization.
 - [Python Guide](guides/python/index.html) - Python is a general-purpose,
   interpreted programming language. Python is used for image recognition in
   UAV Austin.

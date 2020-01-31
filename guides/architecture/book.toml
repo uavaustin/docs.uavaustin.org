@@ -1,0 +1,9 @@
+[book]
+title = "The Software Architecture of UAVA"
+authors = ["UAV Austin"]
+
+[output.html]
+mathjax-support = true
+
+[build]
+build-dir = "../../book/guides/architecture"
