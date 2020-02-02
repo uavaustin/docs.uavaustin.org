@@ -44,4 +44,4 @@ Using [Object Detection](https://towardsdatascience.com/object-detection-simplif
 Replaced Darknet with TensorFlow and [TensorRT](https://developer.nvidia.com/tensorrt). 
 * Interchangeable models (although primarily [FasterRCNN](https://arxiv.org/abs/1506.01497))
 * Hardware-specific model optimization
-* Interence speed: Fast, thanks to a [Jetson Xavier](https://developer.nvidia.com/embedded/jetson-agx-xavier-developer-kit)
+* Inference speed: Fast, thanks to a [Jetson Xavier](https://developer.nvidia.com/embedded/jetson-agx-xavier-developer-kit)
