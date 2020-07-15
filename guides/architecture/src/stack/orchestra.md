@@ -1,40 +1,23 @@
 # Orchestra
 
-[Orchestra](https://github.com/uavaustin/orchestra) is a group of Docker Compose-managed services that perform specific facilities for plane-ground communications. Services communicate with each other through [Protocol Buffers](https://developers.google.com/protocol-buffers) over HTTP.
+[Orchestra](https://github.com/uavaustin/orchestra) is a group of Docker Compose-managed services that perform specific facilities for plane-ground communications. Services communicate with each other through [Protocol Buffers](https://developers.google.com/protocol-buffers) over HTTP. Services can also communicate through [JSON](https://www.json.org/json-en.html) by changing the Accept/Content-Type header to 'application/json'.
 
 ## Services
 
 Services are sorted in order of dependency; more critical services go first.
 
-### Interop Proxy
-Wraps the SUAS interoperability server (the "interop") with a more consistent interface that can be accessed by other services.
-
-### MAVProxy
-Exposes a USB serial modem on a TCP or UDP port, for use by telemetry and Mission Planner.
-
-### Telemetry
-Reports vital information about the aircraft, including GPS, battery, and waypoint information. Waypoints can also be modified by other services.
-
-### Forward Interop
-Polls data from the telemetry service and forwards it to the interop.
-
-### Imagery
-From the aircraft, automatically takes pictures, embeds telemetry metadata, and records them in a local database; from the ground station, automatically synchronizes images from the aircraft's imagery server.
-
-### Image Rec Master
-An intake for photos for automatic and manual image recognition. Images pass through a pipeline where they are processed, discarded, or submitted to the interop via the interop proxy.
-
-### Pong
-Pings a list of other services and devices to check on their health.
-
-### Lumberjack
-Logs other services' data into a time-series database. Currently, only uptime data is recorded, via the Pong service.
-
-### Grafana
-Visualizes the data collected by Lumberjack in real time.
-
-### Dashboard
-A deprecated text-based dashboard that shows telemetry upload rates and the statuses of other services.
+| Service  | Purpose  | Languages/Tools  |
+|---|---|---|
+| *Interop Proxy*  | Wraps the SUAS interoperability server (the "interop") with a more consistent interface that can be accessed by other services. Login state to interop is saved.| [Elixir](https://elixir-lang.org), [Phoenix](https://phoenixframework.org)
+| *MAVProxy* | Present on both aircraft and ground station. Allows for communication between telemetry, Mission Planner, and the aircraft. Communicates through an exposed UDP socket. | [MAVProxy](https://github.com/ArduPilot/MAVProxy)
+| *Telemetry*  | Present on both aircraft and ground station. On the ground, receives telemetry information to be sent to interop (yaw, lat, lon, alt), can send/receive mission data (waypoints), and supplies vital information about the aircraft (GPS, battery, speed, velocity). Communicates with MAVProxy through the [MavLINK protocol](https://mavlink.io/en/messages/common.html) via UDP.| Javascript, [Node.JS](https://nodejs.org/en/), [Jest](https://jestjs.io/)
+| *Forward Interop*  | Forwards telemetry data to interop proxy and keeps track of the upload rate, both unique and raw telemetry. | Javascript, [Node.JS](https://nodejs.org/en/), [Jest](https://jestjs.io/)  
+| *Imagery* | Present on both aircraft and ground station. Aircraft uses the Z Camera E1 backend, ground uses the sync backend (still a work in progress), and testing uses the file backend. Service captures photos on a specified interval and saves the pictures, telemetry metadata and the assigned ID into a database.| Javascript, [Node.JS](https://nodejs.org/en/), [SQLite](https://www.sqlite.org/index.html), [Jest](https://jestjs.io/)
+| *Image-Rec Master* | Takes in photos (IDs) from imagery and passes them through a pipeline where they are processed (manual or auto), discarded, or submitted into a separate target pipeline. The target pipeline can submit ODLCs to the interop-proxy server or remove targets. | Python, [Redis](https://redis.io/)
+| *Pong* | Pings all the other services (and specified devices via ICMP ping) to check on their health. | Javascript, [Node.JS](https://nodejs.org/en/), [Jest](https://jestjs.io/)
+| *Lumberjack* | **[In Development]** Logs data from other services into a time-series database (InfluxDB). Currently shows service ping from Pong, upload rate from Forward Interop, and the status of Telemetry on plane and ground. | Javascript, [Node.JS](https://nodejs.org/en/), [Jest](https://jestjs.io/), [InfluxDB](https://www.influxdata.com/)
+| *Grafana* | **[In Development]** real time dashboard visualization of data being collected in Lumberjack. | [Grafana](https://grafana.com/) |
+| *Dashboard* | **[Deprecated]** text-based dashboard that shows telemetry upload rates and the statuses of other services. | Javascript, [Node.JS](https://nodejs.org/en/), [Jest](https://jestjs.io/) |
 
 ## Language Choice
 
