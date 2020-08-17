@@ -1,8 +1,8 @@
 # Basic Image Manipulation and Data Generation
 
-Over the next couple of examples, we will walk through how we create our training data
-for our vision models. Roughly, we will take pre-drawn shapes, combine them with
-pre-defined text, and past the final item onto background tiles.
+Over the next couple of examples, we will walk through how we create training data for
+our vision models. Roughly, we will take pre-drawn shapes, combine them with pre-defined
+text, and paste the final target onto background tiles.
 
 ## Background Preparation
 
@@ -15,7 +15,6 @@ Now, let's get coding.
 ```python
 # Import the PIL package.
 from PIL import Image
-
 
 # Open up the background image. NOTE: The path on your computer will be different.
 img = Image.open("//path//to//comp_photo.jpg")
@@ -33,9 +32,9 @@ our input image size.
 print(f"Image width, height: {*img.size,}.")
 ```
 
-Ouch! We'll need to take tiles from this image to make the input more manageable for the
-model. Let's make some 512 x 512 pixel tiles. This is the size we currently use for our
-object detection model.
+We'll need to take tiles from this image to make the input more manageable for the model.
+Let's make some 512 x 512 pixel tiles. This is the size we currently use for our object
+detection model.
 
 ```python
 # Desired tile size.
@@ -56,7 +55,7 @@ for x in range(0, img.size[0] - tile_width, tile_width):
 print(f"Generated {len(list(save_dir.glob('*.jpg')))} slices!")
 ```
 
-You should see 32 tiles in your `save_dir` folder!
+You should see tiles in your `save_dir` folder!
 
 ## Target Generation Setup
 
@@ -94,7 +93,7 @@ shape = Image.open("//path//to//shape.jpg")
 # Sanity check
 shape.show("Example shape")
 ```
-![Target Image](../img/base-shapes-v1/pentagon/pentagon-01.png)
+![Target Image](../img/pentagon-01.png)
 
 Finally, we need to download the various fonts we currently use for data generation. Perform
 the same steps you did to download the shapes, but use this url instead:
@@ -106,7 +105,7 @@ Since we have the background tiles and shape images loaded, let's do some augmen
 
 Let's start with rotation. PIL's rotation function will return a copy of this image, rotated the given number of degrees counter clockwise around its center. The function takes three arguments: 
 
- - angle: the degrees to rotate counter-clockwise about the center.
+ - angle: the degrees to rotate counter clockwise about the center.
 
  - resample: optional flag to choose which technique to use to interpolate new pixel values expand.
 
@@ -165,10 +164,10 @@ rotated_image.show("Rotated Image")
 ```
 ![Cropped Competition Photo](../img/pasted.png)
 
-Right now, there is a white background around the target, but we want to paste just the target
-on to a background slice. How can we make everything but the target _transparent_? Luckily, we
-can use the alpha channel on an image. This controls the pixel transparency value. We will set
-all white pixels to 0 alpha.
+Right now, there is a white background around the target, but we want to paste just the
+target onto a background slice. How can we make everything but the target _transparent_?
+Luckily, we can mainpulate the alpha channel on an image. This controls the pixel
+transparency value. We will set all white pixels to 0 alpha.
 
 ```python 
 for x in range(rotated_image.width):
@@ -180,7 +179,9 @@ for x in range(rotated_image.width):
             rotated_image.putpixel((x, y), (0, 0, 0, 0))
 ```
 
-Using PIL's `getbbox` function, the smallest bounding box around the non zero region of the image can expressed as a tuple. We can then use this tuple to crop the image down to just the target. 
+Using PIL's `getbbox` function, the smallest bounding box around the non zero region of
+the image can expressed as a tuple. We can then use this tuple to crop the image down to
+just the target. 
 
 ```python
 rotated_crop = rotated_image.crop(rotated_image.getbbox()) 
@@ -190,16 +191,19 @@ rotated_crop = rotated_image.crop(rotated_image.getbbox())
 We're getting close! Let's check the size of the target.
 ```python
 rotated_image.size
->> (535, 535)
+>>> (535, 535)
 ```
-We need to downscale the target to make it more realistic on the background slice. Remember, the
-background tiles slices are only 512 x 512, so let's make the shape much smaller.
+We need to downscale the target to make it more realistic on the background slice.
+Remember, the background tiles slices are only 512 x 512, so let's make the shape much
+smaller.
 
 ```python 
-rotated_image = rotated_image.resize((100,100))
+rotated_image = rotated_image.resize((100, 100))
 ```
 
-Finally, time to paste the target onto the background. We will paste the target's top left pixel to (20, 20) on the background. But first, open up one of the background tiles you created!
+Finally, time to paste the target onto the background. We will paste the target's top
+left pixel to (20, 20) on the background. But first, open up one of the background tiles
+you created!
 ```python
 paste_loc = (20, 20)
 background_tile.paste(rotated_image, paste_loc, rotated_image)
@@ -207,7 +211,9 @@ background_tile.show()
 ```
 ![Background With Target](../img/background_target.jpg)
 
-We need to save the class and location of this target for our model data generation later. We will save the target class, the (x,y) coordinate of the top left corner, height, and width. 
+We need to save the class and location of this target for our model data generation
+later. We will save the target class, the (x,y) coordinate of the top left corner,
+height, and width. 
 
 ```python
 w_target, h_target = rotated_image.size
@@ -216,8 +222,9 @@ txt.write_text(
     f"pentagon, {int(paste_loc[0])}, {int(paste_loc[1])}, {w_target}, {h_target}\n"
 )
 ```
-The output ```background_target.txt``` file should have the single following line:
+The output `background_target.txt` file should have the single following line:
 
-```pentagon, 20, 20, 100, 100```
+`pentagon, 20, 20, 100, 100`
 
-You've now gone through the basic pipeline of how we create our data for the models. Data is by far the most important aspect of machine learning.
+You've now gone through the basic pipeline of how we create our data for the models. Data
+is by far the most important aspect of machine learning.
