@@ -1,3 +1,4 @@
-# Convolutional Neural Networks 
+# Introduction to PyTorch
 
-This section will introduce you to convolutional neural networks (CNNs). The concepts we discuss here form the backbone for the YOLO object detection algorithm.
+This chapter will give you a brief introduction into PyTorch, a fast growing 
+machine learning framework.
