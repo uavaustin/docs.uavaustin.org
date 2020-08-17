@@ -6,6 +6,3 @@
 - [Intro to CNNs and PyTorch](pytorch/README.md)
   - [Convolutional Neural Networks](convolution-neural-networks/convolutional-neural-networks.md)
   - [Beginner PyTorch](pytorch/intro.md)
-- [YOLO Object Detector](yolo-architecture/README.md)
-  - [YOLO Architecture](yolo-architecture/yolo-architecture.md)
-  
