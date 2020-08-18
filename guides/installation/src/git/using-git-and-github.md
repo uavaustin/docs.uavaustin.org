@@ -1,58 +1,100 @@
-# Using Git with GitHub
-GitHub is a cloud-based Git repository hosting service we use to host all of our software.
-Our repositories can be found [here](https://github.com/uavaustin).
+# Using Git and GitHub
 
-## Contributing to a Repository
-**Starting a Local Repository**
+## *Getting* Git
 
-Go to the repository link of the project that you want to work on or create your own. 
+[Check this out](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+to install Git on your computer.
 
-Copy the remote URL onto your clipboard:
-<img src="../img/remotes-url.png" alt="remote-url" width="600">
+If you're just getting it for the first time, make sure to get your name and
+your email address.
 
-On your local machine and desired directory:
 ```
-$ git clone <remote-url>
+$ git config --global user.name "Mr. Dudeface McGee IV"
+$ git config --global user.email "xXepic_programmer1337Xx@hotmail.com"
 ```
-If you are making your own repository:
-```
-$ git init
-$ git remote add origin <remote-url>
-```
-**Updating a Local Repository**
 
-Sometimes there will be updates to master in the remote repository; to merge/inspect
-these changes, consider the following commands.
-```
-$ git fetch origin
-```
-Fetch will download data from the remote repository, but will not modify anything locally.
-This is a good way to check up on the progress of other collaborators.
-```
-$ git pull origin master
-```
-Pull runs the aforementioned fetch and then merges the changes in the remote repository to your
-local environment. Pull is equivalent to a "fetch" and then a "merge". As such, there is a chance for
-merge conflicts if you share modified files or lines with the remote repository.
+I'd recommend using your actual name and email and not those above.
 
-**Updating a Remote Repository**
+Something like [GitHub Desktop](http://desktop.github.com) is fairly convenient
+if you don't care to use the command-line version. Another pro is that you can
+easily make a pull request on there without having to go to the GitHub website.
 
-When working on a feature, it's a good idea to create your own branch instead of working directly on master.
-To update the remote repository to show your new branch:
-```
-$ git push -u origin <branch-name> # -u flag needed if branch not present on remote
-```
-You can see if the push was successful by checking your pushed branch on GitHub by clicking on the branch
-drop-down underneath "Code":
+## What to Know
 
-<img src="../img/git-branches-2.png" alt="git-branches" width="400">
+There are a ton of good resources out there on how to use Git. You shouldn't
+have a problem with finding any. At a bare minimum to make commits and things,
+you should know how to use the following:
+
+- `git add`
+- `git commit`
+- `git pull`
+- `git push`
+- `git checkout`
+- `git branch`
+- `git merge`
+
+## Branching
+
+In order for us to all work together on the same project, we use Git branching
+often. This allows us to all contribute at the same time without interference,
+and for us to merge our work into the main line when it's done and has been
+verified.
+
+In most UAV Austin repositories, the main state of the code is in the *master*
+branch. For each card on Trello, generally, we will have a *feature branch* for
+it while it is in development. When it's just about finished, you'll add a
+*pull request* (or *PR*) to merge it into the *master* branch. A team lead will
+review the code real fast, make sure it's good, and then merge it in.
+
+### Merging
+
+Make sure to use the `--no-ff` flag when merging by the command line, this will
+preserve the branch history on the graph.
+
+### Exceptions to Branching
+
+If you're just starting a repository, or are in very early states in
+development on it, it may simply be appropriate to commit directly to master.
+
+Flight View is also an exception to some of these rules, essentially we're
+doing git-flow *lite* here.
+
+- Feature branches should split off of the *develop* branch.
+- Release branches should be made before pulling new features from the
+*develop* branch to *master*.
+- Hotfix branches are made for small bug fixes after a release.
+
+See this link for how to do release and hotfix branches as well:
+http://nvie.com/posts/a-successful-git-branching-model/
+
+The Flight View *master* branch is for tagging releases only, it is intended to
+be kept stable.
+
+## Version Tagging
+
+*Directed towards team leads.*
+
+Releases are to be in the following formats:
+
+- *v1.0*
+- *v1.0-beta.1*
+- *v1.0-rc.1*
+- *v1.2.1*
+- *v1.2.1-beta.1*
+- *v1.2.1-rc.1*
+
+Smaller code bases use the Major.Minor versioning numbers, and larger use
+Major.Minor.Patch. Note the *v* in front of tag names.
 
 ## An Example
+
 We'll do an example of all this real fast.
 
 *Note that this example is using the command-line Git client, however you may
 also do this with something like
 [GitHub&nbsp;Desktop](http://desktop.github.com) if you wish.*
+
+{% method -%}
 
 ### Creating Feature Branches
 
@@ -60,8 +102,10 @@ Say you have a task telling you to add a stock photo of a cat to a GUI. In this
 case, we'll add a Scottish Fold since they're by far one of the cutest cats
 there are.
 
-
-<img src="https://i.imgur.com/UklMnBr.jpg" alt="Cat Picture" style="width:30%">
+<center>
+    <img src="https://i.imgur.com/UklMnBr.jpg" alt="Cat Picture"
+            style="width:50%">
+</center>
 
 We're going to want to make a new branch off of *master* to work on, so we
 don't bother someone else working on the same project.
@@ -106,6 +150,10 @@ $ git checkout -b add-cat-picture
 
 The `-b` flag is what creates the new branch on checkout.
 
+{% endmethod %}
+
+{% method -%}
+
 ### Start Working in our Branch
 
 Now although we've made our new branch, it currently is only on our own
@@ -123,6 +171,8 @@ smaller, frequent commits then larger, fewer ones.
 
 A good rule of thumb is that if you can't summarize your changes in a fairly
 short sentence, you should break stuff into separate commits.
+
+{% common -%}
 
 So we'll assume we added our cat picture to `index.html`.
 
@@ -153,6 +203,8 @@ $ git push -u origin add-cat-picture
 
 It should now be published on GitHub!
 
+{% endmethod %}
+
 So at this point, we have our feature branch *add-cat-picture* and it is
 currently viewable on GitHub as well. To see different branches on GitHub is
 fairly simple.
@@ -161,6 +213,16 @@ In the GitHub UI you can simple switch branches with the dropbox or by clicking
 "x branches" at the top. When on the correct branch, clicking on "x commits"
 will show all the changes made as well.
 
+<br>
+<center>
+    <img src="../images/github-branch-ui.png" alt="GitHub" style="width:60%">
+</center>
+<br>
+
+*It doesn't say there's an add-cat-picture there at the moment but you can use
+your imagination.*
+
+{% method -%}
 
 ### Continuing our Work
 
@@ -175,6 +237,8 @@ font and so we changed it afterwards.
 
 After these two commits, we'll then push to the remote repository again so
 others can see our cool changes.
+
+{% common -%}
 
 So this should feel fairly familiar. We'll add our caption and then run both
 `git add` and `git commit`.
@@ -202,6 +266,10 @@ $ git push origin add-cat-picture
 Now this is on the remote repository. Note that we don't need the `-u` flag as
 that was just for the first push.
 
+{% endmethod %}
+
+{% method -%}
+
 ### Making a Pull Request
 
 Alrighty, so we've gotten to the point where we think are changes are nearly
@@ -209,6 +277,8 @@ done, and we're readying to merge this in with the rest of the repository. Now
 everyone can enjoy our cute cat picture with the caption.
 
 This point is when we'll make a *pull request*.
+
+{% common -%}
 
 So there are things out there that'll allow you to create a pull request
 though the command-line, but we're not going to do that.
@@ -225,4 +295,4 @@ request.
 Now luckily with changes like the ones we made, we shouldn't have any merge
 conflicts.
 
-
+{% endmethod %}
