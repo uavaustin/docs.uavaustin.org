@@ -49,10 +49,10 @@ often. This allows us to all contribute at the same time without interference,
 and for us to merge our work into the main line when it's done and has been
 verified.
 
-In most UAV Austin repositories, the main state of the code is in the *master*
-branch. For each card on Trello, generally, we will have a *feature branch* for
-it while it is in development. When it's just about finished, you'll add a
-*pull request* (or *PR*) to merge it into the *master* branch. A team lead will
+In most UAV Austin repositories, the latest stable version of the code is in the *master*
+branch. For each card on Trello, generally, we will create a new branch where we can add features,
+fix bugs, and develop (we call these branches *feature branches*). When it's just about finished,
+you'll add a *pull request* (or *PR*) to merge it into the *master* branch. A team lead will
 review the code real fast, make sure it's good, and then merge it in.
 
 ### Merging:
@@ -74,7 +74,7 @@ $ git init
 $ touch a.txt
 $ echo "commit 1" > a.txt
 $ git add . && git commit -m "first commit"
-$ git checkout -b feature branch
+$ git checkout -b feature-branch
 $ echo "commit 2" >> a.txt
 $ git add . && git commit -m "second commit"
 $ echo "commit 3" >> a.txt
