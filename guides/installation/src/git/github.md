@@ -14,7 +14,8 @@ Our repositories can be found [here](https://github.com/uavaustin).
 Go to the repository link of the project that you want to work on or create your own.
 
 Copy the remote URL onto your clipboard:
-<img src="../img/remotes-url.png" alt="remote-url" width="600">
+
+<img src="../img/remotes-url.png" alt="remote-url" width="400">
 
 On your local machine and in the desired directory:
 ```
@@ -69,7 +70,7 @@ Say you have a task telling you to add a stock photo of a cat to a GUI. In this
 case, we'll add a Scottish Fold since they're by far one of the cutest cats
 there are.
 
-<img src="https://i.imgur.com/UklMnBr.jpg" alt="Cat Picture" style="width:30%">
+<img src="https://i.imgur.com/UklMnBr.jpg" alt="Cat Picture" width="400">
 
 We're going to want to make a new branch off of *master* to work on, so we
 don't bother someone else working on the same project.
