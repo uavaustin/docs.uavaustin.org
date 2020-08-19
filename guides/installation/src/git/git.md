@@ -70,15 +70,28 @@ merge is enabled by default.
 
 Here's an example (switch to an appropriate directory):
 ```
+# initialize git repository
 $ git init
+
+# create file "a.txt"
 $ touch a.txt
+
+# add text to "a.txt"; stage and commit
 $ echo "commit 1" > a.txt
 $ git add . && git commit -m "first commit"
+
+# create and switch to new branch
 $ git checkout -b feature-branch
+
+# append text in feature-branch; stage and commit
 $ echo "commit 2" >> a.txt
 $ git add . && git commit -m "second commit"
+
+# repeat above but for commit 3
 $ echo "commit 3" >> a.txt
 $ git add . && git commit -m "third commit"
+
+# switch to master and merge
 $ git checkout master
 $ git merge feature-branch
 ```
@@ -113,16 +126,31 @@ The three states being compared are:
 
 Here's an example (switch to an appropriate directory):
 ```
+# initialize git repository
 $ git init
+
+# create file "a.txt"
 $ touch a.txt
+
+# add text to "a.txt"; stage and commit
 $ echo "commit 1" > a.txt
 $ git add . && git commit -m "first commit"
+
+# create and switch to new branch
 $ git checkout -b feature-branch
-$ sed -i '1s/^/commit 2 on feature\n/' a.txt # putting text on the first line
+
+# adding text onto the first line; stage and commit
+$ sed -i '1s/^/commit 2 on feature\n/' a.txt
 $ git add . && git commit -m "second commit in feature"
+
+# switch to master
 $ git checkout master
-$ echo "commit 2 on master" > a.txt
+
+# append text to "a.txt"; stage and commit changes
+$ echo "commit 2 on master" >> a.txt
 $ git add . && git commit -m "second commit in master"
+
+# merge the two branches
 $ git merge feature-branch
 ```
 
