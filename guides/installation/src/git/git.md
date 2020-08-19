@@ -58,19 +58,3 @@ review the code real fast, make sure it's good, and then merge it in.
 **Merging**:
 Make sure to use the `--no-ff` flag when merging by the command line, this will
 preserve the branch history on the graph.
-
-## Version Tagging
-
-*Directed towards team leads.*
-
-Releases are to be in the following formats:
-
-- *v1.0*
-- *v1.0-beta.1*
-- *v1.0-rc.1*
-- *v1.2.1*
-- *v1.2.1-beta.1*
-- *v1.2.1-rc.1*
-
-Smaller code bases use the Major.Minor versioning numbers, and larger use
-Major.Minor.Patch. Note the *v* in front of tag names.
