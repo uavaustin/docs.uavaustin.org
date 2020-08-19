@@ -1,16 +1,21 @@
 # Using Git with GitHub
 GitHub is a cloud-based Git repository hosting service we use to host all of our software.
+
+Create a GitHub account if you haven't already and join the UAV Austin organization. 
+If you have a GitHub account and are interested in upgrading to GitHub Pro for free,
+join the [GitHub Student Developer Program](https://education.github.com/pack).
+
 Our repositories can be found [here](https://github.com/uavaustin).
 
 ## Contributing to a Repository
 **Starting a Local Repository**
 
-Go to the repository link of the project that you want to work on or create your own. 
+Go to the repository link of the project that you want to work on or create your own.
 
 Copy the remote URL onto your clipboard:
 <img src="../img/remotes-url.png" alt="remote-url" width="600">
 
-On your local machine and desired directory:
+On your local machine and in the desired directory:
 ```
 $ git clone <remote-url>
 ```
@@ -26,12 +31,12 @@ these changes, consider the following commands.
 ```
 $ git fetch origin
 ```
-Fetch will download data from the remote repository, but will not modify anything locally.
+"git fetch" will download data from the remote repository, but will not modify anything locally.
 This is a good way to check up on the progress of other collaborators.
 ```
 $ git pull origin master
 ```
-Pull runs the aforementioned fetch and then merges the changes in the remote repository to your
+"git pull" runs the aforementioned fetch and then merges the changes in the remote repository to your
 local environment. Pull is equivalent to a "fetch" and then a "merge". As such, there is a chance for
 merge conflicts if you share modified files or lines with the remote repository.
 
@@ -60,7 +65,6 @@ Say you have a task telling you to add a stock photo of a cat to a GUI. In this
 case, we'll add a Scottish Fold since they're by far one of the cutest cats
 there are.
 
-
 <img src="https://i.imgur.com/UklMnBr.jpg" alt="Cat Picture" style="width:30%">
 
 We're going to want to make a new branch off of *master* to work on, so we
@@ -82,7 +86,7 @@ If this step is forgotten it's possible that this branch may be missing
 important changes already committed. Even worse, this could cause a merge
 conflict down the road.
 
-There are two ways we can make the branch here. The straight forward to way is
+There are two ways we can make the branch here. The straightforward way is
 to make it using `git branch`. (Make sure you're in the *master* branch before
 continuing!)
 
@@ -110,7 +114,7 @@ The `-b` flag is what creates the new branch on checkout.
 
 Now although we've made our new branch, it currently is only on our own
 machines and has nothing in it. We'll add something here so this branch has
-meaning and then we'll get this new branch on GitHub.
+meaning and then we'll push this new branch to our remote repository on GitHub.
 
 So in this case, let's say we're editing the file `index.html`. This is where
 we're adding our cat picture.
@@ -118,8 +122,8 @@ we're adding our cat picture.
 After we make our change, we'll need to get it committed to our local
 repository and then to the remote repository.
 
-Commit messages should be should and descriptive. It's also better to make
-smaller, frequent commits then larger, fewer ones.
+Commit messages should be short and descriptive. It's also better to make
+smaller, frequent commits (that are related!) than larger, fewer ones.
 
 A good rule of thumb is that if you can't summarize your changes in a fairly
 short sentence, you should break stuff into separate commits.
@@ -142,7 +146,7 @@ $ git commit -m "Adding the cat picture to index.html"
 ```
 
 The `-m "<message>"` part sets our commit message. This allows others to know
-what changes were made on this commit.
+what changes were made on this commit. Quotations are important here.
 
 Lastly, we'll need to add our *add-cat-picture* branch to the remote
 repository.
@@ -161,10 +165,9 @@ In the GitHub UI you can simple switch branches with the dropbox or by clicking
 "x branches" at the top. When on the correct branch, clicking on "x commits"
 will show all the changes made as well.
 
-
 ### Continuing our Work
 
-Alright so we can still continuing working in our branch. In this example we'll
+Alright so we can still continue working in our branch. In this example we'll
 make two more commits.
 
 The cat picture deserves a little fun caption below it, because why not? So
@@ -204,11 +207,11 @@ that was just for the first push.
 
 ### Making a Pull Request
 
-Alrighty, so we've gotten to the point where we think are changes are nearly
-done, and we're readying to merge this in with the rest of the repository. Now
+Alrighty, so we've gotten to the point where we think our changes are nearly
+done, and we're ready to merge this in with the rest of the repository. Now
 everyone can enjoy our cute cat picture with the caption.
 
-This point is when we'll make a *pull request*.
+Now we'll make a *pull request*.
 
 So there are things out there that'll allow you to create a pull request
 though the command-line, but we're not going to do that.
@@ -216,11 +219,15 @@ though the command-line, but we're not going to do that.
 To make the pull request, simply go to the main GitHub page for the repository
 and click "New pull request".
 
+<img src="../img/pull-request.png" alt="pull request" width="400">
+
 The "base" should simply be *master*, and "compare" should be our
 *add-cat-picture* branch.
 
 Put a nice title and a short description as well, if needed, for the pull
-request.
+request. There is also an option for a *draft pull request* which tells other people
+working on the project that the branch is still a work progress and may need feedback 
+before continuing.
 
 Now luckily with changes like the ones we made, we shouldn't have any merge
 conflicts.
