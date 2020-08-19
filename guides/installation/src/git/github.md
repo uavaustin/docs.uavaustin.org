@@ -1,5 +1,6 @@
 # Using Git with GitHub
-GitHub is a cloud-based Git repository hosting service we use to host all of our software.
+GitHub is a cloud-based Git repository hosting service we use to host all 
+of our software.
 
 Create a GitHub account if you haven't already and join the UAV Austin organization. 
 If you have a GitHub account and are interested in upgrading to GitHub Pro for free,
@@ -31,24 +32,27 @@ these changes, consider the following commands.
 ```
 $ git fetch origin
 ```
-"git fetch" will download data from the remote repository, but will not modify anything locally.
-This is a good way to check up on the progress of other collaborators.
+`git fetch` will download data from the remote repository, but will not 
+modify anything locally. This is a good way to check up on the progress
+of other collaborators.
 ```
 $ git pull origin master
 ```
-"git pull" runs the aforementioned fetch and then merges the changes in the remote repository to your
-local environment. Pull is equivalent to a "fetch" and then a "merge". As such, there is a chance for
-merge conflicts if you share modified files or lines with the remote repository.
+`git pull` runs the aforementioned `fetch` and then merges the changes in
+the remote repository to your local environment. Pull is equivalent to a 
+`fetch` and then a `merge`. As such, there is a chance for merge conflicts
+if you share modified files or lines with the remote repository.
 
 **Updating a Remote Repository**
 
-When working on a feature, it's a good idea to create your own branch instead of working directly on master.
-To update the remote repository to show your new branch:
+When working on a feature, it's a good idea to create your own branch instead
+of working directly on master. To update the remote repository to show your
+new branch:
 ```
 $ git push -u origin <branch-name> # -u flag needed if branch not present on remote
 ```
-You can see if the push was successful by checking your pushed branch on GitHub by clicking on the branch
-drop-down underneath "Code":
+You can see if the push was successful by checking your pushed branch on GitHub
+by clicking on the branch drop-down underneath "Code":
 
 <img src="../img/git-branches-2.png" alt="git-branches" width="400">
 
@@ -70,10 +74,11 @@ there are.
 We're going to want to make a new branch off of *master* to work on, so we
 don't bother someone else working on the same project.
 
-Feature branches should have a short, descriptive name. Our naming convention
-for feature branches is to simply use lower-case names separated by hyphens.
+Feature branch naming schemes will ultimately depend on the team, but for
+now we will simply offer a brief description of our feature in lowercase
+and separate words by hyphens.
 
-For this, we'll name our branch *add-cat-picture*.
+We'll name our branch *add-cat-picture*.
 
 The very first step we'll need to do is to get all the new changes from the
 remote repository.
@@ -225,9 +230,9 @@ The "base" should simply be *master*, and "compare" should be our
 *add-cat-picture* branch.
 
 Put a nice title and a short description as well, if needed, for the pull
-request. There is also an option for a *draft pull request* which tells other people
-working on the project that the branch is still a work progress and may need feedback 
-before continuing.
+request. There is also an option for a *draft pull request* which tells 
+other people working on the project that the branch is still a work progress
+and may need feedback before continuing.
 
 Now luckily with changes like the ones we made, we shouldn't have any merge
 conflicts.
