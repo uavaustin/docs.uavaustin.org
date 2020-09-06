@@ -1,46 +1,66 @@
 # Convolutional Neural Networks
 
-A Convolutional Neural Network (CNN) is a type of neural network primarily used for image recognition and classification.
-We will explore the basic building blocks of a CNN built using the platform Darknet. 
+A Convolutional Neural Network (CNN) is a type of neural network primarily used for image
+recognition and classification. We will explore the basic building blocks of a CNN.
 
-Here is an example of a fundemental layer in a darknet classification model.
+Most modern convolutional nets are made up of the same type of layers. The first is the
+convolutional filter.
 
-```ini
-[convolutional]
-batch_normalize=1
-filters=16
-size=3
-stride=1
-pad=1
-activation=leaky
+## Filters 
 
-[maxpool]
-size=2
-stride=2
-```
-
-Seems pretty simple, right? Let's dive deeper.
-
-First, `[convolutional]` and `[maxpool]` are just names used to tell Darknet what layers we are going to construct.
-
-### Filters 
-
-A filter is the fundemental block of our convolutional layer; it does all the heavy lifting.
+A convolutional filter extracts features from a given input and is motivated by the idea
+of efficient (or sparse) parameter sharing during signal analysis (cross correlation).
+For now, think of features as abstract components of an image that make sense to the
+model. When we see a human face, we instinctually recognize features, but the computer
+might see different ones. The following is an example of a _convolutional filter_ applied
+to an input matrix.
 
 ![CNN](../img/filter.png)
 
-Here `filters = 16` means we will be convolving with 16 different filters. Each filter will have a 3x3 kernel size, convolutional stride of 1, and padding of 1 around the image. Here is a picture of a filter acting on an input layer. The stride determine how far over the filter shifts after convolution. Pad means adding rows of 0's to the top and bottom and columns of 0's to the left and right of the input layers. This helps to preserve image size to our layers don't get too small undesirably quickly. 
+In this image we have a 3x3 filter (9 weights) being applied to our input. The convolution
+operation is essentially a weighted linear combination of portions of the input, and these 
+weights extract certain features.
 
-The `activation` is a function that is applied to the scalar of the output of each convolution. Activation functions are used to help the model's gradient descent converge quicker. Here is a graph of the leaky ReLU activation function.
+In real convolutional networks, we end up with thousands of filters. There are a few more
+inputs to the convolutional layer which I'll touch on here:
+
+* `stride`: The number of rows/columns to jump when moving to the next convolution.
+* `padding`: Without padding, a convolutional of filter size > 1 will result in an input
+size greater than the output. Padding adds a value around the outside of the input so that
+the output is a certain size.
+* `kernel size`: The kernel does not have to be 3x3 or even square.
+
+## Batch Normalization
+
+Batch normalization (BN) was introducted in a 2015 paper,
+[here](https://arxiv.org/pdf/1502.03167.pdf). While BN is still a hotly debated topic 
+because people disagree on _why_ it works, most people agree it certainly works. The
+idea is to normalize each input by finding the mean and variance. Many think of this as
+allowing subsequent levels to not be largely affected by the activations of the previous
+level, meaning each level can learn independently. This tends to make training more
+stable.
+
+
+## Activations
+
+The `activation` is a function that is applied to each convolutional output. Activation
+functions introduce non-linearities into the models and help the learning process
+converge quicker. Here is a graph of the leaky ReLU activation function. Without
+activations, a convolutional neural net would actually just be a composition of linear
+functions!
 
 ![CNN](../img/lrelu.jpg)
 
-### Batch Normalization
+The idea here is anything `> 0` remains the same, but anything below 0 is changed to some
+factor multiplied by the value.
 
-Batch normalization is a step which normalizes the output of convolutional layers in order to help the model train. When the activations of layers are not normalized, between different layers, The activations can vary significantly between different layers if they are not normalized, taking longer to train the model.  For more information, [here](https://arxiv.org/pdf/1502.03167.pdf) is a link to the original batch normalization paper.
+## Pooling
 
-### Max Pooling 
-
-Max pooling is a type of layer with no learnable parameters. This operations is used to down-sample features extracted which can help the model generalize feature associations which prevents overfitting. Also, this method decreases the amount of parameters, making the training and inferencing process quicker.
+Pooling is a type of layer with no learnable parameters. This operation is used to
+downsample extracted features which can help the model generalize feature associations,
+preventing overfitting. Also, this method decreases the amount of parameters, making the
+training and inferencing process quicker.
 
 ![Max Pooling Image](../img/maxpool.jpeg)
+
+Another commonly used pooling level is average pooling.
