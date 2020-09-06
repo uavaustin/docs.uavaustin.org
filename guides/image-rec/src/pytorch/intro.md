@@ -7,7 +7,7 @@ prototyping to production deployment."`
 
 While TensorFlow was the go-to machine learning framework for quite some time, 
 developers of PyTorch (a Facebook platform), saw an opportunity to create a framework
-that excelled in the areas where TensorFlow lacked. What the devs created is a an
+that excelled in the areas where TensorFlow lacked. What the devs created is an
 extremely dynamic, user friendly library which enables rapid prototyping.
 
 Let's dive in to some code. We'll rely upon some of the PyTorch docs and tutorials
@@ -67,15 +67,16 @@ implemented for custom datasets, like in the actual UAV code.
 
 ```python
 # Batch size: How many images to load on each iteration.
-# shuffle: Wether or not to shuffle the data. Good for training, not useful for test.
+# shuffle: Whether or not to shuffle the data. Good for training, not useful for test.
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True)
 testloader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=False)
 ```
 
 We have our data, so now we need to make a model to learn from this dataset. We'll 
-define model using some of the basic building blocks discussed in the previous section. The output of this model will be vector of length equal to the number of 
-classes in the dataset. The vector values will correspond to which class the model
-predicts the image belongs to.
+define model using some of the basic building blocks discussed in the previous section.
+The output of this model will be vector of length equal to the number of  classes in the
+dataset. The vector values will correspond to which class the model predicts the image
+belongs to.
 
 ```python
 net = torch.nn.Sequential(
@@ -93,7 +94,8 @@ net = torch.nn.Sequential(
 OK, we have data and a model. Now we need to define the _loss function_ which informs
 the model how far away its predictions are from the ground truth. Cross entropy is 
 typically used in multi-class classification problems. In general, think of the model
-outputting a probability distribution over the given classes, and cross entropy measures the difference between the predicted and ground truth distributions.
+outputting a probability distribution over the given classes, and cross entropy measures
+the difference between the predicted and ground truth distributions.
 
 ```python3
 loss_fn = torch.nn.CrossEntropyLoss()
@@ -112,19 +114,19 @@ Awesome! Now we have all the necessary building blocks to train our own classifi
 
 ## Classifier Training
 
-In just a few lines of code, we will be able to train out model. We will loop over the
+In just a few lines of code, we will be able to train our model. We will loop over the
 `trainloader` to load batches of data, perform a _forward pass_ through the model, call
 the `loss_fn` then pass the results through the model using _backpropagation_, and then
 update the model's weights.
 
 ```python3
-for idx, (images, labels) in enumerate(trainloader,  0):
+for idx, (images, labels) in enumerate(trainloader):
 
-    # Take this for granted, but PyTorch optimizers alwats keep gradient history unless
+    # Take this for granted, but PyTorch optimizers always keep gradient history unless
     # we manually flush it out.
     optimizer.zero_grad()
 
-    # forward + backward + optimize
+    # forward + backward + optimizer step
     outputs = net(images)
     loss = loss_fn(outputs, labels)
     loss.backward()
@@ -160,7 +162,7 @@ print(f"Accuracy of the network on the 10000 test images: {100 * correct / total
 
 Hopefully, you'll see something like:
 `Accuracy of the network on the 10000 test images: 39.5000`.
-Not great, but we can continue trainig to make the model better!
+Not great, but we can continue training to make the model better!
 
 ## Summary
 

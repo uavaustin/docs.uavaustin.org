@@ -25,7 +25,7 @@ In real convolutional networks, we end up with thousands of filters. There are a
 inputs to the convolutional layer which I'll touch on here:
 
 * `stride`: The number of rows/columns to jump when moving to the next convolution.
-* `padding`: Without padding, a convolutional of filter size > 1 will results in an input
+* `padding`: Without padding, a convolutional of filter size > 1 will result in an input
 size greater than the output. Padding adds a value around the outside of the input so that
 the output is a certain size.
 * `kernel size`: The kernel does not have to be 3x3 or even square.
@@ -34,10 +34,10 @@ the output is a certain size.
 
 Batch normalization (BN) was introducted in a 2015 paper,
 [here](https://arxiv.org/pdf/1502.03167.pdf). While BN is still a hotly debated topic 
-because people disagree on _why_ it works, most people agree it certaintly works. The
+because people disagree on _why_ it works, most people agree it certainly works. The
 idea is to normalize each input by finding the mean and variance. Many think of this as
 allowing subsequent levels to not be largely affected by the activations of the previous
-level, meaing each level can learn independently. It also tends to make training more
+level, meaning each level can learn independently. This tends to make training more
 stable.
 
 
@@ -56,8 +56,8 @@ factor multiplied by the value.
 
 ## Pooling
 
-Pooling is a type of layer with no learnable parameters. This operations is used to
-down-sample features extracted which can help the model generalize feature associations,
+Pooling is a type of layer with no learnable parameters. This operation is used to
+downsample extracted features which can help the model generalize feature associations,
 preventing overfitting. Also, this method decreases the amount of parameters, making the
 training and inferencing process quicker.
 
