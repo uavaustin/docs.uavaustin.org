@@ -12,5 +12,5 @@
   - [Image Recognition](stack/image-rec.md)
   - [Deprecated Services](stack/deprecated.md)
 - [The Hardware of Software](hardware/hardware.md)
-  - [Hardware Diagram]
+  - [Hardware Diagram](hardware/hardware-diagram.md)
 - [Passwords](passwords.md)
