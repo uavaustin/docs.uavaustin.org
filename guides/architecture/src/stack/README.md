@@ -9,3 +9,6 @@ Despite this, Bradley will not haunt you in your sleep if you change his code. S
 ----
 
 *This page was derived from the HackMD document* [An Overview of UAV Austin](https://hackmd.io/bzfxlPXtTHemOK_KhwLzRw).
+
+
+Our third and final plug, reading our 2019 [Technical Paper](https://docs.google.com/document/d/1cukH_5obn0dbvtqm8swrvJMw136q-smBsOf-7hlikVU/edit?usp=sharing) is a wonderful introduction to the plane!
