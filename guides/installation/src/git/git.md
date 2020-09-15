@@ -9,15 +9,15 @@ If you're just getting it for the first time, make sure to get your name and
 your email address.
 
 ```
-$ git config --global user.name "Mr. Dudeface McGee IV"
-$ git config --global user.email "xXepic_programmer1337Xx@hotmail.com"
+git config --global user.name "Mr. Dudeface McGee IV"
+git config --global user.email "xXepic_programmer1337Xx@hotmail.com"
 ```
 I'd recommend using your actual name and email and not those above.
 
 For more configuration options:
 ```
-$ git config --list --show-origin # shows config file location 
-$ git config --list # shows all settings
+git config --list --show-origin # shows config file location 
+git config --list # shows all settings
 ```
 
 ## What to Know
@@ -71,40 +71,40 @@ merge is enabled by default.
 Here's an example (switch to an appropriate directory):
 ```
 # initialize git repository
-$ git init
+git init
 
 # create file "a.txt"
-$ touch a.txt
+touch a.txt
 
 # add text to "a.txt"; stage and commit
-$ echo "commit 1" > a.txt
-$ git add . && git commit -m "first commit"
+echo "commit 1" > a.txt
+git add . && git commit -m "first commit"
 
 # create and switch to new branch
-$ git checkout -b feature-branch
+git checkout -b feature-branch
 
 # append text in feature-branch; stage and commit
-$ echo "commit 2" >> a.txt
-$ git add . && git commit -m "second commit"
+echo "commit 2" >> a.txt
+git add . && git commit -m "second commit"
 
 # repeat above but for commit 3
-$ echo "commit 3" >> a.txt
-$ git add . && git commit -m "third commit"
+echo "commit 3" >> a.txt
+git add . && git commit -m "third commit"
 
 # switch to master and merge
-$ git checkout master
-$ git merge feature-branch
+git checkout master
+git merge feature-branch
 ```
 If you check the commit history using `git log`, you'll find that "second commit" and 
 "third commit" are now present in the git history of the master branch.
 
 Undo the merge by using:
 ```
-$ git reset --hard HEAD@{1}
+git reset --hard HEAD@{1}
 ```
 Now try the merge without fast-forwarding by passing in a `--no-ff` flag:
 ```
-$ git merge --no-ff feature-branch
+git merge --no-ff feature-branch
 ```
 Notice that there's an extra commit when checking the history using `git log`
 on top of "second commit" and "third commit". This makes it clear to anyone reading the
@@ -127,31 +127,31 @@ The three states being compared are:
 Here's an example (switch to an appropriate directory):
 ```
 # initialize git repository
-$ git init
+git init
 
 # create file "a.txt"
-$ touch a.txt
+touch a.txt
 
 # add text to "a.txt"; stage and commit
-$ echo "commit 1" > a.txt
-$ git add . && git commit -m "first commit"
+echo "commit 1" > a.txt
+git add . && git commit -m "first commit"
 
 # create and switch to new branch
-$ git checkout -b feature-branch
+git checkout -b feature-branch
 
 # adding text onto the first line; stage and commit
-$ sed -i '1s/^/commit 2 on feature\n/' a.txt
-$ git add . && git commit -m "second commit in feature"
+sed -i '1s/^/commit 2 on feature\n/' a.txt
+git add . && git commit -m "second commit in feature"
 
 # switch to master
-$ git checkout master
+git checkout master
 
 # append text to "a.txt"; stage and commit changes
-$ echo "commit 2 on master" >> a.txt
-$ git add . && git commit -m "second commit in master"
+echo "commit 2 on master" >> a.txt
+git add . && git commit -m "second commit in master"
 
 # merge the two branches
-$ git merge feature-branch
+git merge feature-branch
 ```
 
 "a.txt" in the common ancestor commit:

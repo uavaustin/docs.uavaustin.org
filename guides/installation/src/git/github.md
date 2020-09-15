@@ -19,25 +19,25 @@ Copy the remote URL onto your clipboard:
 
 On your local machine and in the desired directory:
 ```
-$ git clone <remote-url>
+git clone <remote-url>
 ```
 If you are making your own repository:
 ```
-$ git init
-$ git remote add origin <remote-url>
+git init
+git remote add origin <remote-url>
 ```
 **Updating a Local Repository**
 
 Sometimes there will be updates to master in the remote repository; to merge/inspect
 these changes, consider the following commands.
 ```
-$ git fetch origin
+git fetch origin
 ```
 `git fetch` will download data from the remote repository, but will not 
 modify anything locally. This is a good way to check up on the progress
 of other collaborators.
 ```
-$ git pull origin master
+git pull origin master
 ```
 `git pull` runs the aforementioned `fetch` and then merges the changes in
 the remote repository to your local environment. Pull is equivalent to a 
@@ -50,7 +50,7 @@ When working on a feature, it's a good idea to create your own branch instead
 of working directly on master. To update the remote repository to show your
 new branch:
 ```
-$ git push -u origin <branch-name> # -u flag needed if branch not present on remote
+git push -u origin <branch-name> # -u flag needed if branch not present on remote
 ```
 You can see if the push was successful by checking your pushed branch on GitHub
 by clicking on the branch drop-down underneath "Code":
@@ -85,7 +85,7 @@ The very first step we'll need to do is to get all the new changes from the
 remote repository.
 
 ```
-$ git pull
+git pull
 ```
 
 If this step is forgotten it's possible that this branch may be missing
@@ -97,21 +97,21 @@ to make it using `git branch`. (Make sure you're in the *master* branch before
 continuing!)
 
 ```
-$ git branch add-cat-picture
+git branch add-cat-picture
 ```
 
 This, however, only creates the branch, it does not switch our working
 directory to this branch. To do that we'll use `git checkout`.
 
 ```
-$ git checkout add-cat-picture
+git checkout add-cat-picture
 ```
 
 The second way to make the branch is to do both the branch creation and the
 switching in one step.
 
 ```
-$ git checkout -b add-cat-picture
+git checkout -b add-cat-picture
 ```
 
 The `-b` flag is what creates the new branch on checkout.
@@ -142,13 +142,13 @@ Getting this file to the remote repository is going to require 3 steps:
 Let's go ahead and run `git add` to schedule our change to be committed.
 
 ```
-$ git add index.html
+git add index.html
 ```
 
 Now our new file is ready to be committed!
 
 ```
-$ git commit -m "Adding the cat picture to index.html"
+git commit -m "Adding the cat picture to index.html"
 ```
 
 The `-m "<message>"` part sets our commit message. This allows others to know
@@ -158,7 +158,7 @@ Lastly, we'll need to add our *add-cat-picture* branch to the remote
 repository.
 
 ```
-$ git push -u origin add-cat-picture
+git push -u origin add-cat-picture
 ```
 
 It should now be published on GitHub!
@@ -189,23 +189,23 @@ So this should feel fairly familiar. We'll add our caption and then run both
 `git add` and `git commit`.
 
 ```
-$ git add index.html
-$ git commit -m "Added a caption under the cat picture"
+git add index.html
+git commit -m "Added a caption under the cat picture"
 ```
 
 Now we'll make our second change (that we figured we wanted after our first
 commit). We'll do this the same way again.
 
 ```
-$ git add index.html
-$ git commit -m "Made the caption actually look nice"
+git add index.html
+git commit -m "Made the caption actually look nice"
 ```
 
 At this point, these commits are only on our own machine and no one else can
 see these.
 
 ```
-$ git push origin add-cat-picture
+git push origin add-cat-picture
 ```
 
 Now this is on the remote repository. Note that we don't need the `-u` flag as
