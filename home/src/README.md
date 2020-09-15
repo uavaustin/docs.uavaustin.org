@@ -4,6 +4,8 @@ Welcome to the UAV Austin Documentation!
 
 For onboarding documentation, see the [guides](guides.html).
 
+Our software [link tree](https://linktr.ee/UAVA.Software) containing tons of useful links!
+
 ## Editing These Docs
 
 Feel free to create a Pull Request on GitHub at
