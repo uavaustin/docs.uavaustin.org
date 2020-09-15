@@ -2,8 +2,7 @@
 
 Now that you have checked you have a proper OS or subsystem, we can download Rust.
 
-To download Rust, in the unix shell simply type:
-`$ curl https://sh.rustup.rs -sSf | sh`
+Check out [this guide](https://www.rust-lang.org/learn/get-started) on how to get started!
 
 # Git installation
 

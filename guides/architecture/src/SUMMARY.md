@@ -6,9 +6,11 @@
   - [About the Organization](history/org.md)
   - [Timeline](history/timeline.md)
 - [Stack](stack/README.md)
+  - [Stack Diagram](stack/diagram.md)
   - [Orchestra](stack/orchestra.md)
   - [Pathfinder](stack/pathfinder.md)
   - [Image Recognition](stack/image-rec.md)
   - [Deprecated Services](stack/deprecated.md)
-- [The Hardware of Software](hardware.md)
+- [The Hardware of Software](hardware/hardware.md)
+  - [Hardware Diagram]
 - [Passwords](passwords.md)
