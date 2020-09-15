@@ -9,7 +9,7 @@ given topic:
 - [Python Guide](guides/python/index.html) - Python is a general-purpose,
   interpreted programming language. Python is used for image recognition in
   UAV Austin.
-- [Rust Guide](guides/rust/index.html) - Rust is a systems programming language
+- [Rust Guide](https://doc.rust-lang.org/book/) - Rust is a systems programming language
   by Mozilla with a focus on memory safety and concurrency.
 - [Node.js Guide](guides/nodejs/index.html) - Node.js is a server-side
   JavaScript run-time environment. Node.js is useful in event-driven domains

@@ -4,7 +4,7 @@ Welcome to the UAV Austin Documentation!
 
 For onboarding documentation, see the [guides](guides.html).
 
-Our software [link tree](https://linktr.ee/UAVA.Software) containing tons of useful links!
+Our software [link tree](https://linktr.ee/UAVA.Software) has useful links to github, trello, the competition rules, life, the universe, and everything!
 
 ## Editing These Docs
 
