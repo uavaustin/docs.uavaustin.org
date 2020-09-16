@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Functions - UAV Austin Node.js Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="../getting-started/resources.html"><strong aria-hidden="true">2.3.</strong> Resources</a></li></ol></li><li class="chapter-item expanded "><a href="../the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="../the-basics/operators.html"><strong aria-hidden="true">3.3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="../the-basics/control-flow.html"><strong aria-hidden="true">3.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../the-basics/functions.html" class="active"><strong aria-hidden="true">3.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../objects-and-classes.html"><strong aria-hidden="true">5.</strong> Objects and Classes</a></li><li class="chapter-item expanded "><a href="../functional-programming.html"><strong aria-hidden="true">6.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../async-patterns/index.html"><strong aria-hidden="true">7.</strong> Async Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../async-patterns/callbacks.html"><strong aria-hidden="true">7.1.</strong> Callbacks</a></li><li class="chapter-item expanded "><a href="../async-patterns/promises.html"><strong aria-hidden="true">7.2.</strong> Promises</a></li><li class="chapter-item expanded "><a href="../async-patterns/async-await.html"><strong aria-hidden="true">7.3.</strong> Async/Await</a></li><li class="chapter-item expanded "><a href="../async-patterns/event-emitters.html"><strong aria-hidden="true">7.4.</strong> Event Emitters</a></li></ol></li><li class="chapter-item expanded "><a href="../npm.html"><strong aria-hidden="true">8.</strong> NPM</a></li><li class="chapter-item expanded "><a href="../babel.html"><strong aria-hidden="true">9.</strong> Babel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Node.js Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<p>Like in most languages, individual pieces of execution are blocked off into
+functions in JavaScript. The syntax is mostly familiar to the other C-like
+languages.</p>
+<h2><a class="header" href="#a-basic-function" id="a-basic-function">A Basic Function</a></h2>
+<p>Here's a basic case of wrapping our hello world example into it's own function.</p>
+<pre><code class="language-js">function sayHello() {
+  console.log('Hello, world!');
+}
+
+// Call the function.
+sayHello();
+</code></pre>
+<p>If you either save this to a file and run the script, or run this in an
+interactive Node.js session, you'll get the same print out as before.</p>
+<p>Just like in the rest of the language, you don't provide return types for the
+functions.</p>
+<blockquote>
+<p><em>NOTE:</em> The convention in JavaScript is to use <code>camelCase</code> naming for
+normal functions (as well as variables in general).</p>
+</blockquote>
+<h2><a class="header" href="#arguments" id="arguments">Arguments</a></h2>
+<p>Let's take our example above, but be able to say hello to specific people.
+We'll take an argument <code>person</code> and print that like <em>Hello, José!</em>, for
+example.</p>
+<pre><code class="language-js">function greet(person) {
+  // Template literal syntax below!
+  // Same as saying 'Hello, ' + person + '!'.
+  console.log(`Hello, ${person}!`);
+}
+
+// Prints out 'Hello, José!'.
+greet('José');
+</code></pre>
+<p>If we call <code>greet('José')</code> we'll get our expected output.</p>
+<h2><a class="header" href="#optional-arguments" id="optional-arguments">Optional Arguments</a></h2>
+<p>The way JavaScript handles function arguments is a little different. What
+happens if we call <code>greet()</code> without a person's name?</p>
+<pre><code class="language-js">function greet(person) {
+  // Template literal syntax below!
+  // Same as saying 'Hello, ' + person + '!'.
+  console.log(`Hello, ${person}!`);
+}
+
+greet();
+</code></pre>
+<p>In the above, we actually get <em>Hello, undefined!</em>. Instead of having to say
+that an argument in optional in JavaScript, we just don't provide it. Variables
+which aren't passed into a function are set to the value <code>undefined</code>.
+Similarly, if you pass in more arguments than a function can take, they are
+simply ignored.</p>
+<p>Next, we'll adapt our function to print out a generic <em>Hello.</em> message if no
+person was provided.</p>
+<pre><code class="language-js">function greet(person) {
+  // Print out the name too if it's truthy, i.e., not undefined,
+  // null, '', and so on.
+  if (person) {
+    console.log(`Hello, ${person}!`);
+  } else {
+    console.log('Hello.');
+  }
+}
+
+// Prints out 'Hello, José!'.
+greet('José');
+// Prints out 'Hello.'
+greet();
+</code></pre>
+<h2><a class="header" href="#default-arguments" id="default-arguments">Default Arguments</a></h2>
+<p>JavaScript also allows for the use of default arguments. Values which are not
+provided can have their value defaulted to another.</p>
+<p>Here's an example with adding numbers:</p>
+<pre><code class="language-js">function add(a, b = 1) {
+  return a + b;
+}
+
+// Prints 7.
+console.log(add(4, 3));
+// Prints 5.
+console.log(add(4));
+</code></pre>
+<h2><a class="header" href="#anonymous-functions" id="anonymous-functions">Anonymous Functions</a></h2>
+<p>Not all functions created in JavaScript are assigned names. Functions can be
+passed into different functions as arguments and can be bound to variables.</p>
+<p>To create an anonymous function, simply don't provide the name like before:</p>
+<pre><code class="language-js">let a = function () {
+  console.log('spooky');
+}
+
+// Runs the function.
+a();
+</code></pre>
+<h2><a class="header" href="#arrow-functions" id="arrow-functions">Arrow Functions</a></h2>
+<p>Similar to anonymous functions, arrow functions are an additional syntax of
+creating unnamed functions.</p>
+<p>The above can effectively written as:</p>
+<pre><code class="language-js">let a = () =&gt; {
+  console.log('spooky');
+}
+
+// Runs the function.
+a();
+</code></pre>
+<p>The syntax <code>() =&gt; {}</code> is essentially the same as <code>function () {}</code>. It is just a
+bit shorter.</p>
+<p>There is more syntactic sugar with makes arrow functions nicer to use. If there
+is only one argument passed, the parenthesis can be removed like so:</p>
+<pre><code class="language-js">let increment = a =&gt; {
+  return a + 1;
+}
+
+// Prints 6.
+console.log(increment(5));
+</code></pre>
+<p>The above can be shortened even more. When using the form
+<code>(a, b, c...) =&gt; { return d }</code>, this can be shortened to <code>(a, b, c...) =&gt; d</code>.
+Without the curly braces, the expression on the right is automatically
+returned.</p>
+<p>Therefore, we can shorten this to:</p>
+<pre><code class="language-js">let increment2 = a =&gt; a + 1;
+
+// Prints 11.
+console.log(increment2(10));
+</code></pre>
+<p>The above is very convenient for creating small functions.</p>
+<blockquote>
+<p><em>Note</em>: Many JavaScript style guides recommend not removing the parenthesis
+around the arguments in arrow functions unless the braces are also removed
+on the right. Thus, <code>(a) =&gt; { /* */ }</code> and <code>a =&gt; expr</code> would be correct, but
+not <code>a =&gt; { /* */ }</code>.</p>
+</blockquote>
+<p>We'll discuss the use of unnammed functions (anonymous and arrow) in more
+detail in the <a href="../functional-programming.html">Functional Programming</a> and
+<a href="../async-patterns/index.html">Async Patterns</a> chapters.</p>
+<p>There are some small differences between arrow functions and regular functions
+defined with <code>function</code>. Regular functions have a variables called <code>this</code>,
+<code>arguments</code>, <code>super</code>, and <code>new.target</code> set as well, which are missing in arrow
+functions. We'll get into some of these in the
+<a href="../objects-and-classes.html">Objects and Classes</a> chapter.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../the-basics/control-flow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../modules.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../the-basics/control-flow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../modules.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

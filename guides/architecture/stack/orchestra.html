@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Orchestra - The Software Architecture of UAVA</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../history/index.html"><strong aria-hidden="true">2.</strong> History</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../history/about.html"><strong aria-hidden="true">2.1.</strong> About the Competition</a></li><li class="chapter-item expanded "><a href="../history/org.html"><strong aria-hidden="true">2.2.</strong> About the Organization</a></li><li class="chapter-item expanded "><a href="../history/timeline.html"><strong aria-hidden="true">2.3.</strong> Timeline</a></li></ol></li><li class="chapter-item expanded "><a href="../stack/index.html"><strong aria-hidden="true">3.</strong> Stack</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stack/diagram.html"><strong aria-hidden="true">3.1.</strong> Stack Diagram</a></li><li class="chapter-item expanded "><a href="../stack/orchestra.html" class="active"><strong aria-hidden="true">3.2.</strong> Orchestra</a></li><li class="chapter-item expanded "><a href="../stack/pathfinder.html"><strong aria-hidden="true">3.3.</strong> Pathfinder</a></li><li class="chapter-item expanded "><a href="../stack/image-rec.html"><strong aria-hidden="true">3.4.</strong> Image Recognition</a></li><li class="chapter-item expanded "><a href="../stack/deprecated.html"><strong aria-hidden="true">3.5.</strong> Deprecated Services</a></li></ol></li><li class="chapter-item expanded "><a href="../hardware/hardware.html"><strong aria-hidden="true">4.</strong> The Hardware of Software</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../hardware/hardware-diagram.html"><strong aria-hidden="true">4.1.</strong> Hardware Diagram</a></li></ol></li><li class="chapter-item expanded "><a href="../passwords.html"><strong aria-hidden="true">5.</strong> Passwords</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Software Architecture of UAVA</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#orchestra" id="orchestra">Orchestra</a></h1>
+<p><a href="https://github.com/uavaustin/orchestra">Orchestra</a> is a group of Docker Compose-managed services that perform specific facilities for plane-ground communications. Services communicate with each other through <a href="https://developers.google.com/protocol-buffers">Protocol Buffers</a> over HTTP. Services can also communicate through <a href="https://www.json.org/json-en.html">JSON</a> by changing the Accept/Content-Type header to 'application/json'.</p>
+<h2><a class="header" href="#services" id="services">Services</a></h2>
+<p>Services are sorted in order of dependency; more critical services go first.</p>
+<h3><a class="header" href="#interop-proxy" id="interop-proxy">Interop Proxy</a></h3>
+<p>Wraps the SUAS interoperability server (the &quot;interop&quot;) with a more consistent interface that can be accessed by other services. Login state to interop is saved.</p>
+<p><em>Languages/Tools</em>: <a href="https://elixir-lang.org">Elixir</a>, <a href="https://phoenixframework.org">Phoenix</a></p>
+<h3><a class="header" href="#mavproxy" id="mavproxy">MAVProxy</a></h3>
+<p>Present on both aircraft and ground station. Allows for communication between Telemetry, Mission Planner, and the aircraft. Communicates through an exposed UDP socket.</p>
+<p><em>Languages/Tools</em>: <a href="https://github.com/ArduPilot/MAVProxy">MAVProxy</a></p>
+<h3><a class="header" href="#telemetry" id="telemetry">Telemetry</a></h3>
+<p>Present on both aircraft and ground station. On the ground, receives telemetry information to be sent to interop (yaw, lat, lon, alt), sends/receives mission data (waypoints), and supplies vital information about the aircraft (GPS, battery, speed, velocity) to the ground station. Communicates with MAVProxy through the MavLINK protocol via UDP.</p>
+<p><em>Languages/Tools</em>: Javascript, <a href="https://nodejs.org/en/">Node.JS</a>, <a href="https://jestjs.io/">Jest</a></p>
+<h3><a class="header" href="#forward-interop" id="forward-interop">Forward Interop</a></h3>
+<p>Forwards telemetry data to Interop Proxy and keeps track of the upload rate, both unique and raw telemetry.</p>
+<p><em>Languages/Tools</em>: Javascript, <a href="https://nodejs.org/en/">Node.JS</a>, <a href="https://jestjs.io/">Jest</a> </p>
+<h3><a class="header" href="#imagery" id="imagery">Imagery</a></h3>
+<p>Present on both aircraft and ground station. Aircraft uses the Z Camera E1 backend, ground uses the sync backend (still a work in progress), and testing uses the file backend. Service captures photos on a specified interval and saves the pictures, telemetry metadata and the assigned ID into a database.</p>
+<p><em>Languages/Tools</em>: Javascript, <a href="https://nodejs.org/en/">Node.JS</a>, <a href="https://www.sqlite.org/index.html">SQLite</a>, <a href="https://jestjs.io/">Jest</a></p>
+<h3><a class="header" href="#image-rec-master" id="image-rec-master">Image Rec Master</a></h3>
+<p>Takes in photos (IDs) from imagery and passes them through a pipeline where they are processed (manual or auto), discarded, or submitted into a separate target pipeline. The target pipeline can submit ODLCs to the interop-proxy server or remove targets submitted to the interop server.</p>
+<p><em>Languages/Tools</em>: Python, <a href="https://redis.io/">Redis</a></p>
+<h3><a class="header" href="#pong" id="pong">Pong</a></h3>
+<p>Pings all the other services (and specified devices via ICMP ping) to check on their health.</p>
+<p><em>Languages/Tools</em>: Javascript, <a href="https://nodejs.org/en/">Node.JS</a>, <a href="https://jestjs.io/">Jest</a></p>
+<h3><a class="header" href="#lumberjack" id="lumberjack">Lumberjack</a></h3>
+<p><strong>[In Development]</strong> Logs data from other services into a time-series database (InfluxDB). Currently shows service ping from Pong, upload rate from Forward Interop, and the status of Telemetry on plane and ground.</p>
+<p><em>Languages/Tools</em>: Javascript, <a href="https://nodejs.org/en/">Node.JS</a>, <a href="https://jestjs.io/">Jest</a>, <a href="https://www.influxdata.com/">InfluxDB</a></p>
+<h3><a class="header" href="#grafana" id="grafana">Grafana</a></h3>
+<p><strong>[In Development]</strong> real time dashboard visualization of data being collected in Lumberjack.</p>
+<p><em>Languages/Tools</em>: <a href="https://grafana.com/">Grafana</a></p>
+<h3><a class="header" href="#dashboard" id="dashboard">Dashboard</a></h3>
+<p><strong>[Deprecated]</strong> text-based dashboard that shows telemetry upload rates and the statuses of other services.</p>
+<p><em>Languages/Tools</em>: Javascript, <a href="https://nodejs.org/en/">Node.JS</a>, <a href="https://jestjs.io/">Jest</a></p>
+<h2><a class="header" href="#language-choice" id="language-choice">Language Choice</a></h2>
+<p>Services that are too critical to tolerate failure were written in Elixir. The only exception is Telemetry, which was written in Node.js due to the complexity in communicating over the MAVLink protocol.</p>
+<p>When Orchestra was being developed, there was a brief discussion over which language to use. Originally, Rust was to be used for Telemetry; however, after staring at the sixty lines of Rust that took me three weeks to write, it was decided that Rust had perhaps too steep of a learning curve to start such a complicated project as Telemetry.</p>
+<p>Another contender was Python. There were few issues with Python, although dependencies tended to run large, and there may have been perhaps a desire to move toward functional programming, which JavaScript was beginning to support. And since we were intending to make HTTP-based microservices, Node.js seemed to fit the bill from its proven web performance.</p>
+<hr />
+<p><em>This page was derived from the HackMD document</em> <a href="https://hackmd.io/bzfxlPXtTHemOK_KhwLzRw">An Overview of UAV Austin</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../stack/diagram.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../stack/pathfinder.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../stack/diagram.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../stack/pathfinder.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

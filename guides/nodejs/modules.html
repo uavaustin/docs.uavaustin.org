@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modules - UAV Austin Node.js Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="getting-started/resources.html"><strong aria-hidden="true">2.3.</strong> Resources</a></li></ol></li><li class="chapter-item expanded "><a href="the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="the-basics/operators.html"><strong aria-hidden="true">3.3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="the-basics/control-flow.html"><strong aria-hidden="true">3.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="the-basics/functions.html"><strong aria-hidden="true">3.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="modules.html" class="active"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="objects-and-classes.html"><strong aria-hidden="true">5.</strong> Objects and Classes</a></li><li class="chapter-item expanded "><a href="functional-programming.html"><strong aria-hidden="true">6.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="async-patterns/index.html"><strong aria-hidden="true">7.</strong> Async Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="async-patterns/callbacks.html"><strong aria-hidden="true">7.1.</strong> Callbacks</a></li><li class="chapter-item expanded "><a href="async-patterns/promises.html"><strong aria-hidden="true">7.2.</strong> Promises</a></li><li class="chapter-item expanded "><a href="async-patterns/async-await.html"><strong aria-hidden="true">7.3.</strong> Async/Await</a></li><li class="chapter-item expanded "><a href="async-patterns/event-emitters.html"><strong aria-hidden="true">7.4.</strong> Event Emitters</a></li></ol></li><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">8.</strong> NPM</a></li><li class="chapter-item expanded "><a href="babel.html"><strong aria-hidden="true">9.</strong> Babel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Node.js Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#modules" id="modules">Modules</a></h1>
+<p>Programming is pretty difficult when you can only use one file. Let's change
+that. This chapter introduces Node.js modules.</p>
+<h2><a class="header" href="#commonjs-require" id="commonjs-require">CommonJS <code>require(...)</code></a></h2>
+<p>CommonJS refers to the style of module loading most prevalent in Node.js.</p>
+<p>As opposed to using something like an <code>import</code> statement at the top of a file,
+modules in Node.js are typically loaded using  the <code>require(...)</code> function.
+This function returns the entire contents of a module.</p>
+<blockquote>
+<p><em>Note</em>: There are some other systems in use. You can also
+<a href="https://nodejs.org/docs/latest-v8.x/api/addons.html#addons_c_addons">build modules for Node.js in C++</a>
+and <code>require</code> them as well. These can be <em>painful</em> to write so don't get too
+excited about using C++ with Node.js.</p>
+</blockquote>
+<p>For this chapter, we'll use the
+<a href="https://nodejs.org/dist/latest-v8.x/docs/api/path.html#path_path"><code>path</code> module</a>
+in Node.js. Too see the modules that Node.js offers, see the
+<a href="https://nodejs.org/dist/latest-v8.x/docs/api/">API Documentation</a>.</p>
+<p>Now for a simple example of using <code>require(...)</code>:</p>
+<pre><code class="language-js">// We have to assign the module to a variable. In theory, we can name
+// it whatever we want. This is a constant since we don't plan to
+// re-assign this value.
+const path = require('path');
+
+// A common thing to do in the path library is to build up a full
+// path by parts. You can do that using path.join(...). Remember that
+// the .. pattern goes up a directory.
+let fullPath = path.join('a/b/c', '../d', 'cool-file.txt');
+
+// Prints a/b/d/cool-file.txt on Linux / macOS. Uses backslashes on
+// Windows.
+console.log(fullPath);
+</code></pre>
+<p>The above gives an example for building paths that'll work on all
+Linux, macOS, and Windows. We <em>could</em> check if we were on Windows and
+handle the building paths with backslashes ourselves, but why not use
+a library if it's already there!</p>
+<h3><a class="header" href="#destructuring-assignment" id="destructuring-assignment">Destructuring Assignment</a></h3>
+<p>So what if we want to <code>require</code> <code>join</code> directly. In the previous example we had
+to access it out of the entire exports of <code>path</code>. We can use a JavaScript
+feature called destructuring assignment to do it.</p>
+<p>Destructuring assignment lets you assign variables in the shape of an object.
+Let's see this in action.</p>
+<pre><code class="language-js">// We have an object with properties.
+let things = {
+  one: 1,
+  two: 2,
+  three: 3
+};
+
+// Having to say things.one, things.two, and things.three takes too
+// much typing. So we can get the values of one, two, and three, out
+// all at once!
+let { one, two, three } = things;
+
+// Now one, two, and three have been assigned values from the object
+// called things.
+
+console.log(two);  // 2
+</code></pre>
+<p>Similarly, we can do the same with arrays:</p>
+<pre><code class="language-js">let [a, b] = [1, 2];
+
+console.log(b)  // 2
+</code></pre>
+<p>Now back to our <code>join</code> example:</p>
+<pre><code class="language-js">const { join } = require('path');
+
+let fullPath = join('a/b/c', '../d', 'cool-file.txt');
+console.log(fullPath);
+</code></pre>
+<p>This does the same thing, but we now we can get <code>join</code> without having to deal
+with it inside <code>path</code>. With long module names, this can save some space and
+makes things more readable (unless it's hard to tell where something came
+from).</p>
+<h2><a class="header" href="#creating-modules" id="creating-modules">Creating Modules</a></h2>
+<p>Now it's time for the opposite point of view. How do we make modules that we
+can use?</p>
+<p>Let's start with a sample directory setup inside a folder called
+<code>modules-intro/</code>:</p>
+<pre><code class="language-text">modules-intro
+├── one.js
+├── two.js
+└── three.js
+</code></pre>
+<p>We're going to <code>one.js</code> and <code>two.js</code> from inside <code>three.js</code>.</p>
+<h3><a class="header" href="#normal-exports-in-onejs" id="normal-exports-in-onejs">Normal Exports in <code>one.js</code></a></h3>
+<p>Code in your Node.js files is not automatically available to other files. You
+have to explicitly export it in order for it to be available. The primary way
+of doing this is by setting properties of <code>exports</code>.</p>
+<p>Here's a typical example for <code>one.js</code>:</p>
+<pre><code class="language-js">// one.js
+
+// Prints all the positive integers up to and including an upper
+// limit.
+exports.printNumbers = (upper) =&gt; {
+  for (let i = 1; i &lt;= upper; i++) {
+    console.log(i);
+  }
+};
+
+// My own personal favorite. In caps since it's a constant.
+exports.FAVORITE_NUMBER = 37;
+</code></pre>
+<p>In the above we have a module which if we load it has a property
+that's a function and one that is a constant.</p>
+<h3><a class="header" href="#a-single-export-in-twojs" id="a-single-export-in-twojs">A Single Export in <code>two.js</code></a></h3>
+<p>Now we'll export one thing to represent the entire module. We can do this by
+setting the value of <code>module.exports</code>.</p>
+<p>Here's what we'll have in <code>two.js</code>:</p>
+<pre><code class="language-js">// two.js
+
+// Our export is a function that is a factorial implementation.
+module.exports = function fac(n) {
+  if (n === 0) return 1;
+  else return n * fac(n - 1);
+};
+</code></pre>
+<p>In the above we export a simple factorial function. The function is given the
+name <code>fac</code> so that it can call itself recursively, however, this <em>does not</em>
+mean the function is called <code>fac</code> to the outside. Instead, the result of using
+<code>require</code> on this module is the function directly.</p>
+<blockquote>
+<p><em>Note</em>: <code>exports</code> and <code>module.exports</code> actually refer to the same thing. If
+we were to just say <code>exports = ...</code> in the above, then we would be changing
+the whole value of the exports instead of adding to it, and so exporting
+wouldn't work.</p>
+</blockquote>
+<h3><a class="header" href="#putting-it-together-in-threejs" id="putting-it-together-in-threejs">Putting it Together in <code>three.js</code></a></h3>
+<p>Now we can combine these files together and be able to use them.</p>
+<p>Here's our content for <code>three.js</code>:</p>
+<pre><code class="language-js">// three.js
+
+// Importing the other modules relative to this file (hence the
+// `./`). The `js` can also be left off.
+const { printNumbers, FAVORITE_NUMBER } = require('./one');
+const factorial = require('./two');  // We can name this whatever.
+
+// Print all the numbers up to the constant.
+printNumbers(FAVORITE_NUMBER);
+
+// Now print the factorial of it.
+console.log(factorial(FAVORITE_NUMBER));
+</code></pre>
+<p>Now if we run this on the command-line, we'll get the output we
+expect:</p>
+<pre><code class="language-shell">$ node three.js
+1
+2
+3
+4
+
+&lt;...&gt;
+
+36
+37
+1.3763753091226343e+43
+</code></pre>
+<p>This, of course, is a simple example. But you can do just about anything. Go
+wild.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="the-basics/functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="objects-and-classes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="the-basics/functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="objects-and-classes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

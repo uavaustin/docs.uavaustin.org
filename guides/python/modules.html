@@ -1,0 +1,559 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modules - UAV Austin Python Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="the-basics/control-flow.html"><strong aria-hidden="true">3.3.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="the-basics/functions.html"><strong aria-hidden="true">3.4.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="modules.html" class="active"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="file-io.html"><strong aria-hidden="true">5.</strong> File I/O</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">6.</strong> Objects</a></li><li class="chapter-item expanded "><a href="pip.html"><strong aria-hidden="true">7.</strong> pip</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Python Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#modules" id="modules">Modules</a></h1>
+<p>Instead of starting this chapter with a snarky comment, we'll go straight into
+this topic.</p>
+<p>From time to time, naturally you're going to need to access Python code written
+in a different file.</p>
+<h2><a class="header" href="#working-with-pi" id="working-with-pi">Working with Pi</a></h2>
+<p>While you could hardcode the value of pi in every Python file you
+create, it's not exactly the most practical thing to do. So we'll need to
+<em>import</em> it. This will show several ways pi can be imported.</p>
+<p>The most basic way is to import the entire
+<a href="https://docs.python.org/3.6/library/math.html"><code>math</code> module</a> of Python.</p>
+<pre><code class="language-python">import math
+
+print('The value of pi is: {:.10f}'.format(math.pi))
+</code></pre>
+<blockquote>
+<p><em>Note</em>: This is using the Python 3 string formating function. This
+is similar to how you would do it in many languages with <code>sprintf</code>
+or like, except that instead of using percent signs, you place the
+formatting string inside curly braces with a colon before it. See
+<a href="https://docs.python.org/3.1/library/string.html#format-examples">the Python documentation</a>
+for examples.</p>
+</blockquote>
+<p>This will allow you to use anything in the <code>math</code> module as well. So we can do
+this:</p>
+<pre><code class="language-python">cos_pi = math.cos(math.pi)
+print('The value of cos(pi) is: {:.10f}'.format(cos_pi))
+</code></pre>
+<p>We don't really need to import <em>everything</em> in the <code>math</code> module. So we can
+also just import only pi. We won't be able to access <code>math.cos</code> with this. This
+also </p>
+<pre><code class="language-python">from math import pi
+
+print('The value of pi is stills: {:.10f}'.format(pi))
+
+math.cos(pi)  # This will error!
+</code></pre>
+<p>As an aside, you can import a module directly and do an <code>from</code> ... <code>import</code> on
+a module.</p>
+<p>This is valid (though strange):</p>
+<pre><code class="language-python">import math
+from math import pi
+
+print('The value of pi is stills: {:.10f}'.format(pi))
+
+math.cos(pi)  # Fine now.
+</code></pre>
+<blockquote>
+<p><em>Note</em>: You can import multiple things at the same time like
+<code>from math import pi, cos</code>, though importing too many things in a file like
+this can make it difficult to trace where certain functions are coming from.</p>
+</blockquote>
+<h2><a class="header" href="#aliasing-imports" id="aliasing-imports">Aliasing Imports</a></h2>
+<p>For some libraries, there's conventions for renaming them to a shorter name.</p>
+<p>Let's take <code>numpy</code> for example. This is a popular Python library that does fast
+numerical operations in Python. (You have to install this since it's not
+included by default in Python. We'll discuss how to do this later, but if
+you're feeling brave you can just execute <code>pip3.6 install numpy</code> in your
+terminal to install the package. You can also just take this example for
+granted.)</p>
+<p>To rename an import, you can use <code>as</code>.</p>
+<pre><code class="language-python">import numpy as np
+
+# This will print:
+#   array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1. ])
+#
+# Note that this is a numpy array instead of a regular Python list.
+print(np.arange(0.0, 1.1, 0.1))
+</code></pre>
+<p><code>numpy</code> is often shortened because of how often it is used. When a project uses
+<code>numpy</code> it is common to use it a ton.</p>
+<p>You can mix the <code>as</code> syntax with <code>from</code> and do something like
+<code>from math import pi as pie</code> if you'd really want to.</p>
+<p>Aliasing imports comes with a warning: <em>Don't alias something unless there's an
+established convention (like <code>numpy</code>) or unless you need to since another name
+is conflicting in the same file.</em> Using strange aliases in a file can make it
+very confusing for other programmers to read!</p>
+<h2><a class="header" href="#your-own-modules" id="your-own-modules">Your Own Modules</a></h2>
+<p>Now it's time for the opposite point of view. How do we make modules that we
+can use?</p>
+<p>Let's start with a sample directory setup inside a folder called
+<code>modules_intro/</code>:</p>
+<pre><code class="language-text">modules_intro
+├── __init__.py
+├── __main__.py
+├── one.py
+├── two.py
+└── nested
+    └── three.py
+</code></pre>
+<p>So what are all these files for?</p>
+<ul>
+<li><code>one.py</code> and <code>two.py</code> are just two normal Python modules. Nothing special
+here.</li>
+<li><code>three.py</code> is a Python module inside a nested directory. This makes importing
+a little different.</li>
+<li><code>__init__.py</code> and <code>__main__.py</code> are special module names that we'll talk
+about in a bit.</li>
+</ul>
+<h3><a class="header" href="#starting-with-onepy" id="starting-with-onepy">Starting with <code>one.py</code></a></h3>
+<p>For our first module, we'll just do something simple.</p>
+<p>Note the docstring syntax for giving a function documentation using a
+multi-line string.</p>
+<pre><code class="language-python"># one.py
+
+def get_numbers(upper):
+    &quot;&quot;&quot;Return all the integers from 0 to a limit, inclusive.
+
+    This is simply creating a range and then converting this into a
+    list.
+    &quot;&quot;&quot;
+
+    return list(range(0, upper + 1))
+
+
+# Prints [0, 1, 2, ..., 10].
+print(get_numbers(10))
+</code></pre>
+<p>This is straight-forward enough. If we are to run
+<code>python3.6 modules_intro/one.py</code> then the numbers will be printed out. Make
+sure that your current directory is the one that the <code>modules_intro/</code> folder is
+inside.</p>
+<p>Let's try something though: if you open up an interactive python session and
+import the <code>one.py</code> module, it'll print out the numbers when you import!</p>
+<pre><code class="language-text">$ python3.6
+&gt;&gt;&gt; import modules_intro.one
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+&gt;&gt;&gt; modules_intro.one.get_numbers(4)
+[0, 1, 2, 3, 4]
+</code></pre>
+<p>So that's not great at all. But we can see above that when we import the file,
+since it's inside the <code>modules_intro</code> folder, we just need to put a period to
+go down into the directly (and the <code>.py</code> extension is removed).</p>
+<p>Now let's keep the behavior of being able to run the file directly, but still
+be able to use our <code>get_numbers</code> function inside <code>one.py</code>. To do this, we have
+to put the <code>print(get_numbers(10))</code> inside an <code>if</code> statement that can check if
+the file is the <em>main</em> file or not:</p>
+<pre><code class="language-python"># one.py
+
+def get_numbers(upper):
+    &quot;&quot;&quot;Return all the integers from 0 to a limit, inclusive.
+
+    This is simply creating a range and then converting this into a
+    list.
+    &quot;&quot;&quot;
+
+    return list(range(0, upper + 1))
+
+
+if __name__ == '__main__':
+    # Prints [0, 1, 2, ..., 10] only when run directly.
+    print(get_numbers(10))
+</code></pre>
+<blockquote>
+<p><em>Note</em>: Things beginning and ending with double underscores are special in
+Python!</p>
+</blockquote>
+<p>Now both running <code>module_intro/one.py</code> and importing it do what we want.</p>
+<pre><code class="language-text">$ python3.6 modules_intro/one.py
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+$ python3.6
+&gt;&gt;&gt; import modules_intro.one
+&gt;&gt;&gt; modules_intro.one.get_numbers(4)
+[0, 1, 2, 3, 4]
+</code></pre>
+<p>When dealing with multi-file projects, or making a Python file that you might
+want to use more in the future, it's great to put the block of code you want to
+execute at runtime in an <code>if __name__ == '__main__':</code>.</p>
+<blockquote>
+<p><em>Note</em>: Many like to make a <em>main</em> function as well and make the <em>if main</em>
+part just be a wrapper for that:</p>
+<pre><code class="language-python">def main():
+    # Our main function logic...
+    pass
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+</blockquote>
+<h3><a class="header" href="#using-onepy-in-twopy" id="using-onepy-in-twopy">Using <code>one.py</code> in <code>two.py</code></a></h3>
+<p>Let's go to the next module, which is just in the same directory as <code>one.py</code>.</p>
+<p>Now, before we saw that to import <code>one.py</code> from the outside, we just did
+<code>import module_intro.one</code>. Importing a file in the <em>same</em> directory is a bit
+different.</p>
+<p>In <code>two.py</code> we'll have a simple factorial implementation, and a function that
+returns the factorial of numbers up to a value. For the second, function, we'll
+use the <code>get_numbers</code> function. Our factorial implementation is intended to be
+private and not used outside the module.</p>
+<pre><code class="language-python"># two.py
+
+from . import one
+
+
+# By convention, private functions start with an underscore.
+def _fac(n):
+    if n == 0:
+        return 1
+    else:
+        return n * _fac(n - 1)
+
+
+def get_fac(upper):
+    &quot;&quot;&quot;Return integer factorials up to and including a limit.&quot;&quot;&quot;
+    return [_fac(i) for i in one.get_numbers(upper)]
+</code></pre>
+<p>So to import an entire module from the same directory, we import the module
+name from <code>.</code>. Remember that <code>.</code> represents the current directory.</p>
+<p>Of course, we can test this with an interactive Python session:</p>
+<pre><code class="language-text">$ python3.6
+&gt;&gt;&gt; import modules_intro.two
+&gt;&gt;&gt; modules_intro.two.get_fac(6)
+[1, 1, 2, 6, 24, 120, 720]
+</code></pre>
+<h3><a class="header" href="#going-into-the-nested-folder-with-threepy" id="going-into-the-nested-folder-with-threepy">Going into the Nested Folder with <code>three.py</code></a></h3>
+<p>Now we'll move into the nested folder in <code>modules_intro/nested/three.py</code>. For
+this file we'll make a function that returns the sum of the factorials for a
+number and below:</p>
+<p>\[ \text{fac_sum}(n) = \sum_{i = 0}^{n}{i!} \]</p>
+<pre><code class="language-python"># three.py
+
+from ..two import get_fac
+
+
+def fac_sum(n):
+    &quot;&quot;&quot;Return the sum of the factorials up to and including a value.
+
+    This justs the built-in sum function in Python to do the work.
+    &quot;&quot;&quot;
+
+    return sum(get_fac(n))
+</code></pre>
+<p>In the above we can see that we use a <code>from</code> ... <code>import</code> to import the
+<code>get_fac</code> function directly. <code>..</code> is the directory above, and we can put the
+module name after that to be able to import <code>get_fac</code> out of it.</p>
+<h3><a class="header" href="#making-the-directory-work-like-a-module-with-__init__py" id="making-the-directory-work-like-a-module-with-__init__py">Making the Directory Work Like a Module with <code>__init__.py</code></a></h3>
+<p>So to use our <code>get_fac</code> function from the outside, we'd have to import it all
+way as <code>modules_intro.nested.three.get_fac</code>
+(or <code>from modules_intro.nested.three import get_fac</code>). Well, this is
+ridiculous, especially considering this is the highest level function.</p>
+<p>So what we can do is create a special file called <code>__init__.py</code> inside our
+directory. This allows for some custom behavior when we want to use our folder
+as a Python module. This file essentially represents the directory.</p>
+<p>Let's create it and import the <code>fac_sum</code> function:</p>
+<pre><code class="language-python"># __init__.py
+
+from .nested.three import fac_sum
+</code></pre>
+<p>So if we open up a Python interpreter we can now use it without having to go
+down deep where <code>fac_sum</code> is defined.</p>
+<pre><code class="language-text">$ python3.6
+&gt;&gt;&gt; import modules_intro
+&gt;&gt;&gt; modules_intro.fac_sum(10)
+4037914
+</code></pre>
+<p>This is a little bit of a weird behavior. Things in a Python module are
+accessible from the outside, including imports. We can use this to be able to
+lift functions and classes and whatnot to the top level.</p>
+<p>While you can use <code>__init__.py</code> as a simple thing that lifts up the
+definitions, some libraries use it to actually define a lot of there functions
+and whatnot there. It's a matter of style really.</p>
+<h3><a class="header" href="#giving-our-module-an-entrypoint-with-__main__py" id="giving-our-module-an-entrypoint-with-__main__py">Giving our Module an Entrypoint with <code>__main__.py</code></a></h3>
+<p>We know how to run a regular Python script... but how do you run a directory?
+Since we can make a directory work like a module with <code>__init__.py</code> will that
+run if we do <code>python3.6 modules_intro</code>? The short answer is no, but we can use
+another special file name to make this kind of setup work: <code>__main__.py</code>.</p>
+<p>As you might expect, <code>__main__.py</code> is a file that runs when you run a module
+from the command-line. As an example, we can just use the following contents
+to print out the sum of <code>fac_sum(10)</code>:</p>
+<pre><code class="language-python"># __main__.py
+
+from . import fac_sum
+
+
+print(fac_sum(10))
+</code></pre>
+<p>So now we can run try to run <code>modules_intro</code> from the command-line:</p>
+<pre><code class="language-shell">$ python3.6 modules_intro
+python3.6 modules_intro
+Traceback (most recent call last):
+  File &quot;/path/to/.../python3.6/runpy.py&quot;, line 193, in _run_module_as_main
+    &quot;__main__&quot;, mod_spec)
+  File &quot;/path/to/.../python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;modules_intro/__main__.py&quot;, line 3, in &lt;module&gt;
+    from . import fac_sum
+ImportError: attempted relative import with no known parent package
+</code></pre>
+<p>...So we need to do one more thing. Python doesn't like this at all. What you
+actually need to do to run this is to pass the <code>-m</code> flag on the command-line
+which indicates that you are running a module. Why the error appears above is
+kind of complicated because Python has a convoluted import system, but just
+trust me on this.</p>
+<pre><code class="language-shell">$ python3.6 -m modules_intro
+4037914
+</code></pre>
+<p>You can make this more exciting if you were to ask for input for the number, or
+even better, to accept it as a command-line argument, though this is just a
+simple example.</p>
+<blockquote>
+<p><em>Note</em>: The <code>-m</code> flag extends more to just a module in your current
+directory: it also extends to any module in Python. For example, you run
+<code>pytest</code> (a popular Python testing framework) this way. This can resolve
+problems for when you have the same thing installed across multiple Python
+versions, e.g., <code>python3.6 -m pytest</code> and <code>python3.5 -m pytest</code> will allow
+both to work, when one of the versions will shadow the other when just using
+<code>pytest</code>.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="the-basics/functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="file-io.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="the-basics/functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="file-io.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

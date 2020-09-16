@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>NPM - UAV Austin Node.js Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="getting-started/resources.html"><strong aria-hidden="true">2.3.</strong> Resources</a></li></ol></li><li class="chapter-item expanded "><a href="the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="the-basics/operators.html"><strong aria-hidden="true">3.3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="the-basics/control-flow.html"><strong aria-hidden="true">3.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="the-basics/functions.html"><strong aria-hidden="true">3.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="objects-and-classes.html"><strong aria-hidden="true">5.</strong> Objects and Classes</a></li><li class="chapter-item expanded "><a href="functional-programming.html"><strong aria-hidden="true">6.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="async-patterns/index.html"><strong aria-hidden="true">7.</strong> Async Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="async-patterns/callbacks.html"><strong aria-hidden="true">7.1.</strong> Callbacks</a></li><li class="chapter-item expanded "><a href="async-patterns/promises.html"><strong aria-hidden="true">7.2.</strong> Promises</a></li><li class="chapter-item expanded "><a href="async-patterns/async-await.html"><strong aria-hidden="true">7.3.</strong> Async/Await</a></li><li class="chapter-item expanded "><a href="async-patterns/event-emitters.html"><strong aria-hidden="true">7.4.</strong> Event Emitters</a></li></ol></li><li class="chapter-item expanded "><a href="npm.html" class="active"><strong aria-hidden="true">8.</strong> NPM</a></li><li class="chapter-item expanded "><a href="babel.html"><strong aria-hidden="true">9.</strong> Babel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Node.js Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#npm" id="npm">NPM</a></h1>
+<p><a href="https://www.npmjs.com"><code>npm</code> (Node Package Manager)</a> is the default package
+manager for Node.js and is also used for front-end JavaScript. It has the
+largest package index of any package manager for any programming language and
+has packages for a ton of things. There are a couple other package managers for
+Node.js such as yarn and pnpm, however, they also use the npm package index.</p>
+<p><code>npm</code> should have been included with your Node.js installation.</p>
+<h2><a class="header" href="#creating-a-npm-project" id="creating-a-npm-project">Creating a <code>npm</code> Project</a></h2>
+<p><code>package.json</code> is the file that contains the metadata about a Node.js project
+for <code>npm</code>. You can create a new project using <code>npm init</code> and it will generate a
+<code>package.json</code> for you. Let's go ahead and do just that.</p>
+<p>First, we'll create a project directory and <code>cd</code> to it.</p>
+<pre><code class="language-shell">$ mkdir my-npm-project
+$ cd my-npm-project
+</code></pre>
+<p>Now that we've created the folder and moved inside it, we'll call <code>npm init</code>.
+The utility will ask a bunch of questions about our project. We'll just create
+it with the default options that it suggests. Just keep hitting enter on all
+the prompts.</p>
+<pre><code class="language-shell">$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install &lt;pkg&gt;` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (my-npm-project)
+version: (1.0.0)
+description:
+entry point: (index.js)
+test command:
+git repository:
+keywords:
+author:
+license: (ISC)
+About to write to /path/to/your/my-npm-project/package.json:
+
+{
+  &quot;name&quot;: &quot;my-npm-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+
+
+Is this ok? (yes)
+</code></pre>
+<p>Great! Now we have a basic project set up. We can see the contents of the
+<code>package.json</code> file in the <code>npm</code> output. Let's go over what these things mean:</p>
+<ul>
+<li><strong>name</strong>: This represents the name of the package, normally this is the same
+as the name of the directory. If we were to publish this package to the <code>npm</code>
+package index, this is the name it would use.</li>
+<li><strong>version</strong>: The version of our package.</li>
+<li><strong>description</strong>: A short description of what our package is. This is
+displayed on npmjs.org if the package is published.</li>
+<li><strong>main</strong>: The main JavaScript file for the the package. If we are to
+<code>require('my-npm-project')</code>, then this is the file that is loaded.</li>
+<li><strong>scripts</strong>: This section has scripts you can call using <code>npm</code>. If we run
+<code>npm test</code> in this directory, then the <code>scripts.test</code> command will be
+executed. <em>In general</em>, to run scripts of any name you'll need to use
+<code>npm run &lt;script-name&gt;</code>, in this case, it would be<code>npm run test</code>. For this,
+<code>npm test</code> happens to work directly since it is a special case.</li>
+<li><strong>author</strong>: The author of the package.</li>
+<li><strong>license</strong>: The terms this package is licensed under. Normally this is
+accompanied with a <code>LICENSE</code> file with the terms.</li>
+</ul>
+<p>There are <a href="https://docs.npmjs.com/files/package.json">a bunch</a> of other fields
+that can be in a <code>package.json</code>, but those are out of scope for now.</p>
+<p>Let's get the main JavaScript file going. Create a file named <code>index.js</code> in the
+<code>my-npm-project directory</code>. As an example, we can put the hello world example
+in it:</p>
+<pre><code class="language-js">console.log('Hello, World!');
+</code></pre>
+<p>Now, if we run <code>node .</code> in this directory, it'll run our hello world script.</p>
+<pre><code class="language-shell">$ node .
+Hello, World!
+</code></pre>
+<p>Since <code>index.js</code> is labeled at the main file in <code>package.json</code>, <code>node</code> knows
+which script to run when referencing the project directory.</p>
+<h2><a class="header" href="#installing-dependencies" id="installing-dependencies">Installing Dependencies</a></h2>
+<p>The most useful part of <code>npm</code> is to install packages. To keep it simple for
+now, we'll just make our hello world script a little prettier. Let's print it
+in blue letters.</p>
+<p>To do this, we'll install the
+<a href="https://www.npmjs.com/package/chalk"><code>chalk npm package</code></a>. This is one of many
+<code>npm</code> libraries that you can install to make it easier to work with colors in
+the terminal. You can check the <code>npm</code> page to see usage instructions.</p>
+<pre><code class="language-shell">$ npm install chalk
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN my-npm-project@1.0.0 No description
+npm WARN my-npm-project@1.0.0 No repository field.
+
++ chalk@2.4.1
+added 7 packages in 1.186s
+</code></pre>
+<p>7 packages were installed since <code>npm</code> handled the sub-depedencies of <code>chalk</code>
+itself. You can ignore the <code>package-lock.json</code> file it created. You can see
+that a folder called <code>node_modules/</code> has been created in your directory. This
+is where <code>npm</code> installs its packages. These dependencies only work in the
+current project and don't affect other's on your machine.</p>
+<p>Now we'll go ahead and use it. In our <code>index.js</code> file, we'll need to <code>require</code>
+the <code>chalk</code> library. Afterwards, we'll use chalk to make our text blue.</p>
+<pre><code class="language-js">const chalk = require('chalk');
+
+console.log(chalk.blue('Hello, World!'));
+</code></pre>
+<p>Now when running <code>node .</code>, we have color!</p>
+<blockquote>
+<p><em>Note:</em> If you're on Windows, colors might not work. You can get around this
+by either using git bash to run the script, or checking
+<a href="https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences">this page</a>
+on how to enable this in <code>cmd.exe</code> on Windows 10. It's not too important for
+this example.</p>
+</blockquote>
+<p>The <code>package.json</code> file as been updated to include the dependencies now:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;my-npm-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;dependencies&quot;: {
+    &quot;chalk&quot;: &quot;^2.4.1&quot;
+  }
+}
+</code></pre>
+<p>Running <code>npm install</code> without a package name will install all the depedencies
+listed in the <code>package.json</code> in that directory.</p>
+<blockquote>
+<p><em>Note:</em> There is another section of dependencies called <code>devDependencies</code>.
+These are for packages that are required when building or testing the
+packages' contents, but aren't actually required inside the source code at
+runtime. You don't need to worry about it now, but when building real <code>npm</code>
+libraries you'll need to differeniate them. They are not installed when
+installing packages with <code>npm install --production</code>.</p>
+</blockquote>
+<h2><a class="header" href="#installing-packages-globally" id="installing-packages-globally">Installing Packages Globally</a></h2>
+<p>Instead of installing a dependency for a specific project, you can also install
+one into the global scope so that you can use a command anywhere.</p>
+<p>For instance, we'll try out the
+<a href="https://npmjs.org/http-status-cli"><code>http-status-cli</code> package</a>. This is a
+little package that can print out what the meanings of HTTP status codes like
+404 mean.</p>
+<p>To install it, we'll just need to use <code>npm</code> like normal but with the <code>-g</code> flag
+for global.</p>
+<pre><code class="language-shell">$ npm install -g http-status-cli
+</code></pre>
+<p>And now in the terminal you can use the globally installed package to find out
+what 404 or any other code means.</p>
+<pre><code class="language-shell">$ http-status 404
+404 - Not Found
+  The best known of them all, the 404 status code indicates that the requested r
+esource was not found at the URL given, and the server has no idea how long for.
+$ http-status 201
+201 - Created
+  A 201 status code indicates that a request was successful and as a result, a r
+esource has been created (for example a new page).
+</code></pre>
+<p><code>npm</code> makes installing command-line utilities convenient. There are a bunch out
+there.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="async-patterns/event-emitters.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="babel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="async-patterns/event-emitters.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="babel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

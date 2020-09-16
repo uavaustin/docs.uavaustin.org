@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Callbacks - UAV Austin Node.js Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="../getting-started/resources.html"><strong aria-hidden="true">2.3.</strong> Resources</a></li></ol></li><li class="chapter-item expanded "><a href="../the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="../the-basics/operators.html"><strong aria-hidden="true">3.3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="../the-basics/control-flow.html"><strong aria-hidden="true">3.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../the-basics/functions.html"><strong aria-hidden="true">3.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../objects-and-classes.html"><strong aria-hidden="true">5.</strong> Objects and Classes</a></li><li class="chapter-item expanded "><a href="../functional-programming.html"><strong aria-hidden="true">6.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../async-patterns/index.html"><strong aria-hidden="true">7.</strong> Async Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../async-patterns/callbacks.html" class="active"><strong aria-hidden="true">7.1.</strong> Callbacks</a></li><li class="chapter-item expanded "><a href="../async-patterns/promises.html"><strong aria-hidden="true">7.2.</strong> Promises</a></li><li class="chapter-item expanded "><a href="../async-patterns/async-await.html"><strong aria-hidden="true">7.3.</strong> Async/Await</a></li><li class="chapter-item expanded "><a href="../async-patterns/event-emitters.html"><strong aria-hidden="true">7.4.</strong> Event Emitters</a></li></ol></li><li class="chapter-item expanded "><a href="../npm.html"><strong aria-hidden="true">8.</strong> NPM</a></li><li class="chapter-item expanded "><a href="../babel.html"><strong aria-hidden="true">9.</strong> Babel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Node.js Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#callbacks" id="callbacks">Callbacks</a></h1>
+<p>A <em>callback</em> is a function that is called after a function's execution has
+been completed. It is the original form of asynchronous programming in Node.js.</p>
+<p>Instead of pausing the program until a certain function has been executed,
+we immediately exit the function, and the function runs on its own. When the 
+execution of that function is done, the main execution of the program pauses for 
+a moment, and the <em>callback function</em> that we specified is then called and run.</p>
+<h2><a class="header" href="#io" id="io">I/O</a></h2>
+<p>Most languages prefer file I/O in this way:</p>
+<pre><code class="language-js">const fs = require('fs');
+
+let data = fs.readFileSync('testFile.txt'); // a long pause here
+console.log(data);
+</code></pre>
+<p>However, Node.js prefers file I/O using callbacks:</p>
+<pre><code class="language-js">fs.readFile('testFile.txt', (err, data) =&gt; {
+  if (err) throw err;
+  console.log(data);
+}); // no delay here
+console.log('Hi');
+</code></pre>
+<p>Notice that <code>Hi</code> gets printed before the data of <code>testFile.txt</code>, <em>despite
+the code being written after the callback!</em></p>
+<blockquote>
+<p><em>Note</em>: It is bad practice to use the &quot;Sync&quot; <code>fs</code> functions in Node.js unless
+it is in something where asynchronous behavior doesn't matter, such as a
+short one-time script or in an a setup section that must complete before
+anything else can happen.</p>
+<p>If a synchronous <code>fs</code> function is called otherwise, it temporarily stops
+other operations from running asynchronously. This can prove to be a problem
+when running an HTTP server or making HTTP requests.</p>
+</blockquote>
+<p>The greatest weakness of callbacks is when each one depends on the previous one:</p>
+<pre><code class="language-js">const fs = require('fs');
+const http = require('http');
+
+fs.readFile('testFile.txt', (err, data) =&gt; {
+  if (err) throw err;
+  let req = http.request('http://example.com/upload', { method: 'POST' }, (res) =&gt; {
+    console.log('Got a response: ' + res.statusCode);
+    res.on('end', () =&gt; {
+      // We cannot actually get `res.data` (it's a little more complicated than
+      // that), but assume that we could.
+      fs.writeFile('testFileResponse.txt', res.data, (err) =&gt; {
+        if (err) throw err;
+        console.log('Wrote response to file');
+      });
+    })
+  });
+  req.write(data);
+  req.end();
+});
+</code></pre>
+<p>While the scenario in the code above may seem fantastical, this nesting of 
+callbacks highlights a serious problem with callbacks known as <em>callback hell</em>.
+Callback hell is dangerous because it can result in messy code and
+difficult-to-trace bugs.</p>
+<p>By convention, an error argument is often passed as the first argument in a
+callback. If the error is <code>null</code> or <code>undefined</code> (it is normally best to just to
+allow both), then the operation succeeded. Otherwise, the operation failed and
+that error should be handled. In the example above we can see that this will
+simple throw the error.</p>
+<h2><a class="header" href="#sleeping" id="sleeping">Sleeping</a></h2>
+<p>So far, we haven't talked about any sleep functions in JavaScript... and that's
+because there isn't one. </p>
+<p>Things in JavaScript are asynchronous, and a sleep function is inherently
+synchronous which makes for a big problem.</p>
+<p>Instead, there are two other things we can use: <em>timeouts</em> and <em>intervals</em>.</p>
+<h3><a class="header" href="#timeouts" id="timeouts">Timeouts</a></h3>
+<p>Timeouts as simple. You pass a callback that gets executed after an amount of
+time.</p>
+<p>Here's a quick example:</p>
+<pre><code class="language-js">console.log('Ha...');
+
+setTimeout(() =&gt; {
+  console.log('choo.');
+}, 1000);
+
+console.log('...');
+</code></pre>
+<p>If you run this, you'll notice that this is printed as:</p>
+<pre><code class="language-text">Ha...
+...
+&lt; a break for a second &gt;
+choo.
+</code></pre>
+<p>The code after creating the timeout will run first, even if the timeout is 0
+ms.</p>
+<p>If we wanted to have another timeout run after that, we would simply create
+another timeout inside the callback that's there. We do this instead of just
+making another interval at the top level that happens to be longer, since the
+time until a timeout runs isn't completely gauranteed.</p>
+<pre><code class="language-js">console.log('Ha...');
+
+setTimeout(() =&gt; {
+  console.log('choo.');
+  
+  setTimeout(() =&gt; {
+    console.log('&gt; Bless you!');
+  }, 3000);
+}, 1000);
+
+consoloe.log('...');
+</code></pre>
+<h3><a class="header" href="#intervals" id="intervals">Intervals</a></h3>
+<p>Intervals keep calling a callback on a provided interval. You can create a
+spammy message in your terminal every second with this:</p>
+<pre><code class="language-js">setInterval(() =&gt; {
+  console.log('Is this annoying yet?');
+}, 1000);
+</code></pre>
+<p>The first iteration of the interval doesn't run until the first second as
+passed.</p>
+<p>The <code>setInterval(...)</code> function does also return back an interval object. To
+make the interval stop, you can pass this object into <code>clearInterval(...)</code>.
+Similarly, you can cancel a timeout from happening with <code>clearTimeout(...)</code>.</p>
+<p>To make our lives better, we must study another approach to asynchronous 
+programming known as <em>promises</em>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../async-patterns/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../async-patterns/promises.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../async-patterns/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../async-patterns/promises.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

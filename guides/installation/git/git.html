@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Git - UAV Austin Installation Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/windows.html"><strong aria-hidden="true">2.1.</strong> Windows 10</a></li><li class="chapter-item expanded "><a href="../getting-started/macOS.html"><strong aria-hidden="true">2.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="../getting-started/linux.html"><strong aria-hidden="true">2.3.</strong> Linux</a></li></ol></li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">3.</strong> Git + GitHub</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/github.html"><strong aria-hidden="true">3.1.</strong> GitHub</a></li><li class="chapter-item expanded "><a href="../git/git.html" class="active"><strong aria-hidden="true">3.2.</strong> Git</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/index.html"><strong aria-hidden="true">4.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../docker/index.html"><strong aria-hidden="true">5.</strong> Docker</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../docker/windows.html"><strong aria-hidden="true">5.1.</strong> Windows 10</a></li><li class="chapter-item expanded "><a href="../docker/macOS.html"><strong aria-hidden="true">5.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="../docker/linux.html"><strong aria-hidden="true">5.3.</strong> Linux</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Installation Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#using-git" id="using-git">Using Git</a></h1>
+<h2><a class="header" href="#getting-git" id="getting-git"><em>Getting</em> Git</a></h2>
+<p><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Check this out</a>
+to install Git on your computer.</p>
+<p>If you're just getting it for the first time, make sure to get your name and
+your email address.</p>
+<pre><code class="language-bash">$ git config --global user.name &quot;Mr. Dudeface McGee IV&quot;
+$ git config --global user.email &quot;xXepic_programmer1337Xx@hotmail.com&quot;
+</code></pre>
+<p>I'd recommend using your actual name and email and not those above.</p>
+<p>For more configuration options:</p>
+<pre><code class="language-bash">$ git config --list --show-origin # shows config file location 
+$ git config --list # shows all settings
+</code></pre>
+<h2><a class="header" href="#what-to-know" id="what-to-know">What to Know</a></h2>
+<p>There are a ton of good resources out there on how to use Git. You shouldn't
+have a problem with finding any. At a bare minimum to make commits and things,
+you should know how to use the following:</p>
+<ul>
+<li><code>git add</code></li>
+<li><code>git commit</code></li>
+<li><code>git pull</code></li>
+<li><code>git push</code></li>
+<li><code>git checkout</code></li>
+<li><code>git branch</code></li>
+<li><code>git merge</code></li>
+<li><code>git stash</code></li>
+</ul>
+<h3><a class="header" href="#good-resources" id="good-resources">Good Resources:</a></h3>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials">Atlassian Git Tutorial</a></li>
+<li><a href="https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet">Atlassian Cheatsheet</a></li>
+<li><a href="https://learngitbranching.js.org/">Interactive Git Branching</a></li>
+<li><a href="https://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide">Stack Overflow Guide</a></li>
+<li><a href="https://git-scm.com/book/en/v2">Pro Git Book</a></li>
+<li><a href="https://git-scm.com/docs">Official Documentation</a></li>
+</ul>
+<h3><a class="header" href="#branching" id="branching">Branching:</a></h3>
+<p>In order for us to all work together on the same project, we use Git branching
+often. This allows us to all contribute at the same time without interference,
+and for us to merge our work into the main line when it's done and has been
+verified.</p>
+<p>In most UAV Austin repositories, the latest stable version of the code is in the <em>master</em>
+branch. For each card on Trello, generally, we will create a new branch where we can add features,
+fix bugs, and develop (we call these branches <em>feature branches</em>). When it's just about finished,
+you'll add a <em>pull request</em> (or <em>PR</em>) to merge it into the <em>master</em> branch. A team lead will
+review the code real fast, make sure it's good, and then merge it in.</p>
+<h3><a class="header" href="#merging" id="merging">Merging:</a></h3>
+<p>In Git, there are two types of merges:</p>
+<ul>
+<li>fast-forward merge</li>
+<li>three-way merge</li>
+</ul>
+<p>If you want a more in-depth explanation, click <a href="https://www.atlassian.com/git/tutorials/using-branches/git-merge">here</a>.</p>
+<p><strong>Fast-Forward Merge</strong></p>
+<p>A fast-forward merge occurs when the feature branch's latest common ancestor
+with the master branch is also the latest commit in the master branch. Fast-forward
+merge is enabled by default.</p>
+<p>Here's an example (switch to an appropriate directory):</p>
+<pre><code class="language-bash"># initialize git repository
+$ git init
+
+# create file &quot;a.txt&quot;
+$ touch a.txt
+
+# add text to &quot;a.txt&quot;; stage and commit
+$ echo &quot;commit 1&quot; &gt; a.txt
+$ git add . &amp;&amp; git commit -m &quot;first commit&quot;
+
+# create and switch to new branch
+$ git checkout -b feature-branch
+
+# append text in feature-branch; stage and commit
+$ echo &quot;commit 2&quot; &gt;&gt; a.txt
+$ git add . &amp;&amp; git commit -m &quot;second commit&quot;
+
+# repeat above but for commit 3
+$ echo &quot;commit 3&quot; &gt;&gt; a.txt
+$ git add . &amp;&amp; git commit -m &quot;third commit&quot;
+
+# switch to master and merge
+$ git checkout master
+$ git merge feature-branch
+</code></pre>
+<p>If you check the commit history using <code>git log</code>, you'll find that &quot;second commit&quot; and 
+&quot;third commit&quot; are now present in the git history of the master branch.</p>
+<p>Undo the merge by using:</p>
+<pre><code class="language-bash">$ git reset --hard HEAD@{1}
+</code></pre>
+<p>Now try the merge without fast-forwarding by passing in a <code>--no-ff</code> flag:</p>
+<pre><code class="language-bash">$ git merge --no-ff feature-branch
+</code></pre>
+<p>Notice that there's an extra commit when checking the history using <code>git log</code>
+on top of &quot;second commit&quot; and &quot;third commit&quot;. This makes it clear to anyone reading the
+history that a merge from a separate branch occurred here, whereas this information would
+have been obscured had we not passed in the <code>--no-ff</code> flag.</p>
+<p>Whether or not to use the <code>--no-ff</code> flag is left to the discretion of the team leads.</p>
+<p><strong>Three-Way Merge</strong></p>
+<p><a href="https://stackoverflow.com/a/4130766/13844610">A good diagram explaining this</a>.</p>
+<p>A 3-way merge occurs when the latest common ancestor between the feature branch and the
+master branch is not the latest commit in master (i.e the feature branch has diverged from master).
+The three states being compared are:</p>
+<ul>
+<li>the latest commit in the feature branch</li>
+<li>the latest commit in master</li>
+<li>the common ancestor commit</li>
+</ul>
+<p>Here's an example (switch to an appropriate directory):</p>
+<pre><code class="language-bash"># initialize git repository
+$ git init
+
+# create file &quot;a.txt&quot;
+$ touch a.txt
+
+# add text to &quot;a.txt&quot;; stage and commit
+$ echo &quot;commit 1&quot; &gt; a.txt
+$ git add . &amp;&amp; git commit -m &quot;first commit&quot;
+
+# create and switch to new branch
+$ git checkout -b feature-branch
+
+# adding text onto the first line; stage and commit
+$ sed -i '1s/^/commit 2 on feature\n/' a.txt
+$ git add . &amp;&amp; git commit -m &quot;second commit in feature&quot;
+
+# switch to master
+$ git checkout master
+
+# append text to &quot;a.txt&quot;; stage and commit changes
+$ echo &quot;commit 2 on master&quot; &gt;&gt; a.txt
+$ git add . &amp;&amp; git commit -m &quot;second commit in master&quot;
+
+# merge the two branches
+$ git merge feature-branch
+</code></pre>
+<p>&quot;a.txt&quot; in the common ancestor commit:</p>
+<pre><code class="language-bash">commit 1
+</code></pre>
+<p>&quot;a.txt&quot; in the feature-branch:</p>
+<pre><code class="language-bash">commmit 2 on feature
+commit 1
+</code></pre>
+<p>&quot;a.txt&quot; in master before merging:</p>
+<pre><code class="language-bash">commit 1
+commit 2 on master
+</code></pre>
+<p>&quot;a.txt&quot; in master after merging:</p>
+<pre><code class="language-bash">commit 2 on feature
+commit 1
+commit 2 on master
+</code></pre>
+<p>It's clear that the three-way merge uses the common ancestor commit as a reference point
+to compare the final states of &quot;a.txt&quot; in their respective branches. </p>
+<p>Notice in the git history, a merge commit is added on top of the commit changes. </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../git/github.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../rust/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../git/github.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../rust/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

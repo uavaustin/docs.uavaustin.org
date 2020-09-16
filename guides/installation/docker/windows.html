@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Windows 10 - UAV Austin Installation Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/windows.html"><strong aria-hidden="true">2.1.</strong> Windows 10</a></li><li class="chapter-item expanded "><a href="../getting-started/macOS.html"><strong aria-hidden="true">2.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="../getting-started/linux.html"><strong aria-hidden="true">2.3.</strong> Linux</a></li></ol></li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">3.</strong> Git + GitHub</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/github.html"><strong aria-hidden="true">3.1.</strong> GitHub</a></li><li class="chapter-item expanded "><a href="../git/git.html"><strong aria-hidden="true">3.2.</strong> Git</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/index.html"><strong aria-hidden="true">4.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../docker/index.html"><strong aria-hidden="true">5.</strong> Docker</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../docker/windows.html" class="active"><strong aria-hidden="true">5.1.</strong> Windows 10</a></li><li class="chapter-item expanded "><a href="../docker/macOS.html"><strong aria-hidden="true">5.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="../docker/linux.html"><strong aria-hidden="true">5.3.</strong> Linux</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Installation Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#windows" id="windows">Windows</a></h1>
+<blockquote>
+<p>Note: All of these steps assume you have already <a href="../getting-started/windows.html">installed and configured WSL</a>.</p>
+</blockquote>
+<p>Setting up Docker on Windows is a little bit complicated because of the WSL so bear with us. There are a few things we need to get out of the way first:</p>
+<ul>
+<li>The variant of Docker that will run best on your computer depends on what edition of Windows you're running. If you're running an edition of Windows 10 with Hyper-V support (Education, Enterprise, or Professional) <em>and</em> if your computer supports SLAT + VT-x/AMD-V <em>and</em> if such features are enabled in your computer's UEFI, then you can install <a href="https://docs.docker.com/v17.09/docker-for-windows/install/">Docker for Windows</a>.</li>
+<li>However, if any of the above are not true, you must run <a href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker Toolbox</a>.</li>
+<li>The difference is that Docker for Windows makes good use of the Virtualization APIs provided by modern OSes and hardware while Docker Toolbox (intentionally) does not. Instead it runs a virtual machine (boot2docker) on top of which docker runs.</li>
+<li>Docker for Windows is the better option if you computer is capable of running it. However, for simplicity (and our collective sanity) we <em>won't</em> be providing instructions on setting up WSL with Docker for Windows. You are free to attempt such a setup yourself; <a href="https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly">this</a> is probably a helpful resource and is roughly what this guide is based on.
+<ul>
+<li>It's also worth noting that some have reported some woes when using VirtualBox with Hyper-V.</li>
+</ul>
+</li>
+</ul>
+<p>If none of the above made any sense to you, do not worry. Installing Docker Toolbox will work just fine.</p>
+<p>With that out of the way we can begin.</p>
+<h2><a class="header" href="#installing-docker-toolbox-on-windows" id="installing-docker-toolbox-on-windows">Installing Docker Toolbox on Windows</a></h2>
+<p>First, download <a href="https://download.docker.com/win/stable/DockerToolbox.exe">this</a> installer for Docker Toolbox (Community Edition). The link points to the latest stable version of Docker Toolbox which, as of this writing, is v18.03.0.</p>
+<p>Launch the installer and run through the steps:</p>
+<p><img src="../img/win-docker-toolbox-installer.png" alt="&quot;Docker Toolbox Installer&quot;" /></p>
+<p>Pick the 'Full Installation' option:</p>
+<p><img src="../img/win-docker-toolbox-installer2.png" alt="&quot;Docker Toolbox Installer Full&quot;" /></p>
+<p>Once the installer finishes, launch the &quot;Docker Quickstart Terminal&quot;:</p>
+<p><img src="../img/win-docker-quickstart.png" alt="&quot;Docker Quickstart Terminal&quot;" /></p>
+<p>It should proceed to download and configure a boot2docker image and a VBox VM. Eventually, you should arrive at something that looks like this:</p>
+<p><img src="../img/win-docker-quickstart2.png" alt="&quot;Docker Quickstart Terminal&quot;" /></p>
+<h2><a class="header" href="#installing-the-docker-client-on-wsl" id="installing-the-docker-client-on-wsl">Installing the Docker Client on WSL</a></h2>
+<p>Now that we've installed Docker on Windows, we're going to set up things on the WSL side so that we can use Docker from within WSL.</p>
+<p>The first thing we need to do is install the Docker client.</p>
+<blockquote>
+<p>Note: This assumes you choose to install the Ubuntu 18.04 LTS Distribution from the Windows Store. If not, adjust your commands accordingly; <a href="https://docs.docker.com/install/#supported-platforms">this</a> is a good resource.</p>
+</blockquote>
+<p>Open your terminal and run:</p>
+<pre><code class="language-shell">$ sudo apt update
+$ sudo apt install apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+</code></pre>
+<p>This tells <code>apt</code> how and from where to install the Docker client. Now lets actually install it:</p>
+<pre><code class="language-shell">$ sudo apt update
+$ sudo apt install docker-ce
+</code></pre>
+<p>Once that finishes, let's check to make sure that docker is actually installed:</p>
+<pre><code class="language-shell">$ docker --version
+</code></pre>
+<p>You should see the latest Docker version printed out (v18.06.1 as of this writing).</p>
+<p>Next, we need to add a usergroup for Docker and add ourselves to said group so that we don't need to run every <code>docker</code> command with <code>sudo</code>:</p>
+<pre><code class="language-shell">$ sudo groupadd docker
+$ sudo usermod -aG docker $(whoami)
+</code></pre>
+<p>For the changes to take, we need to restart the terminal (close all terminal windows and then reopen them).</p>
+<p>Let's check that the we're actually part of the group:</p>
+<pre><code class="language-shell">$ groups
+</code></pre>
+<p>If everything went right, docker should be listed in the output.</p>
+<h2><a class="header" href="#synthesis" id="synthesis">Synthesis</a></h2>
+<p>At this point we have Docker installed and (hopefully) working on Windows and the Docker Client installed within WSL. Now it's time to make them talk to each other. To do that we'll need to run one very magical command:</p>
+<pre><code class="language-shell">$ cat &lt;&lt;EOF &gt;&gt; ~/.bashrc
+
+# Docker Client &lt;--&gt; Docker Toolbox
+eval \$(docker-machine.exe env --shell=bash --no-proxy default)
+export DOCKER_CERT_PATH=\$(dos2wslPath &quot;\${DOCKER_CERT_PATH}&quot;)
+EOF
+</code></pre>
+<p>Let's test it:</p>
+<pre><code class="language-shell">$ source ~/.bashrc
+$ docker info
+</code></pre>
+<p>If everything went according to plan, you should now be looking at a shiny message about the docker daemon.</p>
+<p>Just to be sure things actually work, let's try to run a really simple Docker image:</p>
+<pre><code class="language-shell">$ docker run hello-world
+</code></pre>
+<p>You should see something like this:</p>
+<p><img src="../img/win-docker-hello.png" alt="&quot;Docker Hello World&quot;" /></p>
+<h2><a class="header" href="#docker-compose" id="docker-compose">Docker Compose</a></h2>
+<p>Finally, the very last thing we need to do to have a fully functional Docker setup is to install Docker Compose. As of this writing, the <a href="https://github.com/docker/compose/releases">latest version of Docker Compose</a> is v1.22.0.</p>
+<p>To install:</p>
+<pre><code class="language-shell">$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+$ sudo curl -L https://raw.githubusercontent.com/docker/compose/1.22.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+</code></pre>
+<p>Once that finishes, to check that everything is a-okay, run:</p>
+<pre><code class="language-shell">$ docker-compose --version
+</code></pre>
+<p>If you get &quot;docker-compose version 1.22.0&quot; or something to that effect, you're good to go. 🐋</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../docker/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../docker/macOS.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../docker/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../docker/macOS.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

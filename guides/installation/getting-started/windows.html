@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Windows 10 - UAV Austin Installation Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Foreword</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/windows.html" class="active"><strong aria-hidden="true">2.1.</strong> Windows 10</a></li><li class="chapter-item expanded "><a href="../getting-started/macOS.html"><strong aria-hidden="true">2.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="../getting-started/linux.html"><strong aria-hidden="true">2.3.</strong> Linux</a></li></ol></li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">3.</strong> Git + GitHub</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/github.html"><strong aria-hidden="true">3.1.</strong> GitHub</a></li><li class="chapter-item expanded "><a href="../git/git.html"><strong aria-hidden="true">3.2.</strong> Git</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/index.html"><strong aria-hidden="true">4.</strong> Rust</a></li><li class="chapter-item expanded "><a href="../docker/index.html"><strong aria-hidden="true">5.</strong> Docker</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../docker/windows.html"><strong aria-hidden="true">5.1.</strong> Windows 10</a></li><li class="chapter-item expanded "><a href="../docker/macOS.html"><strong aria-hidden="true">5.2.</strong> macOS</a></li><li class="chapter-item expanded "><a href="../docker/linux.html"><strong aria-hidden="true">5.3.</strong> Linux</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Installation Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#windows" id="windows">Windows</a></h1>
+<p>If you're running Windows the first thing we need to do is make sure you're on a version that will work with the rest of our software. Any updated edition of Windows 10 will do; specifically, Version 1803 / Build 17134 (the April 2018 update) or newer.</p>
+<h2><a class="header" href="#check-your-windows-version" id="check-your-windows-version">Check your Windows Version</a></h2>
+<p>Here's how you can check which version you're on. Press the Start Key + R to bring up the run command box; then type in <code>winver</code> and hit enter.</p>
+<p><img src="../img/win-run.png" alt="&quot;Run command box&quot;" /></p>
+<p>You should see something like this:</p>
+<p><img src="../img/win-winver.png" alt="&quot;winver&quot;" /></p>
+<p>So long as your Windows Version is 1803 or greater, you're good to go. If it isn't check Windows Update; you probably have some updates you need to install.</p>
+<h2><a class="header" href="#linux--windows---wsl" id="linux--windows---wsl">Linux + Windows -&gt; WSL</a></h2>
+<p>Next, we can install the Windows Subsystem for Linux (WSL). This essentially allows you to have a UNIX-y development environment <em>without</em> all of the fuss of dual-booting and virtualization. It's not <em>exactly</em> like running Linux natively but it's <a href="https://blogs.msdn.microsoft.com/commandline/2017/05/10/bashwsl-insiders-build-now-supports-usbserial-comms-and-mounting-removable-storage-network-shares/">pretty</a> <a href="https://docs.microsoft.com/en-us/windows/wsl/faq">darn</a> <a href="https://www.phoronix.com/scan.php?page=article&amp;item=wsl-february-2018&amp;num=6">close</a> (sidenote: there's some <a href="https://blogs.msdn.microsoft.com/wsl/2016/05/23/pico-process-overview/">very impressive engineering</a> that goes into WSL, in case you're curious).</p>
+<blockquote>
+<p><em>N.B.: In case these instructions don't work when you're reading this, they were sourced from <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">here</a>.</em></p>
+</blockquote>
+<h3><a class="header" href="#enable-the-subsystem" id="enable-the-subsystem">Enable the Subsystem</a></h3>
+<p>First, we have to enable WSL. To do this, open PowerShell as Administrator:</p>
+<p><img src="../img/win-powershell.png" alt="&quot;PowerShell&quot;" /></p>
+<p>And then, run:</p>
+<pre><code class="language-shell">&gt; Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+</code></pre>
+<p><img src="../img/win-powershell-cmd.png" alt="&quot;PowerShell Command&quot;" /></p>
+<p>You may be asked to restart your computer. If you are, please do so.</p>
+<h2><a class="header" href="#installing-a-linux-distribution" id="installing-a-linux-distribution">Installing a Linux Distribution:</a></h2>
+<p>Once we've enabled WSL, we can install a Linux distribution straight from the Windows Store! You have a fair number of options, but unless you know what you're doing, we recommend sticking with <a href="https://www.microsoft.com/store/productId/9N9TNGVNDL3Q">Ubuntu 18.04</a>.</p>
+<p><img src="../img/win-windows-store.png" alt="&quot;Ubuntu 18.04 in the Windows Store&quot;" /></p>
+<p>Once it finishes installing, launch Ubuntu from the Start Menu and let it finish installing. If everything goes well, you should see something like this:</p>
+<p><img src="../img/win-wsl-setup.png" alt="&quot;Ubuntu 18.04 WSL Setup&quot;" /></p>
+<p>Pick any username and password that you can remember.</p>
+<p>Finally, you should arrive at a prompt that looks something like this:</p>
+<p><img src="../img/win-wsl-prompt.png" alt="&quot;Ubuntu 18.04 WSL Prompt&quot;" /></p>
+<p>If so, WSL is up and running. Just to be sure, try running:</p>
+<pre><code class="language-shell">$ curl parrot.live
+</code></pre>
+<h2><a class="header" href="#installing-some-essentials" id="installing-some-essentials">Installing some essentials</a></h2>
+<p>Now that you've got WSL set up, it's time to start installing things inside the subsystem. Ubuntu (and several other distributions) use <code>apt</code>, a package manager, to install and manage software packages.</p>
+<p>To start, let's tell <code>apt</code> to update the packages it knows about:</p>
+<blockquote>
+<p>N.B.: The <code>$</code> indicates that you should run a command in your terminal (Ubuntu's Bash in this case). I.e. copy and paste everything after the <code>$</code> into your terminal and hit enter. <em>Right-click is paste.</em> Astute readers will notice that above, a <code>&gt;</code> was used as the prompt. This indicates that the command is meant to be run in cmd or PowerShell. If you're new to the command line, <a href="https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything">here's</a> a good place to start.</p>
+</blockquote>
+<pre><code class="language-shell">$ sudo apt update
+</code></pre>
+<p>And then to install some handy tools:</p>
+<pre><code class="language-shell">$ sudo apt install clang cmake build-essential make
+</code></pre>
+<p>Press the 'Y' key and then enter if you're prompted to. This will probably some time, so here's a comic:</p>
+<p><a href="https://xkcd.com/149/"><img src="https://imgs.xkcd.com/comics/sandwich.png" alt="&quot;sudo!&quot;" title="xkcd 149" /></a></p>
+<p>(sudo lets you run commands as an administrator)</p>
+<h2><a class="header" href="#tweaking-wsl" id="tweaking-wsl">Tweaking WSL</a></h2>
+<p>Next, let's change some WSL settings to make our lives a little easier. To do this, we're going to add things to our <a href="https://blogs.msdn.microsoft.com/commandline/2018/02/07/automatically-configuring-wsl/"><code>wsl.conf</code></a> file:</p>
+<pre><code class="language-shell">$ cat &lt;&lt;EOF | sudo tee --append /etc/wsl.conf
+[automount]
+enabled = true
+root = /
+options = &quot;metadata,umask=22,fmask=11&quot;
+EOF
+</code></pre>
+<p>After that, just to be super sure that the changes take, restart your computer.</p>
+<p>Once we've finished that, let's add a handy bash function to let us go from Windows paths to proper Unix paths:</p>
+<pre><code class="language-shell">$ cat &lt;&lt;EOF &gt;&gt; ~/.bashrc
+
+function dos2wslPath
+{
+    if hash wslpath 2&gt;/dev/null; then wslpath &quot;\$*&quot;; return $?; fi
+
+    # Converts a Windows style path to something that we can access from bash
+    # on windows.
+
+    # Split on backslashes:
+    IFS='\' read -ra DOS_PATH &lt;&lt;&lt; &quot;\$*&quot;
+
+    # Grab first letter of path, switch to lowercase using a bash 4 feature
+    # (bash on windows is guaranteed bash 4.0+)
+    DRIVE_LETTER=&quot;\${DOS_PATH[0]:0:1}&quot;
+    DRIVE_LETTER=&quot;\${DRIVE_LETTER,,}&quot;
+
+    # Pop one element
+    DOS_PATH=(&quot;\${DOS_PATH[@]:1}&quot;)
+
+    # Put together the new path:
+    WSL_PATH=&quot;/\${DRIVE_LETTER}&quot;
+    for i in &quot;\${DOS_PATH[@]}&quot;; do
+        WSL_PATH=&quot;\${WSL_PATH}/\${i}&quot;
+    done
+
+    # Return:
+    echo &quot;\$WSL_PATH&quot;
+}
+EOF
+$ source ~/.bashrc
+</code></pre>
+<h2><a class="header" href="#setting-up-the-file-system" id="setting-up-the-file-system">Setting up the file system</a></h2>
+<p>The last thing we need to do is make it so that we can see WSL's files in Windows and vice-versa.</p>
+<p>By default WSL lives in a sandbox and has its files hidden from Windows. However, WSL <em>can</em> access Windows' files. So, let's set things up so that we put our files where Windows can see them.</p>
+<p>First, run this:</p>
+<pre><code class="language-shell">$ c=$(dos2wslPath $(a=$(powershell.exe 'echo $env:USERPROFILE'); echo $a | tr -d '\r')); [ -e &quot;$c&quot; ] &amp;&amp; echo &quot;home=\&quot;$c/Documents\&quot;&quot; &gt;&gt; ~/.bashrc &amp;&amp; echo &quot;alias home='cd \&quot;\${home}\&quot;'&quot; &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc || echo &quot;Something went wrong.&quot;
+
+</code></pre>
+<blockquote>
+<p>Note: This may break on non-standard Windows installs; it has only been tested under the assumption that your user folder is in <code>C:\Users\</code>.</p>
+</blockquote>
+<p>If the above runs successfully, you should now be able to type <code>home</code> anywhere to be taken back to your Windows' User Accounts' Documents folder.</p>
+<p>Now, let's make it so that Ubuntu's Bash goes here everytime you open a new terminal:</p>
+<pre><code class="language-shell">$ echo &quot;home&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+<p>Try it out! Open a new terminal window (hold down shift while clicking on the icon in the taskbar) and it should take you to your Documents folder.</p>
+<p>You can customize which folder to use as your 'home' by editing your <code>~/.bashrc</code> file.</p>
+<p>And, that's it! If you made it this far, congrats! 🎉</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../getting-started/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../getting-started/macOS.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../getting-started/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../getting-started/macOS.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

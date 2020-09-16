@@ -1,0 +1,549 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Data Types and Variables - UAV Austin Python Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="../the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../the-basics/data-types-and-variables.html" class="active"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="../the-basics/control-flow.html"><strong aria-hidden="true">3.3.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../the-basics/functions.html"><strong aria-hidden="true">3.4.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../file-io.html"><strong aria-hidden="true">5.</strong> File I/O</a></li><li class="chapter-item expanded "><a href="../objects.html"><strong aria-hidden="true">6.</strong> Objects</a></li><li class="chapter-item expanded "><a href="../pip.html"><strong aria-hidden="true">7.</strong> pip</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Python Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#data-types-and-variables" id="data-types-and-variables">Data Types and Variables</a></h1>
+<p>In this chapter we'll cover making variables with different basic data types in
+Python.</p>
+<p>These examples are best done in the Python interpreter. You can start this like
+in the first part of the
+<a href="../getting-started/hello-world.html">Hello World Chapter</a> with <code>python</code> (or
+<code>python3</code> or <code>python3.6</code>) in your terminal. Lines that start with <code>&gt;&gt;&gt;</code> are
+intended to be typed into the interpreter.</p>
+<h2><a class="header" href="#numbers" id="numbers">Numbers</a></h2>
+<p>Python has both floats and integers. Floats are double-precision IEEE 754
+numbers.</p>
+<p>Basic numeric operations return the value in the interpreter. Here's an example
+of adding and subtracting numbers.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 1 + 2
+3
+
+&gt;&gt;&gt; 66 - 67
+-1
+</code></pre>
+<p>Multiplication and division are what you might expect.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 2 * 5
+10
+
+&gt;&gt;&gt; 5 / 2
+2.5
+</code></pre>
+<p>In Python, regular division will always return a <code>float</code>. To get integer
+division, use the <code>//</code> operator.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 4 / 2
+2.0
+
+&gt;&gt;&gt; 7 // 2
+3
+</code></pre>
+<blockquote>
+<p><em>Note</em>: In Python 2, <code>5 / 2</code> will evaluate to <code>2</code> since by default, integer
+divison will truncate. Python 3 will give <code>2.5</code>.</p>
+</blockquote>
+<p>The <code>%</code> operator gives a remainder after division.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 17 % 12
+5
+</code></pre>
+<p>You can use also <code>**</code> to raise values to a power.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 3 ** 2
+9
+</code></pre>
+<p>Standard mathematical order of operations is respected. To deviate from that,
+or clarify the meaning of an expression, you can use parentheses.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 4 * 5 + 2 * 3
+26
+
+&gt;&gt;&gt; (4 * 5) + (2 * 3)
+26
+
+&gt;&gt;&gt; 4 * (5 + 2) * 3
+84
+</code></pre>
+<p>These expressions can be assigned to variables. Variables in Python do not need
+to be declared ahead of time, nor do they require types to be labeled. Once a
+variable is assigned a type, it can be reassigned to a value, even of a
+different type. Python convention is to give variable names in <code>snake_case</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 5
+&gt;&gt;&gt; a  # A variable by itself will make the interpreter print it.
+5
+
+&gt;&gt;&gt; print(a)  # We can use the print function to print it too.
+
+&gt;&gt;&gt; print(b)  # This variable doesn't exist!
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+NameError: name 'b' is not defined
+
+&gt;&gt;&gt; a = 6.5
+&gt;&gt;&gt; a
+6.5
+</code></pre>
+<p>If we assigned a variable equal to another variable which is a number, then
+changing the original won't change the new one.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 2
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; a
+2
+
+&gt;&gt;&gt; b
+2
+
+&gt;&gt;&gt; a = 3
+&gt;&gt;&gt; a
+3
+
+&gt;&gt;&gt; b
+
+2
+</code></pre>
+<p>We can add and update values with <code>+=</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; c = 7
+&gt;&gt;&gt; c += 5
+&gt;&gt;&gt; c
+12
+</code></pre>
+<p>Similarly, you can use <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>//=</code>, <code>%=</code>, <code>**=</code> for the same
+behavior with the other mathematical operators. </p>
+<blockquote>
+<p><em>Note:</em> <code>++</code> is not an operator in Python like in many other languages,
+you'll need to use <code>+= 1</code>.</p>
+</blockquote>
+<p>To convert a value from a <code>float</code> to an <code>int</code>, or vice-versa, you can do the
+following:</p>
+<pre><code class="language-python">&gt;&gt;&gt; int(4.6)  # This will round down (truncate)
+4
+
+&gt;&gt;&gt; float(2)
+2.0
+</code></pre>
+<h2><a class="header" href="#booleans" id="booleans">Booleans</a></h2>
+<p>Boolean values in Python can either be <code>True</code> or <code>False</code>.</p>
+<p>Naturally, you can directly assign these to a variable.</p>
+<pre><code class="language-python">&gt;&gt;&gt; is_lucky = True
+</code></pre>
+<p>The <code>not</code> operator will return the opposite boolean value.</p>
+<pre><code class="language-python">&gt;&gt;&gt; not is_lucky
+False
+</code></pre>
+<p>The comparison and equality operators will return boolean values. These are
+<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>, and <code>!=</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 7 &gt; 4
+True
+
+&gt;&gt;&gt; 3 &lt;= 3
+True
+
+&gt;&gt;&gt; 8 &lt; 3
+False
+
+&gt;&gt;&gt; 55 == 55.0  # We can still compare ints and floats.
+True
+
+&gt;&gt;&gt; 67 != 67
+False
+</code></pre>
+<p><code>and</code> and <code>or</code> are the logical AND and OR.</p>
+<pre><code class="language-python">&gt;&gt;&gt; True and True
+True
+
+&gt;&gt;&gt; True and False
+False
+
+&gt;&gt;&gt; True or False
+True
+
+&gt;&gt;&gt; False or False
+False
+</code></pre>
+<h2><a class="header" href="#strings" id="strings">Strings</a></h2>
+<p>Strings contain textual data. They can be enclosed in either single or
+double-quotes. Strings can also span multiple lines when starting or ending
+with either three single or double-quotes. UAV Austin convention prefers the
+use of single-quotes for normal strings, and double-quotes for multi-line
+strings.</p>
+<pre><code class="language-python">&gt;&gt;&gt; status = 'hungry'
+&gt;&gt;&gt; animal = &quot;&quot;&quot;
+hippos
+&quot;&quot;&quot;
+</code></pre>
+<p>Strings can be concatenated together using <code>+</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; game = status + animal
+&gt;&gt;&gt; print(game)
+hungry
+hippos
+</code></pre>
+<p>Since the hippos multi-line string has a newline after the first three
+double-quotes, it is kept when concatenating strings.</p>
+<p>Note that numbers cannot be immediately concatenated to strings. They must be
+converted to strings first!</p>
+<pre><code class="language-python">&gt;&gt;&gt; 'My fav # is ' + 37
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: can only concatenate str (not &quot;int&quot;) to str
+
+&gt;&gt;&gt; 'My fav # is ' + str(37)
+'My fav # is 37'
+</code></pre>
+<p>Strings can even be multipled to make them repeat.</p>
+<pre><code class="language-python">&gt;&gt;&gt; print('HeadOn. Apply directly to the forehead.\n' * 3)
+HeadOn. Apply directly to the forehead.
+HeadOn. Apply directly to the forehead.
+HeadOn. Apply directly to the forehead.
+</code></pre>
+<p>As you can see, we can escape newlines with <code>\n</code>. And yes, the
+<a href="https://www.youtube.com/watch?v=Is3icfcbmbs">HeadOn commercials</a> are the
+worst.</p>
+<h2><a class="header" href="#none" id="none">None</a></h2>
+<p><code>None</code> is used in Python for the absence of a value. This is often called
+<code>null</code> or <code>nil</code> in other languages. <code>None</code> can be assigned to variables.</p>
+<pre><code class="language-python">test = None
+</code></pre>
+<p>Note that you cannot use numeric operators with <code>None</code>, just like how strings
+are strict about what you can add with them. Even though Python is dynamically
+typed, i.e., you don't need to know the type of variables at runtime, it is
+still strongly typed. This means that operators are designed to take values of
+consistent types. Expressions such as <code>3 &lt; None</code> do not have meaning in Python
+and will throw errors.</p>
+<h2><a class="header" href="#lists-and-tuples" id="lists-and-tuples">Lists and Tuples</a></h2>
+<p>Lists and tuples both can be used to hold a collection of values.</p>
+<h3><a class="header" href="#lists" id="lists">Lists</a></h3>
+<p>Lists can be created with square brackets. The following is a simple list of
+things:</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list = [55, 'hello', None, 'cheese']
+</code></pre>
+<p>As you can see, lists can be composed of different types.</p>
+<p>Lists can also have lists inside them:</p>
+<pre><code class="language-python">&gt;&gt;&gt; another_list = [1, 2, 3, [4, 5, 6]]
+</code></pre>
+<p>Lists are zero-indexed. You can index them using square brackets as well.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[1]
+hello
+</code></pre>
+<p>Indicies can also be negative (where <code>-1</code> is the last element) and you can
+slice a list as well.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[-2]
+None
+</code></pre>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[2:]
+[None, 'cheese']
+
+&gt;&gt;&gt; my_list[1:3]
+['hello', None]
+
+&gt;&gt;&gt; my_list[::-1]
+['cheese', None, 'hello', 55]
+</code></pre>
+<p><a href="https://stackoverflow.com/a/509295">See here</a> for a more in-depth description
+of slices.</p>
+<h3><a class="header" href="#list-operations" id="list-operations">List Operations</a></h3>
+<p><code>len</code> returns the length of a list:</p>
+<pre><code class="language-python">&gt;&gt;&gt; len(my_list)
+4
+</code></pre>
+<p>You can use the <code>+</code> operator to add lists together to make a new list.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list + another_list
+[55, 'hello', None, 'cheese', 1, 2, 3, [4, 5, 6]]
+</code></pre>
+<p><code>in</code> will check if an item is in a list.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 55 in my_list
+True
+</code></pre>
+<p><code>not in</code> does the opposite.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 55 not in my_list
+False
+</code></pre>
+<p>You can reassign an element of a list.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[2] = 'a new value!'
+&gt;&gt;&gt; my_list
+[55, 'hello', 'a new value!', 'cheese']
+</code></pre>
+<p><code>del</code> can remove an element.</p>
+<pre><code class="language-python">&gt;&gt;&gt; del my_list[1]
+&gt;&gt;&gt; my_list
+[55, 'a new value!', 'cheese']
+</code></pre>
+<p>There are a bunch of methods you can use on lists as well. See the
+<a href="https://docs.python.org/3.6/tutorial/datastructures.html">data structures page</a>
+in the offical Python tutorial for more details.</p>
+<h3><a class="header" href="#tuples" id="tuples">Tuples</a></h3>
+<p>Tuples are similar to lists, except that they cannot be modified after they are
+created. Elements inside a tuple can still be mutated, however.</p>
+<p>Tuples are created with parenthesis instead of square brackets.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = (1, 2, 'hey')
+&gt;&gt;&gt; a
+(1, 2, 'hey')
+</code></pre>
+<p>The same operators such as indexing, <code>len</code>, <code>in</code>, and <code>+</code> still work on tuples,
+however, you cannot add or remove elements with a tuple.</p>
+<h2><a class="header" href="#dictionaries" id="dictionaries">Dictionaries</a></h2>
+<p>Dictionaries use key-value pairs to store elements.</p>
+<pre><code class="language-python">&gt;&gt;&gt; person = {
+        'Name': 'PersonFace McGee',
+        'Likes': ['memes'],
+        'Dislikes': ['their name']
+    }
+&gt;&gt;&gt; person
+{'Name': 'PersonFace McGee', 'Likes': ['memes'], 'Dislikes': ['their name']}
+</code></pre>
+<p>The syntax for accessing elements, updating, and deleting elements works
+similarly to lists.</p>
+<pre><code class="language-python">&gt;&gt;&gt; person['Name']
+'PersonFace McGee'
+
+&gt;&gt;&gt; person['Name'] = 'Something Better'
+&gt;&gt;&gt; person
+{'Name': 'Something Better', 'Likes': ['memes'], 'Dislikes': ['their name']}
+
+&gt;&gt;&gt; del person['Dislikes']
+&gt;&gt;&gt; person
+{'Name': 'Something Better', 'Likes': ['memes']}
+</code></pre>
+<p>As with lists, there's methods you can use with dictionaries. See the
+<a href="https://docs.python.org/3.6/tutorial/datastructures.html">data structures page</a>
+in the offical Python tutorial for more details as well.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../the-basics/comments.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../the-basics/control-flow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../the-basics/comments.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../the-basics/control-flow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

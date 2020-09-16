@@ -1,0 +1,662 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Image Recognition Primer</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="training-data/index.html"><strong aria-hidden="true">2.</strong> Training Data Generation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="training-data/basic-image-manipulation.html"><strong aria-hidden="true">2.1.</strong> Full Image Generation</a></li></ol></li><li class="chapter-item expanded "><a href="pytorch/index.html"><strong aria-hidden="true">3.</strong> Intro to CNNs and PyTorch</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="convolution-neural-networks/convolutional-neural-networks.html"><strong aria-hidden="true">3.1.</strong> Convolutional Neural Networks</a></li><li class="chapter-item expanded "><a href="pytorch/intro.html"><strong aria-hidden="true">3.2.</strong> Beginner PyTorch</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Image Recognition Primer</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p>The UAVA Image Recognition pipeline consists of various steps:</p>
+<ul>
+<li>
+<p>Aerial imagery is captured from the drone using an RGB camera. The GSD 
+(ground sampling distance) can vary, but the drone's altitude is a couple hundred feet,
+on average.</p>
+</li>
+<li>
+<p>The original images taken can be up to 4k quality. For efficient computation, we slice
+the image up into smaller tiles for processing.</p>
+</li>
+<li>
+<p>These tiles are sent to a classification network which determines whether a specific
+tile has a target or not. This is called binary classification because there are just
+two classes.</p>
+</li>
+<li>
+<p>Tiles classified with targets are sent to an object detection model which is not only 
+able to determine the shape and alphanumeric (A-Z or 0-9), but is also able to
+localize, or draw a box, around the target in the tile.</p>
+</li>
+<li>
+<p>The detected objects are further processed using single shot learning to determine
+their orientation and colors.</p>
+</li>
+</ul>
+<p>The UAVA Image Recognition software stack can be found here:
+[<a href="https://github.com/uavaustin/hawk-eye"><code>hawk-eye</code></a>].</p>
+<h1><a class="header" href="#image-transformation" id="image-transformation">Image Transformation</a></h1>
+<p>In this section, we will explore a few of the fundemental image processing functions we
+need to generate synthetic data for our machine learning models. We must use synthetic
+data because training these models takes thousands of images, and we do not have the 
+capacity to capture these in reality.</p>
+<p>We'll use <a href="https://pillow.readthedocs.io/en/stable/"><code>PIL</code></a> to perform most of the work,
+however there are other noteable packages available, such as OpenCV.</p>
+<h1><a class="header" href="#basic-image-manipulation-and-data-generation" id="basic-image-manipulation-and-data-generation">Basic Image Manipulation and Data Generation</a></h1>
+<p>Over the next couple of examples, we will walk through how we create training data for
+our vision models. Roughly, we will take pre-drawn shapes, combine them with pre-defined
+text, and paste the final target onto background tiles.</p>
+<h2><a class="header" href="#background-preparation" id="background-preparation">Background Preparation</a></h2>
+<p>First, make sure PIL is installed:</p>
+<pre><code class="language-sh">python3 -m pip install pillow==7.2.0
+</code></pre>
+<p>Now, let's get coding.</p>
+<pre><code class="language-python"># Import the PIL package.
+from PIL import Image
+
+# Open up the background image. NOTE: The path on your computer will be different.
+img = Image.open(&quot;//path//to//comp_photo.jpg&quot;)
+
+# Sanity check to make sure you have the right image.
+img.show(&quot;Example Image&quot;)
+</code></pre>
+<p><img src="training-data/../img/background.jpg" alt="Competition Photo" /></p>
+<p>Also, check the size of this image. Machine learning models are more performant on
+smaller images because there is less computation. Therfore, we need to be mindful about
+our input image size.</p>
+<pre><code class="language-python">print(f&quot;Image width, height: {*img.size,}.&quot;)
+</code></pre>
+<p>We'll need to take tiles from this image to make the input more manageable for the model.
+Let's make some 512 x 512 pixel tiles. This is the size we currently use for our object
+detection model.</p>
+<pre><code class="language-python"># Desired tile size.
+tile_width = tile_height = 512
+
+# Make a folder to save images. We use `pathlib` for most path manipulation.
+import pathlib
+
+save_dir = pathlib.Path(&quot;//path/to/output/folder&quot;).expanduser()
+save_dir.mkdir(exist_ok=True, parents=True)
+
+# Now tile up the image:
+for x in range(0, img.size[0] - tile_width, tile_width):
+    for y in range(0, img.size[1] - tile_height, tile_height):
+        crop = img.crop((x, y, x + tile_width, y + tile_height))
+        crop.save(save_dir / f&quot;crop_{x}_{y}.jpg&quot;)
+
+print(f&quot;Generated {len(list(save_dir.glob('*.jpg')))} slices!&quot;)
+</code></pre>
+<p>You should see tiles in your <code>save_dir</code> folder!</p>
+<h2><a class="header" href="#target-generation-setup" id="target-generation-setup">Target Generation Setup</a></h2>
+<p>Now, we need to load in our artifical targets. We'll use python's
+<a href="https://docs.python.org/3/library/tarfile.html"><code>tarfile</code></a> package to extract the shapes. First,
+install the python module <code>requests==2.24.0</code> using <code>pip</code>.</p>
+<pre><code class="language-python">import tarfile
+import tempfile
+import requests
+
+# Where to download assets.
+url = &quot;https://bintray.com/uavaustin/target-finder-assets/download_file?file_path=base-shapes-v1.tar.gz&quot;
+
+# Where to save assets.
+save_dir = pathlib.Path(&quot;//path/to/save/dir&quot;).expanduser()
+save_dir.mkdir(exist_ok=True, parents=True)
+
+res = requests.get(url, stream=True)
+
+# Make a temp dir to download archive.
+with tempfile.TemporaryDirectory() as d:
+    tmp_file = pathlib.Path(d) / &quot;file.tar.gz&quot;
+    tmp_file.write_bytes(res.raw.read())
+
+    with tarfile.open(tmp_file) as tar:
+        tar.extractall(save_dir)
+</code></pre>
+<p>Congrats! You now have the shapes for data generation. Let's open one of the target images.</p>
+<pre><code class="language-python">shape = Image.open(&quot;//path//to//shape.jpg&quot;)
+
+# Sanity check
+shape.show(&quot;Example shape&quot;)
+</code></pre>
+<p><img src="training-data/../img/pentagon-01.png" alt="Target Image" /></p>
+<p>Finally, we need to download the various fonts we currently use for data generation. Perform
+the same steps you did to download the shapes, but use this url instead:
+<code>https://bintray.com/uavaustin/target-finder-assets/download_file?file_path=fonts.tar.gz</code></p>
+<h2><a class="header" href="#image-manipulation" id="image-manipulation">Image Manipulation</a></h2>
+<p>Since we have the background tiles and shape images loaded, let's do some augmentation to the shape and then paste it onto the background image.</p>
+<p>Let's start with rotation. PIL's rotation function will return a copy of this image, rotated the given number of degrees counter clockwise around its center. The function takes three arguments: </p>
+<ul>
+<li>
+<p>angle: the degrees to rotate counter clockwise about the center.</p>
+</li>
+<li>
+<p>resample: optional flag to choose which technique to use to interpolate new pixel values expand.</p>
+</li>
+<li>
+<p>expand: If 1, the image will expand to fit the newly rotated image.</p>
+</li>
+</ul>
+<pre><code class="language-python"># First, you must open the target image!
+target = target.rotate(45)
+target.show('Rotated Image')
+</code></pre>
+<p><img src="training-data/../img/ex_rotation.png" alt="Cropped Competition Photo" /></p>
+<p>The next part of the data generation process requires pasting a letter onto the shape. Not only
+must we identify the shape at competition, but also the letter or number!</p>
+<pre><code class="language-python">from PIL import ImageDraw, ImageFont
+
+# Create an drawable object which we can edit.
+target_draw = ImageDraw.Draw(target)
+
+# Use B for example
+alpha = &quot;B&quot;
+
+# Define font multiplier to shrink or grow to fit letter to target. For some shape/letter
+# combinations, we must adapt the size of the letter.
+font_multiplier = 0.5
+
+# Path to font image file
+font_file = save_dir / &quot;fonts/Gudea/Gudea-Bold.ttf&quot;
+
+# Create font height based on target size and scaled by font_multiplier.
+font_size = int(round(font_multiplier * target.height))
+
+# Create font to put on target_draw.
+font = ImageFont.truetype(str(font_file), font_size)
+
+# Get width and height of the font.
+w, h = target_draw.textsize(alpha, font=font)
+
+# Get top left coordinate of where to paste alpha onto target.
+x = (target.width - w) / 2
+y = (target.height - h) / 2
+
+# Set the rgb color of the alpha.
+alpha_rgb = ((64, 115, 64))  # Greenish
+
+# Finally, draw the alpha onto the target
+target_draw.text((x,y), alpha, alpha_rgb, font=font)
+
+# Rotate target 
+angle = 45
+rotated_image = target.rotate(angle, expand=1)
+rotated_image.show(&quot;Rotated Image&quot;)
+</code></pre>
+<p><img src="training-data/../img/pasted.png" alt="Cropped Competition Photo" /></p>
+<p>Right now, there is a white background around the target, but we want to paste just the
+target onto a background slice. How can we make everything but the target <em>transparent</em>?
+Luckily, we can mainpulate the alpha channel on an image. This controls the pixel
+transparency value. We will set all white pixels to 0 alpha.</p>
+<pre><code class="language-python">for x in range(rotated_image.width):
+    for y in range(rotated_image.height):
+
+        r, g, b, a = rotated_image.getpixel((x, y))
+
+        if r == 255 and g == 255 and b == 255:
+            rotated_image.putpixel((x, y), (0, 0, 0, 0))
+</code></pre>
+<p>Using PIL's <code>getbbox</code> function, the smallest bounding box around the non zero region of
+the image can expressed as a tuple. We can then use this tuple to crop the image down to
+just the target. </p>
+<pre><code class="language-python">rotated_crop = rotated_image.crop(rotated_image.getbbox()) 
+</code></pre>
+<p><img src="training-data/../img/cropped.png" alt="Cropped Target" /></p>
+<p>We're getting close! Let's check the size of the target.</p>
+<pre><code class="language-python">rotated_image.size
+&gt;&gt;&gt; (535, 535)
+</code></pre>
+<p>We need to downscale the target to make it more realistic on the background slice.
+Remember, the background tiles slices are only 512 x 512, so let's make the shape much
+smaller.</p>
+<pre><code class="language-python">rotated_image = rotated_image.resize((100, 100))
+</code></pre>
+<p>Finally, time to paste the target onto the background. We will paste the target's top
+left pixel to (20, 20) on the background. But first, open up one of the background tiles
+you created!</p>
+<pre><code class="language-python">paste_loc = (20, 20)
+background_tile.paste(rotated_image, paste_loc, rotated_image)
+background_tile.show()
+</code></pre>
+<p><img src="training-data/../img/background_target.jpg" alt="Background With Target" /></p>
+<p>We need to save the class and location of this target for our model data generation
+later. We will save the target class, the (x,y) coordinate of the top left corner,
+height, and width. </p>
+<pre><code class="language-python">w_target, h_target = rotated_image.size
+txt = pathlib.Path(&quot;background_target.txt&quot;)
+txt.write_text(
+    f&quot;pentagon, {int(paste_loc[0])}, {int(paste_loc[1])}, {w_target}, {h_target}\n&quot;
+)
+</code></pre>
+<p>The output <code>background_target.txt</code> file should have the single following line:</p>
+<p><code>pentagon, 20, 20, 100, 100</code></p>
+<p>You've now gone through the basic pipeline of how we create our data for the models. Data
+is by far the most important aspect of machine learning.</p>
+<h1><a class="header" href="#introduction-to-pytorch" id="introduction-to-pytorch">Introduction to PyTorch</a></h1>
+<p>This chapter will give you a brief introduction into convolutional neural networks and
+PyTorch, a fast growing machine learning framework.</p>
+<h1><a class="header" href="#convolutional-neural-networks" id="convolutional-neural-networks">Convolutional Neural Networks</a></h1>
+<p>A Convolutional Neural Network (CNN) is a type of neural network primarily used for image
+recognition and classification. We will explore the basic building blocks of a CNN.</p>
+<p>Most modern convolutional nets are made up of the same type of layers. The first is the
+convolutional filter.</p>
+<h2><a class="header" href="#filters" id="filters">Filters</a></h2>
+<p>A convolutional filter extracts features from a given input and is motivated by the idea
+of efficient (or sparse) parameter sharing during signal analysis (cross correlation).
+For now, think of features as abstract components of an image that make sense to the
+model. When we see a human face, we instinctually recognize features, but the computer
+might see different ones. The following is an example of a <em>convolutional filter</em> applied
+to an input matrix.</p>
+<p><img src="convolution-neural-networks/../img/filter.png" alt="CNN" /></p>
+<p>In this image we have a 3x3 filter (9 weights) being applied to our input. The convolution
+operation is essentially a weighted linear combination of portions of the input, and these 
+weights extract certain features.</p>
+<p>In real convolutional networks, we end up with thousands of filters. There are a few more
+inputs to the convolutional layer which I'll touch on here:</p>
+<ul>
+<li><code>stride</code>: The number of rows/columns to jump when moving to the next convolution.</li>
+<li><code>padding</code>: Without padding, a convolutional of filter size &gt; 1 will result in an input
+size greater than the output. Padding adds a value around the outside of the input so that
+the output is a certain size.</li>
+<li><code>kernel size</code>: The kernel does not have to be 3x3 or even square.</li>
+</ul>
+<h2><a class="header" href="#batch-normalization" id="batch-normalization">Batch Normalization</a></h2>
+<p>Batch normalization (BN) was introducted in a 2015 paper,
+<a href="https://arxiv.org/pdf/1502.03167.pdf">here</a>. While BN is still a hotly debated topic 
+because people disagree on <em>why</em> it works, most people agree it certainly works. The
+idea is to normalize each input by finding the mean and variance. Many think of this as
+allowing subsequent levels to not be largely affected by the activations of the previous
+level, meaning each level can learn independently. This tends to make training more
+stable.</p>
+<h2><a class="header" href="#activations" id="activations">Activations</a></h2>
+<p>The <code>activation</code> is a function that is applied to each convolutional output. Activation
+functions introduce non-linearities into the models and help the learning process
+converge quicker. Here is a graph of the leaky ReLU activation function. Without
+activations, a convolutional neural net would actually just be a composition of linear
+functions!</p>
+<p><img src="convolution-neural-networks/../img/lrelu.jpg" alt="CNN" /></p>
+<p>The idea here is anything <code>&gt; 0</code> remains the same, but anything below 0 is changed to some
+factor multiplied by the value.</p>
+<h2><a class="header" href="#pooling" id="pooling">Pooling</a></h2>
+<p>Pooling is a type of layer with no learnable parameters. This operation is used to
+downsample extracted features which can help the model generalize feature associations,
+preventing overfitting. Also, this method decreases the amount of parameters, making the
+training and inferencing process quicker.</p>
+<p><img src="convolution-neural-networks/../img/maxpool.jpeg" alt="Max Pooling Image" /></p>
+<p>Another commonly used pooling level is average pooling.</p>
+<h1><a class="header" href="#intro-to-pytorch" id="intro-to-pytorch">Intro to PyTorch</a></h1>
+<p>From the <a href="https://pytorch.org/">PyTorch website</a>: </p>
+<p><code>&quot;An open source machine learning framework that accelerates the path from research prototyping to production deployment.&quot;</code></p>
+<p>While TensorFlow was the go-to machine learning framework for quite some time, 
+developers of PyTorch (a Facebook platform), saw an opportunity to create a framework
+that excelled in the areas where TensorFlow lacked. What the devs created is an
+extremely dynamic, user friendly library which enables rapid prototyping.</p>
+<p>Let's dive in to some code. We'll rely upon some of the PyTorch docs and tutorials
+as they are great resources.</p>
+<p>Install the CPU PyTorch package like so. If you have a GPU, you're more than welcome
+to install the GPU version.</p>
+<pre><code class="language-sh">python3 -m pip install torch==1.6.0+cpu torchvision==0.7.0+cpu \ 
+-f https://download.pytorch.org/whl/torch_stable.html
+</code></pre>
+<h2><a class="header" href="#pytorch-image-classification" id="pytorch-image-classification">PyTorch Image Classification</a></h2>
+<p>We'll use some built-in packages to load a classification model and perform inference,
+and we'll heavily rely on
+<a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">this</a> tutorial, but
+with a couple of adaptations.</p>
+<p>The package we installed above, <code>torchvision</code>, is an external package maintained by 
+PyTorch devs and the open source community. It comes with a variety of items, such as
+models architectures, model weights, data, and more.</p>
+<pre><code class="language-python">import torch
+import torchvision
+from torchvision import transforms
+
+# Define some basic transformations for loading the images. Convolutional nets tend
+# to learn better when the inputs of layers are normalized (think batchnorm), so we will
+# normalize our input images.
+transform = transforms.Compose(
+    [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+)
+
+# These are the CIFAR-10 classes:
+classes = (
+    &quot;plane&quot;, &quot;car&quot;, &quot;bird&quot;, &quot;cat&quot;, &quot;deer&quot;, &quot;dog&quot;, &quot;frog&quot;, &quot;horse&quot;, &quot;ship&quot;, &quot;truck&quot;
+)
+
+# Load the CIFAR-10 datasets. We have a train set which the model learns from, but we
+# also need a set which the model never learns from that we use to monitor progress.
+trainset = torchvision.datasets.CIFAR10(root=&quot;./data&quot;, train=True,
+                                        download=True, transform=transform)
+testset = torchvision.datasets.CIFAR10(root=&quot;./data&quot;, train=False,
+                                       download=True, transform=transform)
+</code></pre>
+<p>Next, we need a method to actually load this data, i.e. some object which will open the
+image files, load them into memory, and apply the transformations. In PyTorch, we use
+the
+<a href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader"><code>torch.utils.data.DataLoader</code></a>.
+Internally, the dataloader calls <code>__getitem__</code> on our datasets, a method which can be
+implemented for custom datasets, like in the actual UAV code.</p>
+<pre><code class="language-python"># Batch size: How many images to load on each iteration.
+# shuffle: Whether or not to shuffle the data. Good for training, not useful for test.
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True)
+testloader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=False)
+</code></pre>
+<p>We have our data, so now we need to make a model to learn from this dataset. We'll 
+define model using some of the basic building blocks discussed in the previous section.
+The output of this model will be vector of length equal to the number of  classes in the
+dataset. The vector values will correspond to which class the model predicts the image
+belongs to.</p>
+<pre><code class="language-python">net = torch.nn.Sequential(
+    torch.nn.Conv2d(3, 8, 3, stride=1, padding=1),
+    torch.nn.MaxPool2d(2),
+    torch.nn.Conv2d(8, 16, 3, stride=1, padding=1),
+    torch.nn.MaxPool2d(2),
+    torch.nn.Conv2d(16, 32, 3, stride=1, padding=1),
+    torch.nn.AdaptiveAvgPool2d(1),
+    torch.nn.Flatten(),
+    torch.nn.Linear(32, len(classes))
+)   
+</code></pre>
+<p>OK, we have data and a model. Now we need to define the <em>loss function</em> which informs
+the model how far away its predictions are from the ground truth. Cross entropy is 
+typically used in multi-class classification problems. In general, think of the model
+outputting a probability distribution over the given classes, and cross entropy measures
+the difference between the predicted and ground truth distributions.</p>
+<pre><code class="language-python3">loss_fn = torch.nn.CrossEntropyLoss()
+</code></pre>
+<p>The last piece to the puzzel is a method to update the weights of the model based on
+what our <code>loss_fn</code> returns. In PyTorch, these are called <code>optimizers</code>. There are <em>many</em>
+optimizers out there, but for simplicity, assume the optimizer simply updates a model
+based on information recieved from the <code>loss_fn</code>.</p>
+<pre><code class="language-python3">optimizer = torch.optim.Adam(net.parameters(), lr=1.0e-3)
+</code></pre>
+<p>Awesome! Now we have all the necessary building blocks to train our own classifier!</p>
+<h2><a class="header" href="#classifier-training" id="classifier-training">Classifier Training</a></h2>
+<p>In just a few lines of code, we will be able to train our model. We will loop over the
+<code>trainloader</code> to load batches of data, perform a <em>forward pass</em> through the model, call
+the <code>loss_fn</code> then pass the results through the model using <em>backpropagation</em>, and then
+update the model's weights.</p>
+<pre><code class="language-python3">for idx, (images, labels) in enumerate(trainloader):
+
+    # Take this for granted, but PyTorch optimizers always keep gradient history unless
+    # we manually flush it out.
+    optimizer.zero_grad()
+
+    # forward + backward + optimizer step
+    outputs = net(images)
+    loss = loss_fn(outputs, labels)
+    loss.backward()
+    optimizer.step()
+
+    # print statistics
+    running_loss += loss.item()
+    if idx % 100 == 0:
+        print(f&quot;Step: {idx}. Loss: {running_loss / 100}.&quot;)
+        running_loss = 0.0
+</code></pre>
+<p>You should start to see the loss values slowly decrease as training goes on! The smaller
+the loss, the better the model is doing on the <em>training data</em>.</p>
+<p>We also like to monitor the model's performance on images that it does not train on.
+This is called test or validation data. The code looks like so:</p>
+<pre><code class="language-python3">correct = total = 0
+# During training, we want PyTorch to keep a record of how values are computed, i.e., the
+# inputs and outputs so we can send information back through the model. Since we are
+# only testing the model here, we do not care about keeping this record of the gradients.
+with torch.no_grad():
+    for images, labels in testloader:
+        outputs = net(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print(f&quot;Accuracy of the network on the 10000 test images: {100 * correct / total:.4f}&quot;)
+</code></pre>
+<p>Hopefully, you'll see something like:
+<code>Accuracy of the network on the 10000 test images: 39.5000</code>.
+Not great, but we can continue training to make the model better!</p>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
+<p>By now, you have a basic understanding of the high-level pipeline for training a
+classifier using PyTorch. We have skipped over some important aspects to training,
+namely backpropogation, but this tends to be the trickiest subject for new students.
+There are numerous online resources to learn more about deep learning here:</p>
+<ul>
+<li><a href="pytorch/9http://cs231n.stanford.edu/"><code>Stanford CS231n</code></a></li>
+<li><a href="https://pytorch.org/tutorials/"><code>PyTorch Tutorials</code></a></li>
+<li><a href="https://www.youtube.com/channel/UCcIXc5mJsHVYTZR1maL5l9w/playlists"><code>Andrew Ng's Video Series</code></a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

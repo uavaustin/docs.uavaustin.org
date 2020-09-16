@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Data Types and Variables - UAV Austin Node.js Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="../getting-started/resources.html"><strong aria-hidden="true">2.3.</strong> Resources</a></li></ol></li><li class="chapter-item expanded "><a href="../the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../the-basics/data-types-and-variables.html" class="active"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="../the-basics/operators.html"><strong aria-hidden="true">3.3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="../the-basics/control-flow.html"><strong aria-hidden="true">3.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../the-basics/functions.html"><strong aria-hidden="true">3.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../objects-and-classes.html"><strong aria-hidden="true">5.</strong> Objects and Classes</a></li><li class="chapter-item expanded "><a href="../functional-programming.html"><strong aria-hidden="true">6.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="../async-patterns/index.html"><strong aria-hidden="true">7.</strong> Async Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../async-patterns/callbacks.html"><strong aria-hidden="true">7.1.</strong> Callbacks</a></li><li class="chapter-item expanded "><a href="../async-patterns/promises.html"><strong aria-hidden="true">7.2.</strong> Promises</a></li><li class="chapter-item expanded "><a href="../async-patterns/async-await.html"><strong aria-hidden="true">7.3.</strong> Async/Await</a></li><li class="chapter-item expanded "><a href="../async-patterns/event-emitters.html"><strong aria-hidden="true">7.4.</strong> Event Emitters</a></li></ol></li><li class="chapter-item expanded "><a href="../npm.html"><strong aria-hidden="true">8.</strong> NPM</a></li><li class="chapter-item expanded "><a href="../babel.html"><strong aria-hidden="true">9.</strong> Babel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Node.js Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#data-types-and-variables" id="data-types-and-variables">Data Types and Variables</a></h1>
+<p>JavaScript is a <em>dynamically typed</em> language. This means that variables do not
+have a type attached to them and be assigned to values of all types.</p>
+<pre><code class="language-js">// Declare a variable foo.
+let foo;
+
+// foo starts as a number.
+foo = 37;
+
+// foo is now a boolean.
+foo = false;
+</code></pre>
+<p>In the above, we declare with a variable <code>foo</code>. We're then able to set it to
+whatever value we want, or not at all.</p>
+<p>Like many languages, statements in JavaScript are terminated with semicolons.</p>
+<blockquote>
+<p><em>Note:</em> Semicolons are not technically required in JavaScript, and some even
+recommend not using them. JavaScript uses automatic semicolon insertion to
+add in semicolons on newlines when they can be assumed. There are corner
+cases that can mess people up. The best practice is to always use semicolons.</p>
+</blockquote>
+<h2><a class="header" href="#data-types" id="data-types">Data Types</a></h2>
+<p>There are seven data types in JavaScript.</p>
+<ul>
+<li>Six primitive data types:
+<ul>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Number</li>
+<li>String</li>
+<li>Symbol</li>
+</ul>
+</li>
+<li>and Object</li>
+</ul>
+<h3><a class="header" href="#primitives" id="primitives">Primitives</a></h3>
+<p>All types except for objects are immutable. These values cannot be changed.
+That is not to say however that the variables assigned to a primitive cannot be
+changed. Here is a short description for each:</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Value</th></tr></thead><tbody>
+<tr><td align="left">Boolean</td><td align="left">A Boolean is a logical value that can either be <code>true</code> or <code>false</code>.</td></tr>
+<tr><td align="left">Null</td><td align="left">The Null type has one value: <code>null</code>. It represents the absense of a value.</td></tr>
+<tr><td align="left">Undefined</td><td align="left">A variable which has not been assigned a value has the value <code>undefined</code>.</td></tr>
+<tr><td align="left">Number</td><td align="left">All numbers in JavaScript are double precision 64-bit numbers.</td></tr>
+<tr><td align="left">String</td><td align="left">Strings represent textual data. They are enclosed in single quotes, double quotes, or backticks.</td></tr>
+<tr><td align="left">Symbol</td><td align="left">Symbols are values that can be checked for uniqueness. We'll ignore them in this guide.</td></tr>
+</tbody></table>
+<p>While many languages have just <code>null</code>, JavaScript has both <code>null</code> and
+<code>undefined</code>. Normally, the nuance between these two values can be ignored.</p>
+<p>All numbers, including integers, are all floating point numbers. <code>Infinity</code>
+<code>-Infinity</code>, and <code>NaN</code> also also numbers.</p>
+<h3><a class="header" href="#objects" id="objects">Objects</a></h3>
+<p>Other values in JavaScript are considered objects. Objects in JavaScript can
+considered collections of key and value pairs. These keys are the properties of
+the object.</p>
+<p>The simplest way to create an object in JavaScript is through the object
+literal syntax:</p>
+<pre><code class="language-js">let foo = {
+  bar: 55,
+  baz: false
+};
+
+console.log(foo.bar);  // Prints 55.
+console.log(foo.baz);  // Prints false.
+console.log(foo.foobar);  // Prints undefined.
+</code></pre>
+<p>If an object hasn't have a key, then the value is <code>undefined</code>.</p>
+<p>Object keys can listed as strings if they are not valid identifiers.</p>
+<pre><code class="language-js">let headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json'
+};
+
+console.log(headers['Accept']);
+console.log(headers['Content-Type']);
+</code></pre>
+<p>Object properties can be fetched using strings inside brackets along with the
+normal dot notation.</p>
+<h3><a class="header" href="#arrays" id="arrays">Arrays</a></h3>
+<p>The <code>Array</code> type is actually of type <code>Object</code> in JavaScript. The array literal
+syntax is as follows:</p>
+<pre><code class="language-js">let things = ['red', true, 9];
+</code></pre>
+<p>Note that arrays can be composed of different types.</p>
+<p>Arrays can be indexed with brackets. Indexing begins at <code>0</code>. The <code>length</code>
+property gives the number of elemnts in the array.</p>
+<pre><code class="language-js">let colors = ['red', 'white', 'blue'];
+
+console.log(colors[1]);  // Prints white.
+console.log(colors.length);  // Prints 3.
+</code></pre>
+<h3><a class="header" href="#variables" id="variables">Variables</a></h3>
+<p>Variables in JavaScript are declared with <code>var</code>, <code>let</code>, and <code>const</code>. <code>var</code> is
+traditionally used in older JavaScript code, and it's use is no longer
+recommended. <code>var</code> is scoped to the inner-most function, as opposed to the
+block like <code>let</code>. This is will be dicussed more in the
+<a href="./functions.html">functions section</a>.</p>
+<p>Declaring a variable with <code>let</code> or <code>const</code> can only be done once per scope.</p>
+<pre><code class="language-js">let hello = 'world';
+let anotherOne = 3;
+
+let hello;  // SyntaxError: Identifier 'hello' has already been declared
+</code></pre>
+<p>Assignment can also happen when a variable is declared. If the variable is not
+assigned, the value is <code>undefined</code>.</p>
+<pre><code class="language-js">let a;
+
+console.log(a);  // Prints undefined.
+</code></pre>
+<p>Variables can be reassigned with <code>var</code> or <code>let</code>.</p>
+<pre><code class="language-js">let day = 'Monday';
+
+day = 'Tuesday';
+</code></pre>
+<p>However, variables declared with <code>const</code> cannot be reassigned.</p>
+<pre><code class="language-js">const GRAVITY = 9.81;
+
+GRAVITY = 10;  // TypeError: Assignment to constant variable.
+</code></pre>
+<p>Properties of a <code>const</code> object can be mutated though!</p>
+<pre><code class="language-js">const FOO = {
+  bar: 3
+};
+
+console.log(FOO.bar);  // Prints 3.
+
+// Setting the value to an object.
+FOO.bar = { foobar: 'baz' };
+
+console.log(FOO.bar);  // Prints { foobar: 'baz' }.
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../the-basics/comments.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../the-basics/operators.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../the-basics/comments.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../the-basics/operators.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

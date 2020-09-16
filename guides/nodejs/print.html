@@ -1,0 +1,2115 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>UAV Austin Node.js Guide</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li><li class="chapter-item expanded "><a href="getting-started/resources.html"><strong aria-hidden="true">2.3.</strong> Resources</a></li></ol></li><li class="chapter-item expanded "><a href="the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="the-basics/operators.html"><strong aria-hidden="true">3.3.</strong> Operators</a></li><li class="chapter-item expanded "><a href="the-basics/control-flow.html"><strong aria-hidden="true">3.4.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="the-basics/functions.html"><strong aria-hidden="true">3.5.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="objects-and-classes.html"><strong aria-hidden="true">5.</strong> Objects and Classes</a></li><li class="chapter-item expanded "><a href="functional-programming.html"><strong aria-hidden="true">6.</strong> Functional Programming</a></li><li class="chapter-item expanded "><a href="async-patterns/index.html"><strong aria-hidden="true">7.</strong> Async Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="async-patterns/callbacks.html"><strong aria-hidden="true">7.1.</strong> Callbacks</a></li><li class="chapter-item expanded "><a href="async-patterns/promises.html"><strong aria-hidden="true">7.2.</strong> Promises</a></li><li class="chapter-item expanded "><a href="async-patterns/async-await.html"><strong aria-hidden="true">7.3.</strong> Async/Await</a></li><li class="chapter-item expanded "><a href="async-patterns/event-emitters.html"><strong aria-hidden="true">7.4.</strong> Event Emitters</a></li></ol></li><li class="chapter-item expanded "><a href="npm.html"><strong aria-hidden="true">8.</strong> NPM</a></li><li class="chapter-item expanded "><a href="babel.html"><strong aria-hidden="true">9.</strong> Babel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Node.js Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p>This guide gives an introduction to Node.js, a server-side JavaScript runtime.</p>
+<p>JavaScript serves as the scripting language for the browser. Node.js provides a
+set of libraries that enable the use of JavaScript to have file system access,
+host HTTP servers, etc. for the server. Node.js uses the V8 JavaScript engine
+from Chrome.</p>
+<p>JavaScript is a dynamically and weakly typed language. The language itself is
+very flexible and can come to a shock from backgrounds like C++ or Java.</p>
+<h2><a class="header" href="#structure" id="structure">Structure</a></h2>
+<p>This guide assumes some prior programming language experience in a language
+such as Java, Python, or C++. Concepts common to most programming languages are
+run through quickly in the beginning. After that come topics more unique to
+Node.js. All of this is broken up into 3 sections:</p>
+<ul>
+<li>
+<p>The first chapters of this guide cover the ideas of JavaScript in general. In
+this, the basics of the languages are covered, followed by the use of modules
+to split up code into different files, the creation of classes, and the use
+of functional programming in JavaScript.</p>
+</li>
+<li>
+<p>Afterwards, asynchronicity is introduced, which will be shown primarily
+through the use of the Node.js file system (<code>fs</code>) module. There are many
+different patterns of modeling asynchronous behavior in JavaScript, which can
+be a somewhat steep learning curve for some.</p>
+</li>
+<li>
+<p>To close, the Node Package Manager—known as NPM—is introduced,
+which allows for the downloading of JavaScript packages from a massive
+package repository, and Babel, an NPM library that allows for the use of
+next-generation JavaScript.</p>
+</li>
+</ul>
+<p>To get going, go to the <a href="getting-started/index.html">Getting Started</a> section
+to get your environment set up.</p>
+<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>Before getting our hands dirty with JavaScript, we'll need to set up our
+environment and make sure it's working. In this section, we'll get Node.js
+installed on your system, do a quick hello world, and give some resources that
+could help out later in learning and building up your JavaScript and Node.js
+skills.</p>
+<h1><a class="header" href="#installation" id="installation">Installation</a></h1>
+<p>The first step is to get Node.js on your system. We'll download Node.js for
+Linux and macOS using <code>nvm</code>, and for Windows, the similar <code>nvm-windows</code>. After,
+we'll make sure the <code>node</code> command works from the terminal, and that we have a
+text editor to work with to get our hello world going in the next chapter.</p>
+<blockquote>
+<p><em>Note:</em> Throughout the guide there are references to terminal commands. Lines
+that you enter start with a <code>$</code>. You don't actually need to type the <code>$</code>, it
+is simply shown for convenience. <code>&gt;</code> is used for a Windows-specific section.</p>
+</blockquote>
+<h2><a class="header" href="#installing-nodejs" id="installing-nodejs">Installing Node.js</a></h2>
+<p>Follow the guide for your system to get going.</p>
+<h3><a class="header" href="#windows" id="windows">Windows</a></h3>
+<p>Follow the
+<a href="https://github.com/coreybutler/nvm-windows#installation--upgrades">installation instructions for <code>nvm-windows</code></a>.</p>
+<p>Afterwards, run <code>nvm version</code> in Command Prompt or PowerShell to confirm that
+<code>nvm-windows</code> has been installed.</p>
+<p>Next, fetch the list of currently available Node.js versions that can be
+installed.</p>
+<pre><code class="language-shell">&gt; nvm list available
+</code></pre>
+<p>Install the latest version of Node.js 8. Substitute the most recent version you
+see from the command above.</p>
+<pre><code class="language-shell">&gt; nvm install 8.x.x
+</code></pre>
+<p>Next, run the command prompted to make this your current Node.js version.</p>
+<pre><code class="language-shell">&gt; nvm use 8.x.x
+</code></pre>
+<p>To test that our install works, run the following:</p>
+<pre><code class="language-shell">&gt; node --version
+&gt; npm --version
+</code></pre>
+<p>At the time of writing, I get the Node.js version <code>v8.11.3</code> and NPM <code>v5.6.0</code>.
+Yours might be more recent.</p>
+<p>If you're having difficulties installing with this method, you can try
+installing Node.js directly from the installers on nodejs.org.
+<a href="https://nodejs.org/en/download/">See here.</a></p>
+<h3><a class="header" href="#macos-and-linux" id="macos-and-linux">macOS and Linux</a></h3>
+<p><em>The installation here is taken from the
+<a href="https://github.com/creationix/nvm#installation"><code>nvm</code> installation guide</a></em>.</p>
+<p>The first step is to install the most recent version of <code>nvm</code> (Node Version
+Manager). <code>nvm</code> allows for the easy installation and switching of Node.js
+versions.</p>
+<pre><code class="language-shell">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+</code></pre>
+<p>Next, we'll clone the <code>nvm</code> repository to <code>~/.nvm</code> and make sure it is loaded
+to your profile.</p>
+<pre><code class="language-shell">$ export NVM_DIR=&quot;$HOME/.nvm&quot;
+$ [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;
+</code></pre>
+<p>Now we'll install Node.js.</p>
+<p>This guide is based on Node.js 8. At the current time of writing, this is the
+recommended version of Node.js. We'll install the latest version of Node.js 8
+using <code>nvm</code>. This will also set your default version. (Carbon is the name for
+the Node.js 8 LTS.)</p>
+<pre><code class="language-shell">$ nvm install lts/carbon
+</code></pre>
+<p>To test that our install works, run the following:</p>
+<pre><code class="language-shell">$ node --version
+$ npm --version
+</code></pre>
+<p>At the time of writing, I get the Node.js version <code>v8.11.3</code> and NPM <code>v5.6.0</code>.
+Yours might be more recent.</p>
+<p>If you're having installation problems, see the <code>nvm</code> guide linked at the top
+of this subsection for help.</p>
+<h2><a class="header" href="#text-editors" id="text-editors">Text Editors</a></h2>
+<p>Instead of using IDEs, the recommended way to get started with Node.js is with
+a terminal and a text editor. In UAV Austin development, especially with
+certain repositories, a lot of of things will need to be done by the
+command-line.</p>
+<p>There are a bunch of great text editors to use. A good short list is the
+following:</p>
+<ul>
+<li><a href="https://www.sublimetext.com">Sublime Text</a></li>
+<li><a href="https://atom.io">Atom</a></li>
+<li><a href="https://code.visualstudio.com">VS Code</a></li>
+</ul>
+<p>Everyone has their own favorite, but each of these are solid choices to go
+with. VS Code tends to be the most fully featured of these three.</p>
+<p>Before moving forward, I'd recommend at least installing one of these.</p>
+<h1><a class="header" href="#hello-world" id="hello-world">Hello World</a></h1>
+<p>As is custom, we'll have to get a hello world example out of the way as a right
+of passage.</p>
+<p>We'll do it two different ways.</p>
+<h2><a class="header" href="#interactive-nodejs" id="interactive-nodejs">Interactive Node.js</a></h2>
+<p>The easiest way to get started with Node.js is messing around in the
+interactive command-line shell.</p>
+<p>Go ahead and open a terminal and type in <code>node</code>. You should see a prompt come
+up on the left. Anything you type here is evaluated in real time.</p>
+<p>To print out <code>Hello, world!</code> go ahead and execute the following:</p>
+<pre><code class="language-js">console.log('Hello, world!');
+</code></pre>
+<p>To exit the shell, you can either press Control+C twice, or enter <code>.exit</code>.</p>
+<p>Your output should look like the following:</p>
+<p><img src="getting-started/../img/hello-world-interactive.png" alt="Hello world interactive" /></p>
+<p>We can see that <code>console.log(...)</code> is the print function for JavaScript.</p>
+<h2><a class="header" href="#running-from-a-file" id="running-from-a-file">Running from a File</a></h2>
+<p>The more useful way to run this is to create a script and run it from the
+command-line.</p>
+<p>Create a file called <code>hello-world.js</code> with your favorite text editor. In my
+case, I'll create it on my desktop so it is easy to find. The file contents
+should read just as before:</p>
+<pre><code class="language-js">console.log('Hello, world!');
+</code></pre>
+<p>Navigate to the directory in your terminal that the file is in, and run
+<code>node hello-world.js</code> to run the file.</p>
+<p>The output should be the same:</p>
+<p><img src="getting-started/../img/hello-world-file.png" alt="Hello world file" /></p>
+<blockquote>
+<p>If you're not sure how to change directories to where the file is, you might
+want to read up on how to do basic terminal commands.
+<a href="https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything">Here's an example article.</a></p>
+</blockquote>
+<p>Note that there is no compiling step here. It is simply interpreted by the
+JavaScript engine.</p>
+<h1><a class="header" href="#resources" id="resources">Resources</a></h1>
+<p>There are a ton of great resources on JavaScript and Node.js, to where it can
+almost get overbearing.</p>
+<p>If you're looking for another book that goes more in depth about JavaScript, or
+aren't comfortable with the format in this guide, I would recommend the
+following free sources:</p>
+<ul>
+<li><a href="http://eloquentjavascript.net">Eloquent JavaScript</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript">A re-introduction to JavaScript</a></li>
+</ul>
+<p>For general documentation, the following are very useful:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">MDN Web Docs</a></li>
+<li><a href="https://www.w3schools.com/jsref/default.asp">W3Schools</a></li>
+</ul>
+<p>Note that these tend to be more focused on browser JavaScript rather than
+server-side like in Node.js.</p>
+<blockquote>
+<p><em>Note:</em> A thing to remember in looking up things in JavaScript is that the
+language has evolved a bit over time. This particular guide predominately
+uses features from the ECMAScript 2015 (also known as ES6) specification and
+later. If you come accross some archaic syntax, it's helpful to look at the
+date the content was published.</p>
+</blockquote>
+<h1><a class="header" href="#the-basics" id="the-basics">The Basics</a></h1>
+<p>This section covers basic programming concepts that are common to most
+programming langauges. Nothing here is particularly unique to JavaScript, and
+should be familiar in the context of other programming languages.</p>
+<p>You'll learn about comments, the basic data types and variables in JavaScript,
+control flow mechanisms like <code>if</code> statements, <code>for</code> loops, and <code>while</code> loops,
+and functions.</p>
+<h1><a class="header" href="#comments" id="comments">Comments</a></h1>
+<p>Comments in JavaScript are the same as what you'd see in other C-like
+languages.</p>
+<p>Basic comments are started with <code>//</code> like so:</p>
+<pre><code class="language-js">
+// Hello.
+
+</code></pre>
+<p>Normally, when wanting multi-line comments, it's standard to keep repeating the
+<code>//</code> pattern on each line:</p>
+<pre><code class="language-js">
+// This is a crazy long comment that can't be
+// contained on one line!
+
+</code></pre>
+<p>You can also use <code>/* */</code> to make comments span multiple lines.</p>
+<pre><code class="language-js">
+/* This comment just got
+   even crazier. */
+
+</code></pre>
+<p>Though, the <code>/* */</code> pattern is conventionally used for documentation
+comments on functions, classes, or modules.</p>
+<h1><a class="header" href="#data-types-and-variables" id="data-types-and-variables">Data Types and Variables</a></h1>
+<p>JavaScript is a <em>dynamically typed</em> language. This means that variables do not
+have a type attached to them and be assigned to values of all types.</p>
+<pre><code class="language-js">// Declare a variable foo.
+let foo;
+
+// foo starts as a number.
+foo = 37;
+
+// foo is now a boolean.
+foo = false;
+</code></pre>
+<p>In the above, we declare with a variable <code>foo</code>. We're then able to set it to
+whatever value we want, or not at all.</p>
+<p>Like many languages, statements in JavaScript are terminated with semicolons.</p>
+<blockquote>
+<p><em>Note:</em> Semicolons are not technically required in JavaScript, and some even
+recommend not using them. JavaScript uses automatic semicolon insertion to
+add in semicolons on newlines when they can be assumed. There are corner
+cases that can mess people up. The best practice is to always use semicolons.</p>
+</blockquote>
+<h2><a class="header" href="#data-types" id="data-types">Data Types</a></h2>
+<p>There are seven data types in JavaScript.</p>
+<ul>
+<li>Six primitive data types:
+<ul>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+<li>Number</li>
+<li>String</li>
+<li>Symbol</li>
+</ul>
+</li>
+<li>and Object</li>
+</ul>
+<h3><a class="header" href="#primitives" id="primitives">Primitives</a></h3>
+<p>All types except for objects are immutable. These values cannot be changed.
+That is not to say however that the variables assigned to a primitive cannot be
+changed. Here is a short description for each:</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Value</th></tr></thead><tbody>
+<tr><td align="left">Boolean</td><td align="left">A Boolean is a logical value that can either be <code>true</code> or <code>false</code>.</td></tr>
+<tr><td align="left">Null</td><td align="left">The Null type has one value: <code>null</code>. It represents the absense of a value.</td></tr>
+<tr><td align="left">Undefined</td><td align="left">A variable which has not been assigned a value has the value <code>undefined</code>.</td></tr>
+<tr><td align="left">Number</td><td align="left">All numbers in JavaScript are double precision 64-bit numbers.</td></tr>
+<tr><td align="left">String</td><td align="left">Strings represent textual data. They are enclosed in single quotes, double quotes, or backticks.</td></tr>
+<tr><td align="left">Symbol</td><td align="left">Symbols are values that can be checked for uniqueness. We'll ignore them in this guide.</td></tr>
+</tbody></table>
+<p>While many languages have just <code>null</code>, JavaScript has both <code>null</code> and
+<code>undefined</code>. Normally, the nuance between these two values can be ignored.</p>
+<p>All numbers, including integers, are all floating point numbers. <code>Infinity</code>
+<code>-Infinity</code>, and <code>NaN</code> also also numbers.</p>
+<h3><a class="header" href="#objects" id="objects">Objects</a></h3>
+<p>Other values in JavaScript are considered objects. Objects in JavaScript can
+considered collections of key and value pairs. These keys are the properties of
+the object.</p>
+<p>The simplest way to create an object in JavaScript is through the object
+literal syntax:</p>
+<pre><code class="language-js">let foo = {
+  bar: 55,
+  baz: false
+};
+
+console.log(foo.bar);  // Prints 55.
+console.log(foo.baz);  // Prints false.
+console.log(foo.foobar);  // Prints undefined.
+</code></pre>
+<p>If an object hasn't have a key, then the value is <code>undefined</code>.</p>
+<p>Object keys can listed as strings if they are not valid identifiers.</p>
+<pre><code class="language-js">let headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json'
+};
+
+console.log(headers['Accept']);
+console.log(headers['Content-Type']);
+</code></pre>
+<p>Object properties can be fetched using strings inside brackets along with the
+normal dot notation.</p>
+<h3><a class="header" href="#arrays" id="arrays">Arrays</a></h3>
+<p>The <code>Array</code> type is actually of type <code>Object</code> in JavaScript. The array literal
+syntax is as follows:</p>
+<pre><code class="language-js">let things = ['red', true, 9];
+</code></pre>
+<p>Note that arrays can be composed of different types.</p>
+<p>Arrays can be indexed with brackets. Indexing begins at <code>0</code>. The <code>length</code>
+property gives the number of elemnts in the array.</p>
+<pre><code class="language-js">let colors = ['red', 'white', 'blue'];
+
+console.log(colors[1]);  // Prints white.
+console.log(colors.length);  // Prints 3.
+</code></pre>
+<h3><a class="header" href="#variables" id="variables">Variables</a></h3>
+<p>Variables in JavaScript are declared with <code>var</code>, <code>let</code>, and <code>const</code>. <code>var</code> is
+traditionally used in older JavaScript code, and it's use is no longer
+recommended. <code>var</code> is scoped to the inner-most function, as opposed to the
+block like <code>let</code>. This is will be dicussed more in the
+<a href="the-basics/./functions.html">functions section</a>.</p>
+<p>Declaring a variable with <code>let</code> or <code>const</code> can only be done once per scope.</p>
+<pre><code class="language-js">let hello = 'world';
+let anotherOne = 3;
+
+let hello;  // SyntaxError: Identifier 'hello' has already been declared
+</code></pre>
+<p>Assignment can also happen when a variable is declared. If the variable is not
+assigned, the value is <code>undefined</code>.</p>
+<pre><code class="language-js">let a;
+
+console.log(a);  // Prints undefined.
+</code></pre>
+<p>Variables can be reassigned with <code>var</code> or <code>let</code>.</p>
+<pre><code class="language-js">let day = 'Monday';
+
+day = 'Tuesday';
+</code></pre>
+<p>However, variables declared with <code>const</code> cannot be reassigned.</p>
+<pre><code class="language-js">const GRAVITY = 9.81;
+
+GRAVITY = 10;  // TypeError: Assignment to constant variable.
+</code></pre>
+<p>Properties of a <code>const</code> object can be mutated though!</p>
+<pre><code class="language-js">const FOO = {
+  bar: 3
+};
+
+console.log(FOO.bar);  // Prints 3.
+
+// Setting the value to an object.
+FOO.bar = { foobar: 'baz' };
+
+console.log(FOO.bar);  // Prints { foobar: 'baz' }.
+</code></pre>
+<h1><a class="header" href="#operators" id="operators">Operators</a></h1>
+<p>JavaScript is also a <em>weakly typed</em> language, i.e., the language is not strict
+with its type rules and allows does many type conversions on operations. This
+can lead to some unexpected behaviors.</p>
+<p>This chapter gives a quick overview of the main operators in the language.</p>
+<h2><a class="header" href="#numeric-operators" id="numeric-operators">Numeric Operators</a></h2>
+<p>These work with numerical values.</p>
+<ul>
+<li><code>a + b</code> - Addition.</li>
+<li><code>a - b</code> - Subtraction.</li>
+<li><code>a / b</code> - Division.</li>
+<li><code>a * b</code> - Multiplication.</li>
+<li><code>a % b</code> - Remainder.</li>
+<li><code>a ** b</code> - Exponentiation.</li>
+<li><code>+a</code> - Unary plus.</li>
+<li><code>-a</code> - Unary negation.</li>
+<li><code>a++</code> - Postfix increment.</li>
+<li><code>a--</code> - Postfix decrement.</li>
+<li><code>++a</code> - Prefix increment.</li>
+<li><code>--a</code> - Prefix decrement.</li>
+</ul>
+<p>Typically, the convention is to prefer the postfix operators in loops. Though
+it is best to use them sparingly to prevent confusing logic.</p>
+<p>Using types other than numbers in the above will often lead to the result of
+<code>NaN</code>.</p>
+<h2><a class="header" href="#assignment" id="assignment">Assignment</a></h2>
+<ul>
+<li><code>a = b</code> - Assignment.</li>
+<li><code>a += b</code> - Addition assignment.</li>
+<li><code>a -= b</code> - Subtraction assignment.</li>
+<li><code>a /= b</code> - Division assignment.</li>
+<li><code>a *= b</code> - Multiplication assignment.</li>
+<li><code>a %= b</code> - Remainder assignment.</li>
+</ul>
+<h2><a class="header" href="#relational-operators" id="relational-operators">Relational Operators</a></h2>
+<ul>
+<li><code>a &lt; b</code> - Less than.</li>
+<li><code>a &gt; v</code> - Greater than.</li>
+<li><code>a &lt;= v</code> - Less than or equal to.</li>
+<li><code>a &gt;= b</code> - Greater than or equal to.</li>
+<li><code>a in b</code> - Check if an object <code>a</code> has a property <code>b</code>.</li>
+<li><code>a instanceof b</code> - Check if <code>a</code> is an instance of object <code>b</code>.</li>
+</ul>
+<h2><a class="header" href="#equality-operators" id="equality-operators">Equality Operators</a></h2>
+<ul>
+<li><code>a == b</code> - Equality.</li>
+<li><code>a != a</code> - Inequality.</li>
+<li><code>a === b</code> - Strict Equality.</li>
+<li><code>a !== b</code> - Strict Inequality.</li>
+</ul>
+<p>The difference between the strict and non-strict variety is that the first set
+of equality operators will do type conversions to check for equality. For
+example, <code>1 == '1'</code> is considered to be <code>true</code>. This is normally not desired
+behavior, and so it is best to use <code>===</code> and <code>!==</code> when possible to avoid
+potential problems due to type conversions.</p>
+<p><a href="https://stackoverflow.com/a/359509">See here</a> for a more detailed comparison
+of <code>==</code> and <code>===</code>.</p>
+<h2><a class="header" href="#logical-operators" id="logical-operators">Logical Operators</a></h2>
+<ul>
+<li><code>a &amp;&amp; b</code> - Logical AND.</li>
+<li><code>a || b</code> - Logical OR.</li>
+<li><code>!a</code> - Logical NOT.</li>
+</ul>
+<blockquote>
+<p><em>Note:</em> The value of <code>a &amp;&amp; b</code> is equal to <code>a</code> if either <code>a</code> or <code>b</code> is falsy,
+otherwise, it is equal to <code>b</code>. Similarly, <code>c || d</code> is equal to <code>c</code> if <code>c</code> is
+truthy, otherwise, it is equal to <code>d</code>.</p>
+<p>In normal logical operations this does not
+influence the behavior, however, this is quite useful for setting default
+values in case something is <code>undefined</code>, or making sure a property can be
+accessed in an object.</p>
+<p>For example, <code>a.b &amp;&amp; a.b.c</code> will returned the value of the nested <code>c</code>
+property if it is truthy and if it's already been established that <code>b</code>
+exists. Getting the value of <code>a.b.c</code> throws an error if <code>b</code> doesn't exist.
+This syntax apperas when inlining values instead of needing an <code>if</code> statement
+or ternary operator.</p>
+</blockquote>
+<h2><a class="header" href="#string-concatenation" id="string-concatenation">String Concatenation</a></h2>
+<p>The addition operator (<code>+</code>) can be used for string concatenation. This can
+include values of different types as well.</p>
+<pre><code class="language-js">let num = 42;
+console.log('my favorite number is ' + num + '!');
+</code></pre>
+<p>There is also an additional syntax called
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">templates literals</a>
+which allow strings to embed expression in the same way. Instead of using a
+quote to enclose a string, backticks are used instead, and expressions can be
+included inside a dollar sign and curly braces (<code>${expr}</code>). The following is
+the same as the above:</p>
+<pre><code class="language-js">let num = 42;
+console.log(`my favorite number is ${num}!`);
+</code></pre>
+<h2><a class="header" href="#other-operators" id="other-operators">Other Operators</a></h2>
+<ul>
+<li><code>cond ? expr1 : expr2</code> - Ternary Operator (explained in the <a href="the-basics/./control-flow.html">next chapter</a>).</li>
+<li><code>delete a.b</code> - Deletes a property <code>b</code> from object <code>a</code>.</li>
+<li><code>typeof a</code> - Returns type of <code>a</code> as a string.</li>
+</ul>
+<h2><a class="header" href="#more-information" id="more-information">More Information</a></h2>
+<p>There a bunch of other operators in the language (such as bitwise operators).
+To see a more exhaustive list, see the
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators">MDN Web Docs reference</a>.</p>
+<h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
+<p>Control flow makes up the most important building blocks in a programming
+language: handling logic and dealing with looping constructs.</p>
+<p>We'll start with <code>if</code> statements first.</p>
+<h2><a class="header" href="#if-statements" id="if-statements"><code>if</code> Statements</a></h2>
+<p>An <code>if</code> statement allows for basic branching on a conditional value (or
+something that can be coerced into a conditional value).</p>
+<p>The syntax is like that of Java or C.</p>
+<pre><code class="language-js">if (someExpression) {
+  console.log('if block');
+}
+</code></pre>
+<p>If <code>someExpression</code> is a value that is truthy, then the string
+is printed.</p>
+<p>Truthy values are those that are not <code>false</code>, <code>0</code>, <code>''</code>, <code>null</code>, <code>undefined</code>,
+and <code>NaN</code>. <em>Note that empty objects are truthy.</em></p>
+<p>An <code>else</code> block can handle running statements if the condition is not truthy.</p>
+<pre><code class="language-js">if (false) {
+  console.log('1');
+} else {
+  console.log('2');
+}
+</code></pre>
+<p>In this case, <code>2</code> is printed out.</p>
+<p><code>else if</code> can check another condition if the ones above are false.</p>
+<pre><code class="language-js">let num = 100;
+
+if (num % 3 === 0) {
+  console.log('Divisible by 3.');
+} else if (num % 5 === 0) {
+  console.log('Divisible by 5');
+} else {
+  console.log('Not divisble by 3 or 5');
+}
+</code></pre>
+<h2><a class="header" href="#for-loops" id="for-loops"><code>for</code> Loops</a></h2>
+<p>The standard <code>for</code> loop pattern uses the initial value, condition, and
+increment setup. The <code>for</code> loop will iterate a block while the condition
+remains true. After each iteration, the increment is applied.</p>
+<pre><code class="language-js">for (let i = 0; i &lt; 10; i++) {
+  console.log(i);
+}
+</code></pre>
+<p>The above will print out the numbers from <code>0</code> to <code>9</code>.</p>
+<h2><a class="header" href="#for--in-loops" id="for--in-loops"><code>for</code> ... <code>in</code> Loops</a></h2>
+<p>The <code>for</code> ... <code>in</code> loop iterates over non-<code>Symbol</code>, enumerable properties of an
+object.</p>
+<p>With a basic object, this will simply print out the keys. In the example below,
+we can loop through each key this object has, and print out the key and value.</p>
+<pre><code class="language-js">let prices = {
+  fruit: 3.99,
+  vegetables: 5.95,
+  cereal: 2.99
+};
+
+for (let food in prices) {
+  // Using the food as a key to get the price for each.
+  console.log(food + ' has a price of $' + prices[food]);
+}
+</code></pre>
+<p>This will print:</p>
+<pre><code class="language-text">fruit has a price of $3.99
+vegatables has a price of $5.95
+cereal has a price of $2.99
+</code></pre>
+<blockquote>
+<p><em>Note:</em> <code>for</code> ... <code>in</code> loops can have somewhat unexpected behavior when
+classes are involved due to how inheritance works in JavaScript. See the
+<a href="the-basics/../objects-and-classes.html">Objects and Classes</a> section for more
+information later on.</p>
+</blockquote>
+<p><em>A <code>for</code> ... <code>in</code> loop should not be used on an <code>Array</code>.</em></p>
+<h2><a class="header" href="#for--of-loops" id="for--of-loops"><code>for</code> ... <code>of</code> Loops</a></h2>
+<p>The <code>for</code> ... <code>of</code> loop iterates over
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterable objects</a>.
+This includes things such as an <code>Array</code> or <code>String</code>.</p>
+<p>The following simply prints out each number in the list.</p>
+<pre><code class="language-js">let coolNumbers = [7, 37, 1337];
+
+for (let num of coolNumbers) {
+  console.log(num);
+}
+</code></pre>
+<h2><a class="header" href="#while-loops" id="while-loops"><code>while</code> Loops</a></h2>
+<p><code>while</code> loops repeat a code block while a condition is truthy.</p>
+<pre><code class="language-js">let a = 1;
+
+while (a !== 32) {
+  console.log('a is ' + a);
+
+  // Double the value of a.
+  a *= 2;
+}
+</code></pre>
+<p>The example above will keep doubling the value of <code>a</code> until it reaches <code>32</code>. At
+that point the condition is false and the loop is done.</p>
+<h2><a class="header" href="#do--while-loops" id="do--while-loops"><code>do</code> ... <code>while</code> Loops</a></h2>
+<p><code>do</code> ... <code>while</code> loops are like while loops, except that the condition is
+checked after an iteration instead of before. This means they are guaranteed to
+run the block at least once.</p>
+<pre><code class="language-js">let message = '';
+let i = 0;
+
+do {
+  // Increment i by two and add it to the end of the message string.
+  i += 2;
+  message += i;
+} while (i &lt; 8);
+
+// This should print out '2468'.
+console.log(message);
+</code></pre>
+<p>These don't pop up too often in JavaScript code, but they are good to know.</p>
+<h2><a class="header" href="#break-and-continue" id="break-and-continue"><code>break</code> and <code>continue</code></a></h2>
+<p><code>break</code> and <code>continue</code> can be used to alter the flow of a <code>for</code> or <code>while</code>
+loop.</p>
+<p><code>break</code> will cause the loop it is in to stop.</p>
+<pre><code class="language-js">let a = 1;
+
+// Keep looping until stopped manually.
+while (true) {
+  // Increment the number by 2.
+  a += 2;
+
+  // Stop when it's 9.
+  if (a === 9) {
+    break;
+  }
+}
+
+// This should print out 9.
+console.log(a);
+</code></pre>
+<p><code>continue</code> skips the rest of the loop and makes the loop go to the next
+iteration.</p>
+<pre><code class="language-js">// Loop through even values from 2 to 20, inclusive.
+for (let i = 2; i &lt;= 20; i += 2) {
+  // Skip if this is a multiple of 6.
+  if (i % 6 === 0) {
+    continue;
+  }
+
+  console.log(i);
+}
+
+// The numbers 2, 4, 8, 10, 14, 16, and 20 are printed above.
+</code></pre>
+<p>Note that for nested loops, <code>break</code> and <code>continue</code> apply to the inner-most
+loop.</p>
+<h2><a class="header" href="#switch-statements" id="switch-statements"><code>switch</code> Statements</a></h2>
+<p><code>switch</code> statements allow for branching on expressions. Branches do allow for
+fall-through, and so once a case is matched, all statements below are run until
+<code>break</code> is used. The <code>default</code> case runs when nothing matches.</p>
+<p>Here's an example:</p>
+<pre><code class="language-js">let unit = 'euro';
+
+switch (unit) {
+  // Cents fall-through with the dollar case so they are treated the same.
+  case 'cent':
+  case 'dollar':
+    console.log('This is American currency');
+    // The break is required to prevent the execution from going further.
+    break;
+  case 'euro':
+    console.log('This is European currency');
+    break;
+  // Default will allow for anything else.
+  default:
+    console.log('Not sure what this is...');
+}
+</code></pre>
+<h2><a class="header" href="#try--catch-statements" id="try--catch-statements"><code>try</code> ... <code>catch</code> Statements</a></h2>
+<p><code>try</code> ... <code>catch</code> blocks allow for code that might fail to execute.</p>
+<p>Errors can be thrown with the <code>throw</code> keyword.</p>
+<pre><code class="language-js">try {
+  throw Error('This is not going to work');
+} catch (err) {
+  console.error(err);
+}
+</code></pre>
+<p>This will log the error message.</p>
+<p><code>console.error(...)</code> is traditionally used for printing errors since it prints
+to stderr.</p>
+<p>The <code>finally</code> block can be attached for code to execute regardless of what
+happens in the <code>try</code> or <code>catch</code> block:</p>
+<pre><code class="language-js">try {
+  throw Error('This is not going to work');
+} catch (err) {
+  console.error(err);
+} finally {
+  console.log('hello');
+}
+</code></pre>
+<p>At least one of <code>catch</code> or <code>finally</code> is required.</p>
+<blockquote>
+<p><em>Note</em>: Unlike Java and some other langauges, there are no such things as
+multiple catch blocks. To only catch one type of error, you'll need to check
+what kind of error it is by either using <code>typeof</code> or inspecting its message
+and re-throw the error if it's not what you're expecting.</p>
+</blockquote>
+<h2><a class="header" href="#ternary-operators-" id="ternary-operators-">Ternary Operators (<code>?:</code>)</a></h2>
+<p>Ternary operators work as inline <code>if</code> statements.</p>
+<p>The syntax for the ternary operator (or <code>?:</code>) is as follows:</p>
+<pre><code class="language-text">condition ? expr1 : expr2
+</code></pre>
+<p>If the condition is truthy, then this above evaluates to <code>expr1</code>, otherwise, it
+evaluates to <code>expr2</code>.</p>
+<p>See the following example:</p>
+<pre><code class="language-js">let age = 17;
+
+console.log(age &gt;= 16 ? 'You can get a driver\'s license' : 'No driving');
+console.log(age &gt;= 18 ? 'You can buy cigarettes' : 'No smoking');
+</code></pre>
+<h2><a class="header" href="#shorthand" id="shorthand">Shorthand</a></h2>
+<p>The curly braces in <code>if</code> statements, <code>for</code> loops, and <code>while</code> loops, can be
+left off if there's only one statement in the body. Like so:</p>
+<pre><code class="language-js">if (someExpression) {
+  console.log('It is true!');
+}
+
+// Or also...
+
+if (someExpression)
+  console.log('It is still true...');
+</code></pre>
+<p>In most circumstances it's normal to just keep the curly braces, you never know
+if you'll want to add more statements inside the body.</p>
+<p>A neat use case of leaving off the blocks is with very short <code>if</code> ... <code>else</code>
+statements.</p>
+<pre><code class="language-js">if (someExpression) console.log('true');
+else console.log('false');
+</code></pre>
+<h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<p>Like in most languages, individual pieces of execution are blocked off into
+functions in JavaScript. The syntax is mostly familiar to the other C-like
+languages.</p>
+<h2><a class="header" href="#a-basic-function" id="a-basic-function">A Basic Function</a></h2>
+<p>Here's a basic case of wrapping our hello world example into it's own function.</p>
+<pre><code class="language-js">function sayHello() {
+  console.log('Hello, world!');
+}
+
+// Call the function.
+sayHello();
+</code></pre>
+<p>If you either save this to a file and run the script, or run this in an
+interactive Node.js session, you'll get the same print out as before.</p>
+<p>Just like in the rest of the language, you don't provide return types for the
+functions.</p>
+<blockquote>
+<p><em>NOTE:</em> The convention in JavaScript is to use <code>camelCase</code> naming for
+normal functions (as well as variables in general).</p>
+</blockquote>
+<h2><a class="header" href="#arguments" id="arguments">Arguments</a></h2>
+<p>Let's take our example above, but be able to say hello to specific people.
+We'll take an argument <code>person</code> and print that like <em>Hello, José!</em>, for
+example.</p>
+<pre><code class="language-js">function greet(person) {
+  // Template literal syntax below!
+  // Same as saying 'Hello, ' + person + '!'.
+  console.log(`Hello, ${person}!`);
+}
+
+// Prints out 'Hello, José!'.
+greet('José');
+</code></pre>
+<p>If we call <code>greet('José')</code> we'll get our expected output.</p>
+<h2><a class="header" href="#optional-arguments" id="optional-arguments">Optional Arguments</a></h2>
+<p>The way JavaScript handles function arguments is a little different. What
+happens if we call <code>greet()</code> without a person's name?</p>
+<pre><code class="language-js">function greet(person) {
+  // Template literal syntax below!
+  // Same as saying 'Hello, ' + person + '!'.
+  console.log(`Hello, ${person}!`);
+}
+
+greet();
+</code></pre>
+<p>In the above, we actually get <em>Hello, undefined!</em>. Instead of having to say
+that an argument in optional in JavaScript, we just don't provide it. Variables
+which aren't passed into a function are set to the value <code>undefined</code>.
+Similarly, if you pass in more arguments than a function can take, they are
+simply ignored.</p>
+<p>Next, we'll adapt our function to print out a generic <em>Hello.</em> message if no
+person was provided.</p>
+<pre><code class="language-js">function greet(person) {
+  // Print out the name too if it's truthy, i.e., not undefined,
+  // null, '', and so on.
+  if (person) {
+    console.log(`Hello, ${person}!`);
+  } else {
+    console.log('Hello.');
+  }
+}
+
+// Prints out 'Hello, José!'.
+greet('José');
+// Prints out 'Hello.'
+greet();
+</code></pre>
+<h2><a class="header" href="#default-arguments" id="default-arguments">Default Arguments</a></h2>
+<p>JavaScript also allows for the use of default arguments. Values which are not
+provided can have their value defaulted to another.</p>
+<p>Here's an example with adding numbers:</p>
+<pre><code class="language-js">function add(a, b = 1) {
+  return a + b;
+}
+
+// Prints 7.
+console.log(add(4, 3));
+// Prints 5.
+console.log(add(4));
+</code></pre>
+<h2><a class="header" href="#anonymous-functions" id="anonymous-functions">Anonymous Functions</a></h2>
+<p>Not all functions created in JavaScript are assigned names. Functions can be
+passed into different functions as arguments and can be bound to variables.</p>
+<p>To create an anonymous function, simply don't provide the name like before:</p>
+<pre><code class="language-js">let a = function () {
+  console.log('spooky');
+}
+
+// Runs the function.
+a();
+</code></pre>
+<h2><a class="header" href="#arrow-functions" id="arrow-functions">Arrow Functions</a></h2>
+<p>Similar to anonymous functions, arrow functions are an additional syntax of
+creating unnamed functions.</p>
+<p>The above can effectively written as:</p>
+<pre><code class="language-js">let a = () =&gt; {
+  console.log('spooky');
+}
+
+// Runs the function.
+a();
+</code></pre>
+<p>The syntax <code>() =&gt; {}</code> is essentially the same as <code>function () {}</code>. It is just a
+bit shorter.</p>
+<p>There is more syntactic sugar with makes arrow functions nicer to use. If there
+is only one argument passed, the parenthesis can be removed like so:</p>
+<pre><code class="language-js">let increment = a =&gt; {
+  return a + 1;
+}
+
+// Prints 6.
+console.log(increment(5));
+</code></pre>
+<p>The above can be shortened even more. When using the form
+<code>(a, b, c...) =&gt; { return d }</code>, this can be shortened to <code>(a, b, c...) =&gt; d</code>.
+Without the curly braces, the expression on the right is automatically
+returned.</p>
+<p>Therefore, we can shorten this to:</p>
+<pre><code class="language-js">let increment2 = a =&gt; a + 1;
+
+// Prints 11.
+console.log(increment2(10));
+</code></pre>
+<p>The above is very convenient for creating small functions.</p>
+<blockquote>
+<p><em>Note</em>: Many JavaScript style guides recommend not removing the parenthesis
+around the arguments in arrow functions unless the braces are also removed
+on the right. Thus, <code>(a) =&gt; { /* */ }</code> and <code>a =&gt; expr</code> would be correct, but
+not <code>a =&gt; { /* */ }</code>.</p>
+</blockquote>
+<p>We'll discuss the use of unnammed functions (anonymous and arrow) in more
+detail in the <a href="the-basics/../functional-programming.html">Functional Programming</a> and
+<a href="the-basics/../async-patterns/index.html">Async Patterns</a> chapters.</p>
+<p>There are some small differences between arrow functions and regular functions
+defined with <code>function</code>. Regular functions have a variables called <code>this</code>,
+<code>arguments</code>, <code>super</code>, and <code>new.target</code> set as well, which are missing in arrow
+functions. We'll get into some of these in the
+<a href="the-basics/../objects-and-classes.html">Objects and Classes</a> chapter.</p>
+<h1><a class="header" href="#modules" id="modules">Modules</a></h1>
+<p>Programming is pretty difficult when you can only use one file. Let's change
+that. This chapter introduces Node.js modules.</p>
+<h2><a class="header" href="#commonjs-require" id="commonjs-require">CommonJS <code>require(...)</code></a></h2>
+<p>CommonJS refers to the style of module loading most prevalent in Node.js.</p>
+<p>As opposed to using something like an <code>import</code> statement at the top of a file,
+modules in Node.js are typically loaded using  the <code>require(...)</code> function.
+This function returns the entire contents of a module.</p>
+<blockquote>
+<p><em>Note</em>: There are some other systems in use. You can also
+<a href="https://nodejs.org/docs/latest-v8.x/api/addons.html#addons_c_addons">build modules for Node.js in C++</a>
+and <code>require</code> them as well. These can be <em>painful</em> to write so don't get too
+excited about using C++ with Node.js.</p>
+</blockquote>
+<p>For this chapter, we'll use the
+<a href="https://nodejs.org/dist/latest-v8.x/docs/api/path.html#path_path"><code>path</code> module</a>
+in Node.js. Too see the modules that Node.js offers, see the
+<a href="https://nodejs.org/dist/latest-v8.x/docs/api/">API Documentation</a>.</p>
+<p>Now for a simple example of using <code>require(...)</code>:</p>
+<pre><code class="language-js">// We have to assign the module to a variable. In theory, we can name
+// it whatever we want. This is a constant since we don't plan to
+// re-assign this value.
+const path = require('path');
+
+// A common thing to do in the path library is to build up a full
+// path by parts. You can do that using path.join(...). Remember that
+// the .. pattern goes up a directory.
+let fullPath = path.join('a/b/c', '../d', 'cool-file.txt');
+
+// Prints a/b/d/cool-file.txt on Linux / macOS. Uses backslashes on
+// Windows.
+console.log(fullPath);
+</code></pre>
+<p>The above gives an example for building paths that'll work on all
+Linux, macOS, and Windows. We <em>could</em> check if we were on Windows and
+handle the building paths with backslashes ourselves, but why not use
+a library if it's already there!</p>
+<h3><a class="header" href="#destructuring-assignment" id="destructuring-assignment">Destructuring Assignment</a></h3>
+<p>So what if we want to <code>require</code> <code>join</code> directly. In the previous example we had
+to access it out of the entire exports of <code>path</code>. We can use a JavaScript
+feature called destructuring assignment to do it.</p>
+<p>Destructuring assignment lets you assign variables in the shape of an object.
+Let's see this in action.</p>
+<pre><code class="language-js">// We have an object with properties.
+let things = {
+  one: 1,
+  two: 2,
+  three: 3
+};
+
+// Having to say things.one, things.two, and things.three takes too
+// much typing. So we can get the values of one, two, and three, out
+// all at once!
+let { one, two, three } = things;
+
+// Now one, two, and three have been assigned values from the object
+// called things.
+
+console.log(two);  // 2
+</code></pre>
+<p>Similarly, we can do the same with arrays:</p>
+<pre><code class="language-js">let [a, b] = [1, 2];
+
+console.log(b)  // 2
+</code></pre>
+<p>Now back to our <code>join</code> example:</p>
+<pre><code class="language-js">const { join } = require('path');
+
+let fullPath = join('a/b/c', '../d', 'cool-file.txt');
+console.log(fullPath);
+</code></pre>
+<p>This does the same thing, but we now we can get <code>join</code> without having to deal
+with it inside <code>path</code>. With long module names, this can save some space and
+makes things more readable (unless it's hard to tell where something came
+from).</p>
+<h2><a class="header" href="#creating-modules" id="creating-modules">Creating Modules</a></h2>
+<p>Now it's time for the opposite point of view. How do we make modules that we
+can use?</p>
+<p>Let's start with a sample directory setup inside a folder called
+<code>modules-intro/</code>:</p>
+<pre><code class="language-text">modules-intro
+├── one.js
+├── two.js
+└── three.js
+</code></pre>
+<p>We're going to <code>one.js</code> and <code>two.js</code> from inside <code>three.js</code>.</p>
+<h3><a class="header" href="#normal-exports-in-onejs" id="normal-exports-in-onejs">Normal Exports in <code>one.js</code></a></h3>
+<p>Code in your Node.js files is not automatically available to other files. You
+have to explicitly export it in order for it to be available. The primary way
+of doing this is by setting properties of <code>exports</code>.</p>
+<p>Here's a typical example for <code>one.js</code>:</p>
+<pre><code class="language-js">// one.js
+
+// Prints all the positive integers up to and including an upper
+// limit.
+exports.printNumbers = (upper) =&gt; {
+  for (let i = 1; i &lt;= upper; i++) {
+    console.log(i);
+  }
+};
+
+// My own personal favorite. In caps since it's a constant.
+exports.FAVORITE_NUMBER = 37;
+</code></pre>
+<p>In the above we have a module which if we load it has a property
+that's a function and one that is a constant.</p>
+<h3><a class="header" href="#a-single-export-in-twojs" id="a-single-export-in-twojs">A Single Export in <code>two.js</code></a></h3>
+<p>Now we'll export one thing to represent the entire module. We can do this by
+setting the value of <code>module.exports</code>.</p>
+<p>Here's what we'll have in <code>two.js</code>:</p>
+<pre><code class="language-js">// two.js
+
+// Our export is a function that is a factorial implementation.
+module.exports = function fac(n) {
+  if (n === 0) return 1;
+  else return n * fac(n - 1);
+};
+</code></pre>
+<p>In the above we export a simple factorial function. The function is given the
+name <code>fac</code> so that it can call itself recursively, however, this <em>does not</em>
+mean the function is called <code>fac</code> to the outside. Instead, the result of using
+<code>require</code> on this module is the function directly.</p>
+<blockquote>
+<p><em>Note</em>: <code>exports</code> and <code>module.exports</code> actually refer to the same thing. If
+we were to just say <code>exports = ...</code> in the above, then we would be changing
+the whole value of the exports instead of adding to it, and so exporting
+wouldn't work.</p>
+</blockquote>
+<h3><a class="header" href="#putting-it-together-in-threejs" id="putting-it-together-in-threejs">Putting it Together in <code>three.js</code></a></h3>
+<p>Now we can combine these files together and be able to use them.</p>
+<p>Here's our content for <code>three.js</code>:</p>
+<pre><code class="language-js">// three.js
+
+// Importing the other modules relative to this file (hence the
+// `./`). The `js` can also be left off.
+const { printNumbers, FAVORITE_NUMBER } = require('./one');
+const factorial = require('./two');  // We can name this whatever.
+
+// Print all the numbers up to the constant.
+printNumbers(FAVORITE_NUMBER);
+
+// Now print the factorial of it.
+console.log(factorial(FAVORITE_NUMBER));
+</code></pre>
+<p>Now if we run this on the command-line, we'll get the output we
+expect:</p>
+<pre><code class="language-shell">$ node three.js
+1
+2
+3
+4
+
+&lt;...&gt;
+
+36
+37
+1.3763753091226343e+43
+</code></pre>
+<p>This, of course, is a simple example. But you can do just about anything. Go
+wild.</p>
+<h1><a class="header" href="#objects-and-classes" id="objects-and-classes">Objects and Classes</a></h1>
+<p>An object in JavaScript can be perceived as a map from a string to a primitive,
+a function, or another object (see <a href="http://docs.uavaustin.org/guides/nodejs/the-basics/data-types-and-variables.html#objects">&quot;Objects&quot; in 3.2</a>).</p>
+<p>We know the basic syntax for creating an object:</p>
+<pre><code class="language-js">// A loud dog
+let dog = {
+  volume: 2
+};
+</code></pre>
+<p>But we can also place a function inside an object and call it:</p>
+<pre><code class="language-js">let dog = {
+  volume: 2,
+  bark: function () {
+    console.log('Bark!');
+  }
+};
+
+dog.bark(); // Bark!
+</code></pre>
+<p>Now <code>dog</code> is acting more like a class. But what if we want to get a property
+inside <code>dog</code> and use it in <code>bark</code>?</p>
+<pre><code class="language-js">let dog = {
+  volume: 2,
+  bark: function () {
+    console.log('Bark! Volume: ' + volume);
+  }
+};
+
+dog.bark(); // ReferenceError: volume is not defined
+</code></pre>
+<p>This will not work—the interpreter thinks that we are trying to reference
+a variable called <code>volume</code>. But in reality, we wish to reference
+the property <code>volume</code> inside the object <code>dog</code>.</p>
+<p>We could try this instead:</p>
+<pre><code class="language-js">let dog = {
+  volume: 2,
+  bark: function (dog) {
+    console.log('Bark! Volume: ' + dog.volume);
+  }
+};
+
+dog.bark(dog); // Bark! Volume: 2
+</code></pre>
+<p>This prints the result that we expected, but note that we referenced <code>dog</code>
+twice on the function call. We want to make <code>dog.bark</code> act more like a class
+method that can access the property of the object it belongs to.</p>
+<pre><code class="language-js">let dog = {
+  volume: 2,
+  bark: function () {
+    console.log('Bark! Volume: ' + this.volume);
+  }
+};
+
+dog.bark(); // Bark! Volume: 2
+</code></pre>
+<p>When we call a function inside of an object in this way, we modify a special
+variable called <code>this</code>, which is intended to refer to the currently scoped
+object, very much akin to Java. In this case, <code>this</code> has been assigned to
+<code>dog</code>.</p>
+<h2><a class="header" href="#classes-using-prototypes" id="classes-using-prototypes">Classes using prototypes</a></h2>
+<p>We wish to make <code>dog</code> into a real class named <code>Dog</code> that can be created using
+a constructor, so that we can make many instances of <code>Dog</code> that we can call
+<code>bark</code> on.</p>
+<pre><code class="language-js">function Dog(volume) {
+  this.volume = volume;
+};
+
+Dog.prototype.bark = function () {
+  console.log('Bark! Volume: ' + this.volume);
+};
+
+let dog = new Dog(2);
+dog.bark(); // Bark! Volume: 2
+</code></pre>
+<p>Notice two keywords here: <code>prototype</code> and <code>new</code>. When we call <code>new</code>, the <code>this</code>
+keyword is assigned to an empty object (<code>{}</code>), with a special exception: everything
+from <code>Dog.prototype</code> is copied over to the empty object. When the function call
+finishes, <code>this</code> is used as the return value and is ultimately assigned to <code>dog</code>.</p>
+<p>For future reference, when class method is mentioned using <code>prototype</code>, we mean
+that the class method is not static - i.e. the method must be called from an
+instance of the class.</p>
+<h2><a class="header" href="#classes-using-es6-syntax" id="classes-using-es6-syntax">Classes using ES6 syntax</a></h2>
+<p>Since ECMAScript 6 (officially known as ECMAScript 2015, or ES2015), a more
+comfortable syntax has been developed for classes:</p>
+<pre><code class="language-js">class Dog {
+  constructor(volume) {
+    this.volume = volume;
+  }
+
+  bark() {
+    console.log('Bark! Volume: ' + this.volume);
+  }
+}
+
+let dog = new Dog(2);
+dog.bark(); // Bark! Volume: 2
+</code></pre>
+<p>ES6 classes also allow us to define static methods by prepending the
+function with <code>static</code>. Static methods do not require an instance
+of the object to be created before calling the method.</p>
+<h3><a class="header" href="#getters-and-setters" id="getters-and-setters">Getters and setters</a></h3>
+<p>Prefixing a class method with <code>get</code> or <code>set</code> allows it to be accessed as if it
+were a property:</p>
+<pre><code class="language-js">class Foo {
+  constructor() {
+    this._bar = 1;
+  }
+
+  get bar() {
+    return this._bar;
+  }
+
+  set bar(value) {
+    if (typeof value !== 'number') {
+      throw new TypeError('value must be a number');
+    }
+
+    this._bar = value;
+  }
+}
+
+let foo = new Foo();
+console.log(foo.bar); // 1
+foo.bar = 3;
+console.log(foo.bar); // 3
+foo.bar = 'test'; // TypeError: value must be a number
+</code></pre>
+<h3><a class="header" href="#inheritance" id="inheritance">Inheritance</a></h3>
+<p>It is also possible to inherit classes using the <code>extends</code> operator in ES6.
+Inheritance causes us to <em>inherit</em> the methods from the class we wish to inherit
+from (the <em>superclass</em>). We call the superclass's constructor by calling
+<code>super()</code> at the beginning of our class's constructor.</p>
+<h2><a class="header" href="#tricks" id="tricks">Tricks</a></h2>
+<h3><a class="header" href="#objectassign" id="objectassign"><code>Object.assign</code></a></h3>
+<p>Suppose we wanted to copy all of the properties of object <code>foo</code> onto object <code>bar</code>.
+We could do the following:</p>
+<pre><code class="language-js">let bar = {
+  text: 'baz'
+};
+
+bar.a = foo.a;
+bar.b = foo.b;
+bar.c = foo.c;
+</code></pre>
+<p>This requires us to know ahead of time the properties that <code>foo</code> has and then copy
+each property one by one. This is very tedious if we have dozens of properties in the
+object that we wish to copy. Instead, we can use <code>Object.assign</code>:</p>
+<pre><code class="language-js">let bar = {
+  text: 'baz'
+};
+
+Object.assign(bar, foo);
+</code></pre>
+<p>Now <code>bar</code> contains <code>text</code>, along with whatever properties <code>foo</code> might have.</p>
+<h3><a class="header" href="#spread-syntax" id="spread-syntax">Spread syntax</a></h3>
+<p>Since ECMAScript 2018, it is also possible to merge objects together without
+the use of <code>Object.assign</code>:</p>
+<pre><code class="language-js">let baz = {
+  ...foo,
+  ...bar
+};
+</code></pre>
+<p>It is also possible to replace this syntax:</p>
+<pre><code class="language-js">let x = 2;
+let y = 3;
+let z = 4;
+let coords = { x: x, y: y, z: z };
+</code></pre>
+<p>with the following:</p>
+<pre><code class="language-js">let x = 2;
+let y = 3;
+let z = 4;
+let coords = { x, y, z };
+</code></pre>
+<h3><a class="header" href="#destructuring" id="destructuring">Destructuring</a></h3>
+<p>We can extract multiple variables from an object, provided that our variable
+names correspond to the properties in the object:</p>
+<pre><code class="language-js">let coords = { x: 2, y: 3, z: 4 };
+let { x, y, z } = coords;
+
+console.log(x); // 2
+console.log(y); // 3
+console.log(z); // 4
+</code></pre>
+<h2><a class="header" href="#converting-to-json" id="converting-to-json">Converting to JSON</a></h2>
+<p>An object can be <em>serialized</em> (converted) into JSON with a simple function:</p>
+<pre><code class="language-js">let json = JSON.stringify(object);
+</code></pre>
+<p>The function returns a string representation of the specified object, which is
+entirely safe to pass over the network.</p>
+<p>To convert it back to an object, we simply call its inverse:</p>
+<pre><code class="language-js">let obj = JSON.parse(json);
+</code></pre>
+<p>Note, however, that not all objects can be safely converted to JSON:</p>
+<ul>
+<li><em>Circular references</em> (objects that refer to themselves) will cause an error
+during <code>JSON.stringify</code>.</li>
+<li>All methods are lost, and classes lose their type when stringified.</li>
+<li>Multiple properties that refer to the same object will now refer to different
+objects with identical properties.</li>
+</ul>
+<h1><a class="header" href="#functional-programming" id="functional-programming">Functional Programming</a></h1>
+<p>Functional programming is the only programming paradigm that is actually
+functional, whereas other paradigms do not do anything at all.</p>
+<p>Jokes aside, functional programming refers to the use of <em>functions</em> to
+concisely manipulate and filter data.</p>
+<h2><a class="header" href="#introduction-1" id="introduction-1">Introduction</a></h2>
+<p>Traditionally, most iterative solutions involve the use of a <code>for</code> loop:</p>
+<pre><code class="language-js">// Print and increment every element in the array by 1
+for (let i = 0; i &lt; arr.length; i++) {
+  console.log(arr[i]);
+  arr[i]++;
+}
+</code></pre>
+<p>While searching through Stack Overflow, however, you may have seen another
+approach to iteration using <code>forEach</code>:</p>
+<pre><code class="language-js">arr.forEach(function (element, index) {
+  console.log(element);
+  arr[index]++;
+});
+</code></pre>
+<p>Here, we use a <em>function</em>, rather than a <code>for</code> loop, to represent the body
+of the loop.</p>
+<p>What if we wanted to create a new array out of this loop? We could take
+a traditional approach:</p>
+<pre><code class="language-js">let arr2 = [];
+for (let i = 0; i &lt; arr.length; i++) {
+  arr2[i] = arr[i] + 1;
+}
+</code></pre>
+<p>We could also take a functional approach using <code>map</code>:</p>
+<pre><code class="language-js">let arr2 = arr.map(function (x) {
+  return x + 1;
+});
+</code></pre>
+<p>Using <code>map</code>, the original array <code>arr</code> is left unmodified, and a new array is
+created for us.</p>
+<p>Notice that this syntax is somewhat verbose. We can use <em>arrow notation</em>
+instead to represent the function:</p>
+<pre><code class="language-js">let arr2 = arr.map(x =&gt; x + 1);
+</code></pre>
+<p>This means that for every <code>x</code> in the array (<code>x</code> is the first argument passed into the function we created; it could be any variable name), return <code>x + 1</code>.</p>
+<h2><a class="header" href="#reference" id="reference">Reference</a></h2>
+<h3><a class="header" href="#arrayprototypemap" id="arrayprototypemap"><code>Array.prototype.map</code></a></h3>
+<p>Transforms a given array by a given function and returns the result as a
+new array.</p>
+<h4><a class="header" href="#example" id="example">Example</a></h4>
+<p>Let <code>points</code> be an array of x, y, z points:</p>
+<pre><code class="language-js">let xPoints = points.map(point =&gt; point.x);
+</code></pre>
+<p><code>xPoints</code> will then contain an array of numbers corresponding to the <code>x</code>
+coordinate of each point. The order of the points is preserved.</p>
+<h3><a class="header" href="#arrayprototypefilter" id="arrayprototypefilter"><code>Array.prototype.filter</code></a></h3>
+<p>Returns a new array containing only the elements that pass a given condition.</p>
+<h4><a class="header" href="#example-1" id="example-1">Example</a></h4>
+<p>Let <code>points</code> be an array of x, y, z points:</p>
+<pre><code class="language-js">let pointsInBounds = points.filter(point =&gt;
+  Math.abs(point.x) &lt; 100 &amp;&amp;
+  Math.abs(point.y) &lt; 100 &amp;&amp;
+  Math.abs(point.z) &lt; 100
+);
+</code></pre>
+<p><code>pointsInBounds</code> will then contain only the points that are located within 100 units from the origin (0, 0, 0) on all three axes.</p>
+<h3><a class="header" href="#arrayprototypereduce" id="arrayprototypereduce"><code>Array.prototype.reduce</code></a></h3>
+<p>Returns a value as an aggregate of all of the elements of an array.</p>
+<h4><a class="header" href="#example-2" id="example-2">Example</a></h4>
+<p>Let <code>cart</code> be an array of items containing <code>price</code>:</p>
+<pre><code class="language-js">let total = cart.reduce((total, product) =&gt; total + product.price);
+</code></pre>
+<p><code>total</code> will contain the total price of all of the items in <code>cart</code> (minus tax,
+of course).</p>
+<h2><a class="header" href="#chaining" id="chaining">Chaining</a></h2>
+<p>Due to their immutability, the results of these basic functions can be chained
+and nested within one another for elaborate computations. For the purposes of
+brevity, however, we will not cover a complex example.</p>
+<h2><a class="header" href="#composition" id="composition">Composition</a></h2>
+<p>Like in algebra, we can wrap a function within another function:</p>
+<pre><code class="language-js">let f = x =&gt; x * 2;
+let g = x =&gt; f(x) + 1;
+console.log(g(2)); // 5
+</code></pre>
+<p>It is also possible to modify the special <code>this</code> variable manually when
+calling a function by using <code>Function.prototype.bind</code>:</p>
+<pre><code class="language-js">function someLegacyJsMethod() {
+    return this.x;
+}
+
+let point = { x: 2, y: 8, z: 1 };
+let func = someLegacyJsMethod.bind(point);
+console.log(func()); // 2
+</code></pre>
+<p>Alternatively, we may use <code>bind</code> to partially fill the arguments of a function
+without calling the function:</p>
+<pre><code class="language-js">let f = (x, y, z) =&gt; x + y + z;
+let g = f.bind(this, 1, 2);
+console.log(g(3)); // 6
+</code></pre>
+<p>You will only see use of <code>bind</code> in special circumstances, such as callbacks,
+where the value of <code>this</code> is lost or ambiguous.</p>
+<h1><a class="header" href="#async-patterns" id="async-patterns">Async Patterns</a></h1>
+<p>Asynchronous programming allows multiple parts of a program to run
+concurrently without necessarily needing to manage multiple threads.</p>
+<p>How can multiple blocks of code run at the same time, all the while using a
+single thread? The answer is that the code does not run at the same time;
+rather, an <em>event loop</em> in the background switches rapidly between
+coroutines that represent multiple paths of execution.</p>
+<p>Using asynchronous programming, we can perform other tasks while waiting
+on a long-running task to finish. Without it, our entire program could freeze
+simply waiting on an I/O operation. Hence, the async paradigm is the driving 
+force of the &quot;event-driven I/O&quot; concept that originally propelled 
+Node.js to fame.</p>
+<p>This section covers common async patterns and approaches in Node.js, including
+callbacks, promises, <code>async</code>/<code>await</code> syntax, and event emitters.</p>
+<h1><a class="header" href="#callbacks" id="callbacks">Callbacks</a></h1>
+<p>A <em>callback</em> is a function that is called after a function's execution has
+been completed. It is the original form of asynchronous programming in Node.js.</p>
+<p>Instead of pausing the program until a certain function has been executed,
+we immediately exit the function, and the function runs on its own. When the 
+execution of that function is done, the main execution of the program pauses for 
+a moment, and the <em>callback function</em> that we specified is then called and run.</p>
+<h2><a class="header" href="#io" id="io">I/O</a></h2>
+<p>Most languages prefer file I/O in this way:</p>
+<pre><code class="language-js">const fs = require('fs');
+
+let data = fs.readFileSync('testFile.txt'); // a long pause here
+console.log(data);
+</code></pre>
+<p>However, Node.js prefers file I/O using callbacks:</p>
+<pre><code class="language-js">fs.readFile('testFile.txt', (err, data) =&gt; {
+  if (err) throw err;
+  console.log(data);
+}); // no delay here
+console.log('Hi');
+</code></pre>
+<p>Notice that <code>Hi</code> gets printed before the data of <code>testFile.txt</code>, <em>despite
+the code being written after the callback!</em></p>
+<blockquote>
+<p><em>Note</em>: It is bad practice to use the &quot;Sync&quot; <code>fs</code> functions in Node.js unless
+it is in something where asynchronous behavior doesn't matter, such as a
+short one-time script or in an a setup section that must complete before
+anything else can happen.</p>
+<p>If a synchronous <code>fs</code> function is called otherwise, it temporarily stops
+other operations from running asynchronously. This can prove to be a problem
+when running an HTTP server or making HTTP requests.</p>
+</blockquote>
+<p>The greatest weakness of callbacks is when each one depends on the previous one:</p>
+<pre><code class="language-js">const fs = require('fs');
+const http = require('http');
+
+fs.readFile('testFile.txt', (err, data) =&gt; {
+  if (err) throw err;
+  let req = http.request('http://example.com/upload', { method: 'POST' }, (res) =&gt; {
+    console.log('Got a response: ' + res.statusCode);
+    res.on('end', () =&gt; {
+      // We cannot actually get `res.data` (it's a little more complicated than
+      // that), but assume that we could.
+      fs.writeFile('testFileResponse.txt', res.data, (err) =&gt; {
+        if (err) throw err;
+        console.log('Wrote response to file');
+      });
+    })
+  });
+  req.write(data);
+  req.end();
+});
+</code></pre>
+<p>While the scenario in the code above may seem fantastical, this nesting of 
+callbacks highlights a serious problem with callbacks known as <em>callback hell</em>.
+Callback hell is dangerous because it can result in messy code and
+difficult-to-trace bugs.</p>
+<p>By convention, an error argument is often passed as the first argument in a
+callback. If the error is <code>null</code> or <code>undefined</code> (it is normally best to just to
+allow both), then the operation succeeded. Otherwise, the operation failed and
+that error should be handled. In the example above we can see that this will
+simple throw the error.</p>
+<h2><a class="header" href="#sleeping" id="sleeping">Sleeping</a></h2>
+<p>So far, we haven't talked about any sleep functions in JavaScript... and that's
+because there isn't one. </p>
+<p>Things in JavaScript are asynchronous, and a sleep function is inherently
+synchronous which makes for a big problem.</p>
+<p>Instead, there are two other things we can use: <em>timeouts</em> and <em>intervals</em>.</p>
+<h3><a class="header" href="#timeouts" id="timeouts">Timeouts</a></h3>
+<p>Timeouts as simple. You pass a callback that gets executed after an amount of
+time.</p>
+<p>Here's a quick example:</p>
+<pre><code class="language-js">console.log('Ha...');
+
+setTimeout(() =&gt; {
+  console.log('choo.');
+}, 1000);
+
+console.log('...');
+</code></pre>
+<p>If you run this, you'll notice that this is printed as:</p>
+<pre><code class="language-text">Ha...
+...
+&lt; a break for a second &gt;
+choo.
+</code></pre>
+<p>The code after creating the timeout will run first, even if the timeout is 0
+ms.</p>
+<p>If we wanted to have another timeout run after that, we would simply create
+another timeout inside the callback that's there. We do this instead of just
+making another interval at the top level that happens to be longer, since the
+time until a timeout runs isn't completely gauranteed.</p>
+<pre><code class="language-js">console.log('Ha...');
+
+setTimeout(() =&gt; {
+  console.log('choo.');
+  
+  setTimeout(() =&gt; {
+    console.log('&gt; Bless you!');
+  }, 3000);
+}, 1000);
+
+consoloe.log('...');
+</code></pre>
+<h3><a class="header" href="#intervals" id="intervals">Intervals</a></h3>
+<p>Intervals keep calling a callback on a provided interval. You can create a
+spammy message in your terminal every second with this:</p>
+<pre><code class="language-js">setInterval(() =&gt; {
+  console.log('Is this annoying yet?');
+}, 1000);
+</code></pre>
+<p>The first iteration of the interval doesn't run until the first second as
+passed.</p>
+<p>The <code>setInterval(...)</code> function does also return back an interval object. To
+make the interval stop, you can pass this object into <code>clearInterval(...)</code>.
+Similarly, you can cancel a timeout from happening with <code>clearTimeout(...)</code>.</p>
+<p>To make our lives better, we must study another approach to asynchronous 
+programming known as <em>promises</em>.</p>
+<h1><a class="header" href="#promises" id="promises">Promises</a></h1>
+<p>A <em>promise</em> is a container for a value that does not exist yet, but will exist
+in the future. A promise may have three states: <em>pending</em> (the value does not 
+exist yet), <em>fulfilled</em> (the value exists), or <em>rejected</em> (the value does not exist due to an error).</p>
+<p>Promises did not natively exist in JavaScript until ECMAScript 2015; before
+then, libraries such as <a href="http://bluebirdjs.com">Bluebird</a> were used instead
+to provide support for this type of asynchronous programming.</p>
+<p>When we call an async function, it immediately returns a pending <code>Promise</code> 
+object. When the async function is complete, the promise is set to fulfilled or
+rejected, and an event is fired.</p>
+<pre><code class="language-js">fetchPlaylist().then(playlist =&gt; {
+  console.log(playlist);
+}).catch(console.error);
+</code></pre>
+<p>In this example, <code>fetchPlaylist</code> is an async function that returns a promise.
+We wrap this promise with <code>then</code>, which calls a callback when the promise
+is fulfilled. In the case that the promise is rejected, the callback in <code>catch</code>
+is called instead.</p>
+<blockquote>
+<p><em>Note</em>: All promise rejections must be handled. Without a <code>catch</code> clause,
+the program will suffer an &quot;Unhandled promise rejection&quot; error, since
+promises that are wrapped with callbacks are unable to throw ordinary 
+exceptions.</p>
+</blockquote>
+<p>However, we still have not solved the callback hell problem. In the next
+section, we will introduce new syntax that solves the problem once and for all.</p>
+<h1><a class="header" href="#asyncawait" id="asyncawait"><code>async</code>/<code>await</code></a></h1>
+<p>Despite the prevalence of asynchronous functions, most of our programming
+remains linear in practice—hence the plight of &quot;callback hell.&quot;</p>
+<p>Instead of wrapping our promises with callbacks, why can't we just <em>wait</em> for
+the promise to be fulfilled, all the while keeping the event loop going (so as
+to not freeze other tasks)?</p>
+<p>Since ECMAScript 2017, this functionality is now available:</p>
+<pre><code class="language-js">let results = await axios.get('https://example.com/posts/search?name=foo');
+console.log(results.data); // a JSON object of our results, perhaps?
+</code></pre>
+<p>In this example, we use the <a href="https://www.npmjs.com/package/axios"><code>axios</code></a>
+HTTP library to perform an asynchronous GET request. The flow of the program
+clearly pauses on the <code>await</code> clause and then proceeds to the subsequent line.</p>
+<p>However, we can only use <code>await</code> in functions that have been declared with
+the <code>async</code> keyword, since <code>await</code> is, in reality, syntactic sugar to produce
+a callback from our promise, rather than a magical conversion to traditional 
+synchronous code.</p>
+<pre><code class="language-js">async function getResults() {
+  return await axios.get('https://example.com/posts/search?name=foo');
+}
+
+getResults().then(results =&gt; console.log(results.data)).catch(console.error);
+</code></pre>
+<p>The top level of the script will always use at least one <code>.then</code> and <code>.catch</code>, since <code>await</code> cannot be used at the top level.</p>
+<p>What about an <code>async</code> function that does not actually contain an await?</p>
+<pre><code class="language-js">async function add(a, b) {
+  return a + b;
+}
+
+add(2, 2).then(console.log).catch(console.error);
+</code></pre>
+<p>We can observe that all <code>async</code> functions, regardless of whether they
+depend on <code>await</code> or not, return a <code>Promise</code>. Conversely, functions
+that directly return a <code>Promise</code> do not need to be marked <code>async</code> unless they
+depend on <code>await</code>:</p>
+<pre><code class="language-js">function getResults() {
+  return axios.get('https://example.com/posts/search?name=foo');
+}
+
+getResults().then(results =&gt; console.log(results.data)).catch(console.error);
+</code></pre>
+<p>This code produces the same outcome because <code>axios.get</code> already returns a <code>Promise</code> object.</p>
+<h2><a class="header" href="#catching-exceptions" id="catching-exceptions">Catching exceptions</a></h2>
+<p>Catching rejected promises using <code>async</code>/<code>await</code> is equivalent to native
+<code>try</code>/<code>catch</code> syntax:</p>
+<pre><code class="language-js">try {
+  await thisCouldFail();
+} catch (e) {
+  console.error('It failed!!', e);
+}
+</code></pre>
+<h2><a class="header" href="#wrapping-callbacks-with-promises" id="wrapping-callbacks-with-promises">Wrapping callbacks with promises</a></h2>
+<p>Many libraries, including Node.js itself, still use the old style of callbacks.
+We can &quot;promisify&quot; a method by returning our own <code>Promise</code> object and fulfilling
+it in the callback's body:</p>
+<pre><code class="language-js">function readFileAsync(file) {
+  return new Promise((resolve, reject) =&gt; {
+    fs.readFile(file, (err, data) =&gt; {
+      if (err) reject(err);
+      else resolve(data);
+    });
+  });
+}
+</code></pre>
+<p>For most methods, this is all it takes to create a promised version of a
+function that would otherwise require a callback.</p>
+<h1><a class="header" href="#event-emitters" id="event-emitters">Event Emitters</a></h1>
+<p>Event emitters are objects that <em>emit</em> events which can be observed and handled.</p>
+<p>When an event occurs, what can we use to handle the event? Naturally, we
+can use a pattern that we have already learned: callbacks.</p>
+<h2><a class="header" href="#chatroom" id="chatroom">Chatroom</a></h2>
+<p>Suppose we wish to represent a chatroom and handle various
+events from it, such as when a user joins or leaves the room, and when a message
+is received.</p>
+<pre><code class="language-js">class Chatroom extends EventEmitter {
+  constructor() {
+    super();
+    this.on('join', client =&gt; {
+      console.log(`${client.name} joined the room.`);
+    });
+    this.on('leave', client =&gt; {
+      console.log(`${client.name} left the room.`);
+    });
+    this.on('message', (client, msg) =&gt; {
+      console.log(`${client.name}: ${msg}`);
+    });
+  }
+}
+
+class Client {
+  constructor(room, name) {
+    this.room = room;
+    this.name = name;
+    this.joined = true;
+    this.room.emit('join', this);
+  }
+
+  say(msg) {
+    if (!this.joined) {
+      throw new Error('must be currently in a room to talk');
+    }
+
+    this.room.emit('message', this, msg);
+  }
+
+  leave() {
+    this.joined = false;
+    this.room.emit('leave', this);
+  }
+}
+
+let room = new Chatroom();
+let client = new Client(room, 'Foo'); // Foo joined the room.
+client.say('hello'); // Foo: hello
+client.leave(); // Foo left the room.
+</code></pre>
+<p>We have just built a simple chatroom in a few lines of JavaScript.</p>
+<p>Notice that the <code>Chatroom</code> class inherits the <code>EventEmitter</code> class, which
+exposes the <code>emit</code> and <code>on</code> functions; the bread and butter of event-driven
+I/O. Anyone can listen to any event in an event emitter, and the number
+of listeners on any event is indefinite.</p>
+<h2><a class="header" href="#networking" id="networking">Networking</a></h2>
+<p>Event emitters and promises can be combined to create a powerful pattern for
+networking.</p>
+<p>Suppose we wish to send a request to a server over an arbitrary network
+protocol and wait for a response. The problem, however, is that any number of
+irrelevant packets may also come in while we are waiting for our desired
+response packet. The traditional solution to this often involves a handler 
+table and a global variable that indicates whether or not someone is waiting 
+for a response for a particular packet (and perhaps the corresponding list of 
+pending promises for that request, in our case).</p>
+<p>Instead of a handler table, we can instead use event emitters to wait for
+a response:</p>
+<pre><code class="language-js">class GameClient extends EventEmitter {
+
+  // ...
+
+  send(msg) {
+    this.socket.write(JSON.stringify(msg));
+  }
+
+  requestPlayerList() {
+    return new Promise(resolve =&gt; {
+      this.send({ type: 'player-list' });
+      this.once('player-list', msg =&gt; {
+        resolve(msg.players);
+      });
+    });
+  }
+}
+
+// ...
+
+let players = await client.requestPlayerList();
+</code></pre>
+<p>Using <code>once</code> instead of <code>on</code>, the event listener is automatically removed
+once the <code>player-list</code> event has been received.</p>
+<h1><a class="header" href="#npm" id="npm">NPM</a></h1>
+<p><a href="https://www.npmjs.com"><code>npm</code> (Node Package Manager)</a> is the default package
+manager for Node.js and is also used for front-end JavaScript. It has the
+largest package index of any package manager for any programming language and
+has packages for a ton of things. There are a couple other package managers for
+Node.js such as yarn and pnpm, however, they also use the npm package index.</p>
+<p><code>npm</code> should have been included with your Node.js installation.</p>
+<h2><a class="header" href="#creating-a-npm-project" id="creating-a-npm-project">Creating a <code>npm</code> Project</a></h2>
+<p><code>package.json</code> is the file that contains the metadata about a Node.js project
+for <code>npm</code>. You can create a new project using <code>npm init</code> and it will generate a
+<code>package.json</code> for you. Let's go ahead and do just that.</p>
+<p>First, we'll create a project directory and <code>cd</code> to it.</p>
+<pre><code class="language-shell">$ mkdir my-npm-project
+$ cd my-npm-project
+</code></pre>
+<p>Now that we've created the folder and moved inside it, we'll call <code>npm init</code>.
+The utility will ask a bunch of questions about our project. We'll just create
+it with the default options that it suggests. Just keep hitting enter on all
+the prompts.</p>
+<pre><code class="language-shell">$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install &lt;pkg&gt;` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (my-npm-project)
+version: (1.0.0)
+description:
+entry point: (index.js)
+test command:
+git repository:
+keywords:
+author:
+license: (ISC)
+About to write to /path/to/your/my-npm-project/package.json:
+
+{
+  &quot;name&quot;: &quot;my-npm-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+
+
+Is this ok? (yes)
+</code></pre>
+<p>Great! Now we have a basic project set up. We can see the contents of the
+<code>package.json</code> file in the <code>npm</code> output. Let's go over what these things mean:</p>
+<ul>
+<li><strong>name</strong>: This represents the name of the package, normally this is the same
+as the name of the directory. If we were to publish this package to the <code>npm</code>
+package index, this is the name it would use.</li>
+<li><strong>version</strong>: The version of our package.</li>
+<li><strong>description</strong>: A short description of what our package is. This is
+displayed on npmjs.org if the package is published.</li>
+<li><strong>main</strong>: The main JavaScript file for the the package. If we are to
+<code>require('my-npm-project')</code>, then this is the file that is loaded.</li>
+<li><strong>scripts</strong>: This section has scripts you can call using <code>npm</code>. If we run
+<code>npm test</code> in this directory, then the <code>scripts.test</code> command will be
+executed. <em>In general</em>, to run scripts of any name you'll need to use
+<code>npm run &lt;script-name&gt;</code>, in this case, it would be<code>npm run test</code>. For this,
+<code>npm test</code> happens to work directly since it is a special case.</li>
+<li><strong>author</strong>: The author of the package.</li>
+<li><strong>license</strong>: The terms this package is licensed under. Normally this is
+accompanied with a <code>LICENSE</code> file with the terms.</li>
+</ul>
+<p>There are <a href="https://docs.npmjs.com/files/package.json">a bunch</a> of other fields
+that can be in a <code>package.json</code>, but those are out of scope for now.</p>
+<p>Let's get the main JavaScript file going. Create a file named <code>index.js</code> in the
+<code>my-npm-project directory</code>. As an example, we can put the hello world example
+in it:</p>
+<pre><code class="language-js">console.log('Hello, World!');
+</code></pre>
+<p>Now, if we run <code>node .</code> in this directory, it'll run our hello world script.</p>
+<pre><code class="language-shell">$ node .
+Hello, World!
+</code></pre>
+<p>Since <code>index.js</code> is labeled at the main file in <code>package.json</code>, <code>node</code> knows
+which script to run when referencing the project directory.</p>
+<h2><a class="header" href="#installing-dependencies" id="installing-dependencies">Installing Dependencies</a></h2>
+<p>The most useful part of <code>npm</code> is to install packages. To keep it simple for
+now, we'll just make our hello world script a little prettier. Let's print it
+in blue letters.</p>
+<p>To do this, we'll install the
+<a href="https://www.npmjs.com/package/chalk"><code>chalk npm package</code></a>. This is one of many
+<code>npm</code> libraries that you can install to make it easier to work with colors in
+the terminal. You can check the <code>npm</code> page to see usage instructions.</p>
+<pre><code class="language-shell">$ npm install chalk
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN my-npm-project@1.0.0 No description
+npm WARN my-npm-project@1.0.0 No repository field.
+
++ chalk@2.4.1
+added 7 packages in 1.186s
+</code></pre>
+<p>7 packages were installed since <code>npm</code> handled the sub-depedencies of <code>chalk</code>
+itself. You can ignore the <code>package-lock.json</code> file it created. You can see
+that a folder called <code>node_modules/</code> has been created in your directory. This
+is where <code>npm</code> installs its packages. These dependencies only work in the
+current project and don't affect other's on your machine.</p>
+<p>Now we'll go ahead and use it. In our <code>index.js</code> file, we'll need to <code>require</code>
+the <code>chalk</code> library. Afterwards, we'll use chalk to make our text blue.</p>
+<pre><code class="language-js">const chalk = require('chalk');
+
+console.log(chalk.blue('Hello, World!'));
+</code></pre>
+<p>Now when running <code>node .</code>, we have color!</p>
+<blockquote>
+<p><em>Note:</em> If you're on Windows, colors might not work. You can get around this
+by either using git bash to run the script, or checking
+<a href="https://docs.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences">this page</a>
+on how to enable this in <code>cmd.exe</code> on Windows 10. It's not too important for
+this example.</p>
+</blockquote>
+<p>The <code>package.json</code> file as been updated to include the dependencies now:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;my-npm-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;dependencies&quot;: {
+    &quot;chalk&quot;: &quot;^2.4.1&quot;
+  }
+}
+</code></pre>
+<p>Running <code>npm install</code> without a package name will install all the depedencies
+listed in the <code>package.json</code> in that directory.</p>
+<blockquote>
+<p><em>Note:</em> There is another section of dependencies called <code>devDependencies</code>.
+These are for packages that are required when building or testing the
+packages' contents, but aren't actually required inside the source code at
+runtime. You don't need to worry about it now, but when building real <code>npm</code>
+libraries you'll need to differeniate them. They are not installed when
+installing packages with <code>npm install --production</code>.</p>
+</blockquote>
+<h2><a class="header" href="#installing-packages-globally" id="installing-packages-globally">Installing Packages Globally</a></h2>
+<p>Instead of installing a dependency for a specific project, you can also install
+one into the global scope so that you can use a command anywhere.</p>
+<p>For instance, we'll try out the
+<a href="https://npmjs.org/http-status-cli"><code>http-status-cli</code> package</a>. This is a
+little package that can print out what the meanings of HTTP status codes like
+404 mean.</p>
+<p>To install it, we'll just need to use <code>npm</code> like normal but with the <code>-g</code> flag
+for global.</p>
+<pre><code class="language-shell">$ npm install -g http-status-cli
+</code></pre>
+<p>And now in the terminal you can use the globally installed package to find out
+what 404 or any other code means.</p>
+<pre><code class="language-shell">$ http-status 404
+404 - Not Found
+  The best known of them all, the 404 status code indicates that the requested r
+esource was not found at the URL given, and the server has no idea how long for.
+$ http-status 201
+201 - Created
+  A 201 status code indicates that a request was successful and as a result, a r
+esource has been created (for example a new page).
+</code></pre>
+<p><code>npm</code> makes installing command-line utilities convenient. There are a bunch out
+there.</p>
+<h1><a class="header" href="#babel" id="babel">Babel</a></h1>
+<p><a href="https://babeljs.io">Babel</a> is a JavaScript compiler that can compile more
+recent versions of JavaScript to older versions. This allows for features that
+are not yet available in some web browers or in Node.js to be used.</p>
+<p>This page provides a quick overview of what Babel can let you work with, but
+will not dive into how to set it up.</p>
+<h2><a class="header" href="#es6-imports" id="es6-imports">ES6 Imports</a></h2>
+<p>Node.js itself implements most of the newer JavaScript standards. One feature
+that is missing, for example, is ES6-style imports. Node.js uses the
+<code>require(...)</code> syntax for requiring modules. ES6 Imports allow for importing
+modules using the <code>import</code> syntax.</p>
+<p>The following example shows equivalent imports from both styles.</p>
+<pre><code class="language-js">// Regular require(...).
+const fs = require('fs');
+
+// ES6 Imports.
+import fs from 'fs';
+</code></pre>
+<p>The later is much cleaner and feels much more standard.</p>
+<p>ES6 Imports also allow for destructuring:</p>
+<pre><code class="language-js">// Regular require(...).
+const { readFile } = require('fs');
+
+// ES6 Imports.
+import { readFile } from 'fs';
+</code></pre>
+<p>If you try and use <code>import</code> from your Node.js REPL, you'll notice that it won't
+work. This, is where Babel comes in. Note that <code>require(...)</code> will still work
+in Node.js code being compiled with Babel.</p>
+<p>To see the full syntax of ES6 Imports, see the
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">MDN Web Docs <code>import</code> reference</a>.
+This shows how to use aliases while importing and how to do more compilated
+imports. Note that some of these might be specific to the Web and not Node.js</p>
+<h2><a class="header" href="#es6-exports" id="es6-exports">ES6 Exports</a></h2>
+<p>The ES6 Import syntax also ships with an exporting syntax as well.</p>
+<p>Instead of using <code>export.name = ...</code>, you can directly export a variable,
+function, etc. using <code>export</code>.</p>
+<pre><code class="language-js">// Regular export.
+exports.doAThing = function () { console.log('a thing'); };
+
+// From another module.
+const { doAThing } = require('./other-module');
+
+// ES6 Exports.
+export function doAThing() { console.log('a thing'); }
+
+// From another module.
+import { doAThing } from './other-module';
+</code></pre>
+<blockquote>
+<p><em>Note</em>: No semicolon was provided above since this doesn't require one like
+a normal assignent.</p>
+</blockquote>
+<p>When exporting a function or class as the sole export of a module in Node.js,
+you'd do it by setting <code>module.exports</code>. With ES6 Exports, instead, you use
+<code>export default</code>.</p>
+<pre><code class="language-js">// Regular export.
+module.exports = class Example {};
+
+// From another module.
+const Example = require('./other-module');
+
+// ES6 Exports.
+export default class Example {}
+
+// From another module.
+import Example from './other-module';
+</code></pre>
+<blockquote>
+<p><em>Note</em>: Internally, Babel doesn't equate these two exactly. using
+<code>export default</code> actually ends up naming the export <code>default</code>. If you were to
+<code>require</code> this module, you need to use <code>require('./module-name').default</code> to
+get the value instead. There is
+<a href="https://github.com/59naga/babel-plugin-add-module-exports">a plugin</a> which
+restores this behavior so you can just use <code>require('./module-name')</code>.</p>
+</blockquote>
+<p>As with <code>require(...)</code>, setting the value of <code>module.exports</code> or the properties
+of <code>exports</code> will still work.</p>
+<h2><a class="header" href="#upcoming-changes-in-nodejs" id="upcoming-changes-in-nodejs">Upcoming Changes in Node.js</a></h2>
+<p>The reason why the <code>import</code> syntax is not yet generally available is because
+<code>import</code> is asynchronous while <code>require(...)</code> is synchronous. When you
+<code>require</code> a CommonJS module in Node.js, the <code>require(...)</code> function doesn't
+return until the module is done loading, however, <code>import</code> does not work as a
+function call and can handle asynchronous loading, which is quite useful in
+browsers. In browser JavaScript, this allows a website to load before all the
+JavaScript has been loaded.</p>
+<p>ES6 Modules are
+<a href="https://nodejs.org/api/all.html#esm_ecmascript_modules">currently experimental in Node.js</a>
+(at the time of writing) and
+need a flag to be used on the command-line to be enabled. While you can still
+use <code>import</code> to get a standard CommonJS module, <code>require(...)</code> will not work
+with ES6 modules. Because of this incompatibility, the current plan in Node.js
+is to use a different file extension for ES6 Node.js modules (<code>.mjs</code>). This
+will definitely take some getting used to in the future.</p>
+<blockquote>
+<p>Many people have referenced to <code>.mjs</code> as standing for <em>Michael Jackson
+Script</em>, myself included. :)</p>
+</blockquote>
+<h2><a class="header" href="#configuring-babel" id="configuring-babel">Configuring Babel</a></h2>
+<p>Babel is configured through <a href="https://babeljs.io/docs/en/plugins">plugins</a>.
+Creating a configuration is out of scope of this guide, however,
+<a href="https://github.com/uavaustin/orchestra/tree/master/services/forward-interop/.babelrc">here is an example of a Babel configuration file</a>
+and the
+<a href="https://github.com/uavaustin/orchestra/tree/master/services/forward-interop/src/service.js">use of ES6 Imports and Exports</a>
+within UAV Austin code.</p>
+<p>Using Babel requires a build step for a Node.js project.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

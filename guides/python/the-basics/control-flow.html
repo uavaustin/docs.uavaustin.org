@@ -1,0 +1,467 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Control Flow - UAV Austin Python Guide</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="../the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="../the-basics/control-flow.html" class="active"><strong aria-hidden="true">3.3.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="../the-basics/functions.html"><strong aria-hidden="true">3.4.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../file-io.html"><strong aria-hidden="true">5.</strong> File I/O</a></li><li class="chapter-item expanded "><a href="../objects.html"><strong aria-hidden="true">6.</strong> Objects</a></li><li class="chapter-item expanded "><a href="../pip.html"><strong aria-hidden="true">7.</strong> pip</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Python Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
+<p>Python has fairly simple control flow to make up the basics of the programming
+language.</p>
+<p>This section does not use the <code>&gt;&gt;&gt;</code> characters to indicate input in the
+interpreter.</p>
+<h2><a class="header" href="#if-statements" id="if-statements"><code>if</code> Statements</a></h2>
+<p>Python has an indentation-styled syntax. Instead of using traditional C-style
+<code>if</code> statements:</p>
+<pre><code class="language-c">if (condition) {
+    // statements
+}
+</code></pre>
+<p>Python <code>if</code> statements are formatted as:</p>
+<pre><code class="language-python">if condition:
+    # Statements
+    print('hello')
+</code></pre>
+<p><code>if</code> statements, as well as the other control flow mechanisms in Python require
+statements to be inside. To have an <code>if</code> statements without any block to run,
+you'll need to use the <code>pass</code> keyword.</p>
+<p>Thus, the above can be written without the <code>print('hello')</code>:</p>
+<pre><code class="language-python">if condition:
+    pass
+</code></pre>
+<blockquote>
+<p><em>Note</em>: It's not good to mix tabs and space characters in Python because of
+the fact that indention matters. To make it simple, use 4 spaces for
+indentation.</p>
+</blockquote>
+<p><code>if</code> statements can be followed by <code>elif</code> to check more conditions and an
+<code>else</code> block to run if no other conditions are true.</p>
+<pre><code class="language-python"># A basic if/else.
+
+if False:
+    print('1')
+else:
+    print('2')
+
+# 2 is printed.
+</code></pre>
+<pre><code class="language-python"># An example with remainders.
+
+num = 100
+
+if num % 3 == 0:
+    print('Divisible by 3.')
+elif num % 5 == 0:
+    print('Divisible by 5.')
+else:
+    print('Not divisble by 3 or 5.')
+</code></pre>
+<h2><a class="header" href="#for-loops" id="for-loops"><code>for</code> Loops</a></h2>
+<p>Python <code>for</code> loops are like for-each loops in other languages. A block is run
+multiple times with each element in an iterable object. Let's use an easy
+example:</p>
+<pre><code class="language-python"># Print the numbres from 0 to 9. 10 is an exclusive upper bound!
+for i in range(0, 10):
+    print(i)
+</code></pre>
+<p>Similarly, we can also use lists:</p>
+<pre><code class="language-python">aliases = ['yes', 'yeah', 'ye', 'mhmm', 'aye', 'yep']
+
+# Print out a bunch of ways to say yes.
+for alias in aliases:
+    print(alias)
+</code></pre>
+<blockquote>
+<p><em>Note</em>: The <code>range</code> function in Python returns a <em>range</em> object, which for
+all intents and purposes, is like an iterator. Essentially, iterators keep
+producing values when asked. So in this case, after the loop finishes a
+block, another value is being extracted from <code>range</code>.</p>
+<p>Back in the days of Python 2 (yes, I know, gross), <code>range</code> used to return a
+list directly. This can have some performance problems since you don't need
+to create all the elements you need ahead of time if you're not even going to
+use them. To convert a <em>range</em> to a list like in the first example you can
+use <code>list(range(0, 10))</code>.</p>
+</blockquote>
+<h2><a class="header" href="#while-loops" id="while-loops"><code>while</code> Loops</a></h2>
+<p><code>while</code> loops repeat a block while a condition is <code>False</code>.</p>
+<p>Here's an example:</p>
+<pre><code class="language-python">text = ''
+
+# Just keep asking the user to type in 1.
+while text != '1':
+    text = input('Please enter the number one: ')
+
+print('Okay, thanks.')
+</code></pre>
+<p>The <code>input</code> function prompts a user to type something in and then hit enter.</p>
+<p>To run the example above you'll need to place this in a file and run it like
+in the second part of the
+<a href="../getting-started/hello-world.html">Hello World Chapter</a>.</p>
+<blockquote>
+<p><em>Note</em>: The above example won't actually work in Python 2, since the <code>input</code>
+function coerces numbers into <code>int</code> types instead of leaving all input as
+strings like in Python 3. If the example isn't working. You might be using
+Python 2.</p>
+</blockquote>
+<p>Hopefully you can think of better uses of <code>while</code> loops.</p>
+<h2><a class="header" href="#break-and-continue" id="break-and-continue"><code>break</code> and <code>continue</code></a></h2>
+<p><code>break</code> and <code>continue</code> can be used to alter the flow of a <code>for</code> or <code>while</code>
+loop.</p>
+<p><code>break</code> will cause the loop it is in to stop.</p>
+<pre><code class="language-python">a = 1
+
+# Keep looping until stopped manually.
+while True:
+    # Increment the number by 2.
+    a += 2
+
+    # Stop when it's 9.
+    if a == 9:
+        break
+
+# This should print 9.
+print(a)
+</code></pre>
+<p><code>continue</code> skips the rest of the loop and makes the loop go to the next
+iteration.</p>
+<pre><code class="language-python"># Loop through even values from 2 to 20.
+for i in range(2, 21, 2):
+    # Skip if this is a multiple of 6.
+    if i % 6 == 0:
+        continue
+
+    print(i)
+
+# The numbers 2, 4, 8, 10, 14, 16, and 20 are printed above.
+</code></pre>
+<p>Note that for nested loops, <code>break</code> and <code>continue</code> apply to the inner-most
+loop.</p>
+<h2><a class="header" href="#for--else-and-while--else" id="for--else-and-while--else"><code>for</code> ... <code>else</code> and <code>while</code> ... <code>else</code></a></h2>
+<p>These two constructs are rare in Python. However they're included here in this
+chapter for completeness.</p>
+<p>The <code>else</code> block on a <code>for</code> or <code>while</code> loop is run if the <em>loop did not
+<code>break</code></em>, i.e., if the loop was able to run all the way through and finish on
+its own without needing the <code>break</code> statement.</p>
+<p>See the following example:</p>
+<pre><code class="language-python"># Some cool things out there.
+cool_things = ['ice cream', 'Antarctica', 'BoJack Horseman',
+               'the emoji with the face wearing sunglasses']
+
+# The things we want to find something cool in.
+things = ['fire', 'Rick and Morty', 'other emojis']
+
+# Go through each item and print out the first item that is cool.
+for thing in things:
+    if thing in cool_things:
+        print(thing + ' is cool.')
+        break
+else:
+    print('Nothing was cool. :/')
+</code></pre>
+<p>In the above, since none of the items in <code>things</code> are in <code>cool_things</code>, the
+loop will never print out anything and break, so then, the <code>else</code> block will
+say that nothing is there. If you add in an item from <code>cool_things</code> into
+<code>things</code> then the <code>else</code> block won't run.</p>
+<p>This is the typical use case of a <code>for</code> ... <code>else</code> or <code>while</code> ... <code>else</code>: to
+handle when something wasn't found and the loop wasn't stopped on a successful
+case.</p>
+<p>Use this sparingly.</p>
+<h2><a class="header" href="#try--except-statements" id="try--except-statements"><code>try</code> ... <code>except</code> Statements</a></h2>
+<p><code>try</code> ... <code>except</code> blocks allow for code that might fail to execute.</p>
+<p>Errors can be thrown with the <code>raise</code> keyword.</p>
+<pre><code class="language-python">try:
+    raise ValueError('This is not going to work')
+except ValueError:
+    print('an error was thrown')
+</code></pre>
+<p>In the above, we only handle an exception if it is of type <code>ValueError</code>. If the
+exception was not a <code>ValueError</code>, that block would not run and the exception
+would go up to the scope the <code>try</code> ... <code>except</code> is in. Make sure to use the
+correct exception for the use case instead of raising a general <code>Exception</code>.</p>
+<p>You can chain multiple <code>except</code> blocks to handle different types of exceptions.</p>
+<p>You can also use <code>as</code> to keep the exception object for use in the <code>except</code>
+block.</p>
+<pre><code class="language-python">try:
+    raise ValueError('This is not going to work')
+except ValueError as e:
+    print(e)
+</code></pre>
+<p>The above simply prints out the error.</p>
+<p>The <code>finally</code> block can be attached for code to execute regardless of what
+happens in the <code>try</code> or <code>except</code> block. This is good for cleanup open
+resources.</p>
+<pre><code class="language-python">try:
+    # Can't do this.
+    bad_math = 1 / 0
+except ValueError:
+    # This won't run since the above is going to raise a
+    # ZeroDivisionError.
+    print('will not run this block')
+finally:
+    # The error will still propagate up, but we can print something
+    # out before that happens.
+    print('Watch out: exception incoming!')
+</code></pre>
+<h2><a class="header" href="#list-comprehensions" id="list-comprehensions">List Comprehensions</a></h2>
+<p>In a normal imperative way, we can build up the elements of a list using a
+<code>for</code> loop. Let's say we want to make a list of the squares of 1 to 10. The
+most obvious way is this:</p>
+<pre><code class="language-python">squares = []
+
+for i in range(1, 11):
+    squares.append(i ** 2)
+</code></pre>
+<p>We just keep appending the square of each number from the <code>for</code> loop to the end
+of the loop.</p>
+<p>Another way of approaching this is to use Python <em>list comprehensions</em>. These
+effectively allow you to build lists with <code>for</code> loops in an inlined way.</p>
+<p>For the squares example, we can do that with the following list comprehension:</p>
+<pre><code class="language-python">squares = [i ** 2 for i in range(1, 11)]
+</code></pre>
+<p>The expression on the left goes in as each element of the list, and the loop
+logic goes after inside the list brackets.</p>
+<p>Use list comprehensions for simple things. A good rule is that a list
+comprehension that needs to wrap onto the next line is too long.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../the-basics/data-types-and-variables.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../the-basics/functions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../the-basics/data-types-and-variables.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../the-basics/functions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

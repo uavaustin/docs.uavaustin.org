@@ -1,0 +1,1536 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>UAV Austin Python Guide</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/installation.html"><strong aria-hidden="true">2.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="getting-started/hello-world.html"><strong aria-hidden="true">2.2.</strong> Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="the-basics/index.html"><strong aria-hidden="true">3.</strong> The Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-basics/comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="the-basics/data-types-and-variables.html"><strong aria-hidden="true">3.2.</strong> Data Types and Variables</a></li><li class="chapter-item expanded "><a href="the-basics/control-flow.html"><strong aria-hidden="true">3.3.</strong> Control Flow</a></li><li class="chapter-item expanded "><a href="the-basics/functions.html"><strong aria-hidden="true">3.4.</strong> Functions</a></li></ol></li><li class="chapter-item expanded "><a href="modules.html"><strong aria-hidden="true">4.</strong> Modules</a></li><li class="chapter-item expanded "><a href="file-io.html"><strong aria-hidden="true">5.</strong> File I/O</a></li><li class="chapter-item expanded "><a href="objects.html"><strong aria-hidden="true">6.</strong> Objects</a></li><li class="chapter-item expanded "><a href="pip.html"><strong aria-hidden="true">7.</strong> pip</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">UAV Austin Python Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p>This guide gives a brief introduction to the Python programming language.</p>
+<p>Python is a general-purpose, interpreted programming language. Python is often
+seen as a great introductory language, and also a great asset to know for many
+serious projects. Many things difficult in other languages can be simplified in
+Python.</p>
+<p><img src="https://imgs.xkcd.com/comics/python.png" alt="xkcd 353" /></p>
+<p>xkcd sums up the language pretty well. :)</p>
+<h2><a class="header" href="#structure" id="structure">Structure</a></h2>
+<p>This guide assumes some prior programming language experience in a language
+such as Java, JavaScript, or C++. Concepts common to most programming languages
+are run through quickly in the beginning. This guide does not dive as deep into
+the language as the other UAV Austin language guides. The basics of Python are
+quite simple comparitively, and much of the difficulty in the Python world is
+understanding how to use common Python libraries as opposed to how to deal with
+the language itself. This guide can be categorized in two sections:</p>
+<ul>
+<li>
+<p>In the <a href="the-basics/index.html">The Basics</a> chapters, we'll cover the very
+fundamentals of the language, which are common to other languages.</p>
+</li>
+<li>
+<p>Afterwards, we'll cover several other topics such as being able to do file
+input and output, so that you can have a grasp on how to use the language in
+some practical applications. Other topics above basic control flow are also
+discussed to give some familiarity to other concepts in Python you might
+encounter later on.</p>
+</li>
+</ul>
+<p>Before beginning, go to the <a href="getting-started/index.html">Getting Started</a>
+section to get your environment set up.</p>
+<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>In this section we'll make sure your environment is up and ready to get
+started with Python. We'll install Python and ensure it works with a basic
+<em>Hello, World!</em> example.</p>
+<h1><a class="header" href="#installation" id="installation">Installation</a></h1>
+<p>Before we can do anything, we'll need to get Python installed on your machine.
+You might already have Python 2 or an older version of Python 3 installed.
+Though for this guide and for most UAV Austin code, Python 3 is required.</p>
+<blockquote>
+<p><em>Note:</em> Throughout the guide there are references to terminal commands. Lines
+that you enter start with a <code>$</code>. You don't actually need to type the <code>$</code>, it
+is simply shown for convenience.</p>
+</blockquote>
+<h2><a class="header" href="#installing-python" id="installing-python">Installing Python</a></h2>
+<p>Follow the guide for your system to install Python 3.6. At the time of writing,
+Python 3.7 cannot be used because
+<a href="https://github.com/tensorflow/tensorflow/issues/20517">some libraries still do not support Python 3.7</a>.</p>
+<h3><a class="header" href="#windows" id="windows">Windows</a></h3>
+<p>Go the
+<a href="https://www.python.org/downloads/release/python-366/">Python installation page for Python 3.6.6</a>
+At the bottom of the page you should be able to find the
+<em>Windows x86-64 executable installer</em>.</p>
+<p>During installation, if prompted, <em>make sure to check the box indicated that you
+want Python added to your PATH</em>.</p>
+<blockquote>
+<p><em>Note</em>: If the terminal is reporting that the <code>python</code> command cannot be
+found, either you did not install Python, or it is not on your PATH. You can
+try <code>python --version</code> in PowerShell instead to see if that is successful.</p>
+</blockquote>
+<h3><a class="header" href="#macos" id="macos">macOS</a></h3>
+<p>For macOS installation, we'll be using <a href="https://brew.sh">Homebrew</a>.</p>
+<p>If you already have Homebrew installed, you can skip down to where Python is
+being installed with <code>brew</code>.</p>
+<p>Before installing Homebrew, you'll need to install the XCode command-line
+tools.</p>
+<pre><code class="language-shell">$ xcode-select --install
+</code></pre>
+<p>To fetch Homebrew and put it on your path for immediate usage, run the
+following:</p>
+<pre><code class="language-shell">$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+$ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+</code></pre>
+<p>Now, to get Python 3.6 you can simply use <code>brew</code> to install it. This is using
+the Homebrew formula for Python 3.6.5 (the latest version of Python 3.6 that
+Homebrew offers) by pulling it off GitHub. Using <code>brew install python</code> installs
+a newer version that we cannot use.</p>
+<pre><code class="language-shell">$ brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f2a764ef944b1080be64bd88dca9a1d80130c558/Formula/python.rb
+</code></pre>
+<h3><a class="header" href="#linux" id="linux">Linux</a></h3>
+<blockquote>
+<p>This section assumes an debian-like system using <code>apt</code>. If this is not
+applicable, you might need to adapt these instructions for your own package
+manager and/or system.</p>
+</blockquote>
+<p>For Linux, we'll need to build from source since the package managers currently
+use older Python versions. This might take a while.</p>
+<ul>
+<li>
+<p>Update apt.</p>
+<pre><code class="language-shell">$ sudo apt update
+</code></pre>
+</li>
+<li>
+<p>Get the GCC toolchain and other build dependencies.</p>
+<pre><code class="language-shell">$ sudo apt install build-essential
+</code></pre>
+<p>Install Python prerequites.</p>
+<pre><code class="language-shell">$ sudo apt install    \
+    libssl-dev        \
+    zlib1g-dev        \
+    libncurses5-dev   \
+    libncursesw5-dev  \
+    libreadline-dev   \
+    libsqlite3-dev    \
+    libgdbm-dev       \
+    libdb5.3-dev      \
+    libbz2-dev        \
+    libexpat1-dev     \
+    liblzma-dev       \
+    tk-dev
+</code></pre>
+</li>
+<li>
+<p>Fetch the Python source and decompress.</p>
+<pre><code class="language-shell">$ wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
+$ tar xf Python-3.6.6.tar.xz
+</code></pre>
+</li>
+<li>
+<p>Build from source.</p>
+<pre><code class="language-shell">$ cd Python-3.6.6
+$ ./configure
+$ make -j8
+</code></pre>
+</li>
+<li>
+<p>Install. If you wish to not replace your current <code>python3</code> installation in
+your path, then use <code>sudo make altinstall</code> instead. If using this method, you
+will need to refer to this version of Python as <code>python3.6</code>.</p>
+<pre><code class="language-shell">$ sudo make install
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>In the case that building from source is too troublesome, you can simply
+install Python with <code>sudo apt install python3 python3-pip</code>. This version
+might be somewhat outdated and could cause some compatability problems down
+the road. However, it will suffice for the short-term.</p>
+</blockquote>
+<h2><a class="header" href="#verifying-your-installation" id="verifying-your-installation">Verifying your Installation</a></h2>
+<p>To verify that your Python installation was successful, open up your terminal
+and run the following:</p>
+<pre><code class="language-shell">$ python --version
+</code></pre>
+<p>This should print out the version you installed above. If this printed out a
+Python 2 version because of a pre-existing installation, or did printed that
+this was not a valid command, you might need to specify to use Python 3. For
+that, use <code>python3</code> or <code>python3.6</code> instead as your Python command.</p>
+<pre><code class="language-shell">$ python3.6 --version
+</code></pre>
+<p>The above is more gauranteed to work with multiple Python installations.</p>
+<h2><a class="header" href="#text-editors" id="text-editors">Text Editors</a></h2>
+<p>Having a decent text editor helps a bunch in development.</p>
+<p>There are a bunch of great text editors to use. A good short list is the
+following:</p>
+<ul>
+<li><a href="https://www.sublimetext.com">Sublime Text</a></li>
+<li><a href="https://atom.io">Atom</a></li>
+<li><a href="https://code.visualstudio.com">VS Code</a></li>
+</ul>
+<p>Everyone has their own favorite, but each of these are solid choices to go
+with. VS Code tends to be the most fully featured of these three.</p>
+<p>Before moving forward, I'd recommend at least installing one of these.</p>
+<p>If you'd like to use an IDE, <a href="https://www.jetbrains.com/pycharm">PyCharm</a> is a
+popular Python IDE. It is recommended to still have a general purpose text
+editor.</p>
+<h1><a class="header" href="#hello-world" id="hello-world">Hello World</a></h1>
+<p>Our first touch of Python will be a hello world example.</p>
+<p>We'll do it two different ways.</p>
+<h2><a class="header" href="#interactive-python" id="interactive-python">Interactive Python</a></h2>
+<p>The easiest way to get started with Python is messing around in the
+interactive command-line shell.</p>
+<p>Go ahead and open a terminal and type in <code>python</code>. You should see a prompt come
+up on the left. Anything you type here is evaluated in real time.</p>
+<p>To print out <code>Hello, world!</code> go ahead and execute the following:</p>
+<pre><code class="language-python">print('Hello, world!')
+</code></pre>
+<p>To exit the shell, enter <code>exit()</code>.</p>
+<p>Your output should look like the following (though some data on the top might
+be different for your system):</p>
+<pre><code class="language-text">Python 3.6.5 (default, Aug 31 2018, 12:24:25)
+[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; print('Hello, World!')
+Hello, World!
+&gt;&gt;&gt; exit()
+</code></pre>
+<blockquote>
+<p><em>Note</em>: If the Python version printed at the top of the shell is for
+Python 2. You'll need to use <code>python3</code> on the command-line instead of
+<code>python</code> from here on out.</p>
+</blockquote>
+<h2><a class="header" href="#running-from-a-file" id="running-from-a-file">Running from a File</a></h2>
+<p>The more useful way to run this is to create a script and run it from the
+command-line.</p>
+<p>Create a file called <code>hello_world.py</code> with your favorite text editor. In my
+case, I'll create it on my desktop so it is easy to find. The file contents
+should read just as before:</p>
+<pre><code class="language-python">print('Hello, world!')
+</code></pre>
+<p>Navigate to the directory in your terminal that the file is in, and run
+<code>python hello_world.py</code> to run the file. The output should be the same.</p>
+<blockquote>
+<p>If you're not sure how to change directories to where the file is, you might
+want to read up on how to do basic terminal commands.
+<a href="https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything">Here's an example article.</a></p>
+</blockquote>
+<h1><a class="header" href="#the-basics" id="the-basics">The Basics</a></h1>
+<p>This section covers basic programming concepts that are common to most
+programming langauges. This should feel familiar in the context of other
+programming languages.</p>
+<p>You'll learn about comments, the basic data types and variables in Python,
+control flow mechanisms like <code>if</code> statements, <code>for</code> loops, and <code>while</code> loops,
+and functions.</p>
+<h1><a class="header" href="#comments" id="comments">Comments</a></h1>
+<p>Comments in Python are started with a hashtag / number sign / pound sign / hash
+/ octothorpe / <code>#</code>.</p>
+<pre><code class="language-python">
+# Hola.
+
+</code></pre>
+<p>Comments can start at the beginning of a line or be after other code.</p>
+<pre><code class="language-python">
+tweet = '#rude'  # The hashtag in the string doesn't make a comment.
+
+</code></pre>
+<p>Note that if code is being indented in Python, make sure the comments are
+indented the same as the rest of the block. <em><strong>Indentation matters in
+Python!</strong></em></p>
+<h1><a class="header" href="#data-types-and-variables" id="data-types-and-variables">Data Types and Variables</a></h1>
+<p>In this chapter we'll cover making variables with different basic data types in
+Python.</p>
+<p>These examples are best done in the Python interpreter. You can start this like
+in the first part of the
+<a href="the-basics/../getting-started/hello-world.html">Hello World Chapter</a> with <code>python</code> (or
+<code>python3</code> or <code>python3.6</code>) in your terminal. Lines that start with <code>&gt;&gt;&gt;</code> are
+intended to be typed into the interpreter.</p>
+<h2><a class="header" href="#numbers" id="numbers">Numbers</a></h2>
+<p>Python has both floats and integers. Floats are double-precision IEEE 754
+numbers.</p>
+<p>Basic numeric operations return the value in the interpreter. Here's an example
+of adding and subtracting numbers.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 1 + 2
+3
+
+&gt;&gt;&gt; 66 - 67
+-1
+</code></pre>
+<p>Multiplication and division are what you might expect.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 2 * 5
+10
+
+&gt;&gt;&gt; 5 / 2
+2.5
+</code></pre>
+<p>In Python, regular division will always return a <code>float</code>. To get integer
+division, use the <code>//</code> operator.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 4 / 2
+2.0
+
+&gt;&gt;&gt; 7 // 2
+3
+</code></pre>
+<blockquote>
+<p><em>Note</em>: In Python 2, <code>5 / 2</code> will evaluate to <code>2</code> since by default, integer
+divison will truncate. Python 3 will give <code>2.5</code>.</p>
+</blockquote>
+<p>The <code>%</code> operator gives a remainder after division.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 17 % 12
+5
+</code></pre>
+<p>You can use also <code>**</code> to raise values to a power.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 3 ** 2
+9
+</code></pre>
+<p>Standard mathematical order of operations is respected. To deviate from that,
+or clarify the meaning of an expression, you can use parentheses.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 4 * 5 + 2 * 3
+26
+
+&gt;&gt;&gt; (4 * 5) + (2 * 3)
+26
+
+&gt;&gt;&gt; 4 * (5 + 2) * 3
+84
+</code></pre>
+<p>These expressions can be assigned to variables. Variables in Python do not need
+to be declared ahead of time, nor do they require types to be labeled. Once a
+variable is assigned a type, it can be reassigned to a value, even of a
+different type. Python convention is to give variable names in <code>snake_case</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 5
+&gt;&gt;&gt; a  # A variable by itself will make the interpreter print it.
+5
+
+&gt;&gt;&gt; print(a)  # We can use the print function to print it too.
+
+&gt;&gt;&gt; print(b)  # This variable doesn't exist!
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+NameError: name 'b' is not defined
+
+&gt;&gt;&gt; a = 6.5
+&gt;&gt;&gt; a
+6.5
+</code></pre>
+<p>If we assigned a variable equal to another variable which is a number, then
+changing the original won't change the new one.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = 2
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; a
+2
+
+&gt;&gt;&gt; b
+2
+
+&gt;&gt;&gt; a = 3
+&gt;&gt;&gt; a
+3
+
+&gt;&gt;&gt; b
+
+2
+</code></pre>
+<p>We can add and update values with <code>+=</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; c = 7
+&gt;&gt;&gt; c += 5
+&gt;&gt;&gt; c
+12
+</code></pre>
+<p>Similarly, you can use <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>//=</code>, <code>%=</code>, <code>**=</code> for the same
+behavior with the other mathematical operators. </p>
+<blockquote>
+<p><em>Note:</em> <code>++</code> is not an operator in Python like in many other languages,
+you'll need to use <code>+= 1</code>.</p>
+</blockquote>
+<p>To convert a value from a <code>float</code> to an <code>int</code>, or vice-versa, you can do the
+following:</p>
+<pre><code class="language-python">&gt;&gt;&gt; int(4.6)  # This will round down (truncate)
+4
+
+&gt;&gt;&gt; float(2)
+2.0
+</code></pre>
+<h2><a class="header" href="#booleans" id="booleans">Booleans</a></h2>
+<p>Boolean values in Python can either be <code>True</code> or <code>False</code>.</p>
+<p>Naturally, you can directly assign these to a variable.</p>
+<pre><code class="language-python">&gt;&gt;&gt; is_lucky = True
+</code></pre>
+<p>The <code>not</code> operator will return the opposite boolean value.</p>
+<pre><code class="language-python">&gt;&gt;&gt; not is_lucky
+False
+</code></pre>
+<p>The comparison and equality operators will return boolean values. These are
+<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>, and <code>!=</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 7 &gt; 4
+True
+
+&gt;&gt;&gt; 3 &lt;= 3
+True
+
+&gt;&gt;&gt; 8 &lt; 3
+False
+
+&gt;&gt;&gt; 55 == 55.0  # We can still compare ints and floats.
+True
+
+&gt;&gt;&gt; 67 != 67
+False
+</code></pre>
+<p><code>and</code> and <code>or</code> are the logical AND and OR.</p>
+<pre><code class="language-python">&gt;&gt;&gt; True and True
+True
+
+&gt;&gt;&gt; True and False
+False
+
+&gt;&gt;&gt; True or False
+True
+
+&gt;&gt;&gt; False or False
+False
+</code></pre>
+<h2><a class="header" href="#strings" id="strings">Strings</a></h2>
+<p>Strings contain textual data. They can be enclosed in either single or
+double-quotes. Strings can also span multiple lines when starting or ending
+with either three single or double-quotes. UAV Austin convention prefers the
+use of single-quotes for normal strings, and double-quotes for multi-line
+strings.</p>
+<pre><code class="language-python">&gt;&gt;&gt; status = 'hungry'
+&gt;&gt;&gt; animal = &quot;&quot;&quot;
+hippos
+&quot;&quot;&quot;
+</code></pre>
+<p>Strings can be concatenated together using <code>+</code>.</p>
+<pre><code class="language-python">&gt;&gt;&gt; game = status + animal
+&gt;&gt;&gt; print(game)
+hungry
+hippos
+</code></pre>
+<p>Since the hippos multi-line string has a newline after the first three
+double-quotes, it is kept when concatenating strings.</p>
+<p>Note that numbers cannot be immediately concatenated to strings. They must be
+converted to strings first!</p>
+<pre><code class="language-python">&gt;&gt;&gt; 'My fav # is ' + 37
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: can only concatenate str (not &quot;int&quot;) to str
+
+&gt;&gt;&gt; 'My fav # is ' + str(37)
+'My fav # is 37'
+</code></pre>
+<p>Strings can even be multipled to make them repeat.</p>
+<pre><code class="language-python">&gt;&gt;&gt; print('HeadOn. Apply directly to the forehead.\n' * 3)
+HeadOn. Apply directly to the forehead.
+HeadOn. Apply directly to the forehead.
+HeadOn. Apply directly to the forehead.
+</code></pre>
+<p>As you can see, we can escape newlines with <code>\n</code>. And yes, the
+<a href="https://www.youtube.com/watch?v=Is3icfcbmbs">HeadOn commercials</a> are the
+worst.</p>
+<h2><a class="header" href="#none" id="none">None</a></h2>
+<p><code>None</code> is used in Python for the absence of a value. This is often called
+<code>null</code> or <code>nil</code> in other languages. <code>None</code> can be assigned to variables.</p>
+<pre><code class="language-python">test = None
+</code></pre>
+<p>Note that you cannot use numeric operators with <code>None</code>, just like how strings
+are strict about what you can add with them. Even though Python is dynamically
+typed, i.e., you don't need to know the type of variables at runtime, it is
+still strongly typed. This means that operators are designed to take values of
+consistent types. Expressions such as <code>3 &lt; None</code> do not have meaning in Python
+and will throw errors.</p>
+<h2><a class="header" href="#lists-and-tuples" id="lists-and-tuples">Lists and Tuples</a></h2>
+<p>Lists and tuples both can be used to hold a collection of values.</p>
+<h3><a class="header" href="#lists" id="lists">Lists</a></h3>
+<p>Lists can be created with square brackets. The following is a simple list of
+things:</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list = [55, 'hello', None, 'cheese']
+</code></pre>
+<p>As you can see, lists can be composed of different types.</p>
+<p>Lists can also have lists inside them:</p>
+<pre><code class="language-python">&gt;&gt;&gt; another_list = [1, 2, 3, [4, 5, 6]]
+</code></pre>
+<p>Lists are zero-indexed. You can index them using square brackets as well.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[1]
+hello
+</code></pre>
+<p>Indicies can also be negative (where <code>-1</code> is the last element) and you can
+slice a list as well.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[-2]
+None
+</code></pre>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[2:]
+[None, 'cheese']
+
+&gt;&gt;&gt; my_list[1:3]
+['hello', None]
+
+&gt;&gt;&gt; my_list[::-1]
+['cheese', None, 'hello', 55]
+</code></pre>
+<p><a href="https://stackoverflow.com/a/509295">See here</a> for a more in-depth description
+of slices.</p>
+<h3><a class="header" href="#list-operations" id="list-operations">List Operations</a></h3>
+<p><code>len</code> returns the length of a list:</p>
+<pre><code class="language-python">&gt;&gt;&gt; len(my_list)
+4
+</code></pre>
+<p>You can use the <code>+</code> operator to add lists together to make a new list.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list + another_list
+[55, 'hello', None, 'cheese', 1, 2, 3, [4, 5, 6]]
+</code></pre>
+<p><code>in</code> will check if an item is in a list.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 55 in my_list
+True
+</code></pre>
+<p><code>not in</code> does the opposite.</p>
+<pre><code class="language-python">&gt;&gt;&gt; 55 not in my_list
+False
+</code></pre>
+<p>You can reassign an element of a list.</p>
+<pre><code class="language-python">&gt;&gt;&gt; my_list[2] = 'a new value!'
+&gt;&gt;&gt; my_list
+[55, 'hello', 'a new value!', 'cheese']
+</code></pre>
+<p><code>del</code> can remove an element.</p>
+<pre><code class="language-python">&gt;&gt;&gt; del my_list[1]
+&gt;&gt;&gt; my_list
+[55, 'a new value!', 'cheese']
+</code></pre>
+<p>There are a bunch of methods you can use on lists as well. See the
+<a href="https://docs.python.org/3.6/tutorial/datastructures.html">data structures page</a>
+in the offical Python tutorial for more details.</p>
+<h3><a class="header" href="#tuples" id="tuples">Tuples</a></h3>
+<p>Tuples are similar to lists, except that they cannot be modified after they are
+created. Elements inside a tuple can still be mutated, however.</p>
+<p>Tuples are created with parenthesis instead of square brackets.</p>
+<pre><code class="language-python">&gt;&gt;&gt; a = (1, 2, 'hey')
+&gt;&gt;&gt; a
+(1, 2, 'hey')
+</code></pre>
+<p>The same operators such as indexing, <code>len</code>, <code>in</code>, and <code>+</code> still work on tuples,
+however, you cannot add or remove elements with a tuple.</p>
+<h2><a class="header" href="#dictionaries" id="dictionaries">Dictionaries</a></h2>
+<p>Dictionaries use key-value pairs to store elements.</p>
+<pre><code class="language-python">&gt;&gt;&gt; person = {
+        'Name': 'PersonFace McGee',
+        'Likes': ['memes'],
+        'Dislikes': ['their name']
+    }
+&gt;&gt;&gt; person
+{'Name': 'PersonFace McGee', 'Likes': ['memes'], 'Dislikes': ['their name']}
+</code></pre>
+<p>The syntax for accessing elements, updating, and deleting elements works
+similarly to lists.</p>
+<pre><code class="language-python">&gt;&gt;&gt; person['Name']
+'PersonFace McGee'
+
+&gt;&gt;&gt; person['Name'] = 'Something Better'
+&gt;&gt;&gt; person
+{'Name': 'Something Better', 'Likes': ['memes'], 'Dislikes': ['their name']}
+
+&gt;&gt;&gt; del person['Dislikes']
+&gt;&gt;&gt; person
+{'Name': 'Something Better', 'Likes': ['memes']}
+</code></pre>
+<p>As with lists, there's methods you can use with dictionaries. See the
+<a href="https://docs.python.org/3.6/tutorial/datastructures.html">data structures page</a>
+in the offical Python tutorial for more details as well.</p>
+<h1><a class="header" href="#control-flow" id="control-flow">Control Flow</a></h1>
+<p>Python has fairly simple control flow to make up the basics of the programming
+language.</p>
+<p>This section does not use the <code>&gt;&gt;&gt;</code> characters to indicate input in the
+interpreter.</p>
+<h2><a class="header" href="#if-statements" id="if-statements"><code>if</code> Statements</a></h2>
+<p>Python has an indentation-styled syntax. Instead of using traditional C-style
+<code>if</code> statements:</p>
+<pre><code class="language-c">if (condition) {
+    // statements
+}
+</code></pre>
+<p>Python <code>if</code> statements are formatted as:</p>
+<pre><code class="language-python">if condition:
+    # Statements
+    print('hello')
+</code></pre>
+<p><code>if</code> statements, as well as the other control flow mechanisms in Python require
+statements to be inside. To have an <code>if</code> statements without any block to run,
+you'll need to use the <code>pass</code> keyword.</p>
+<p>Thus, the above can be written without the <code>print('hello')</code>:</p>
+<pre><code class="language-python">if condition:
+    pass
+</code></pre>
+<blockquote>
+<p><em>Note</em>: It's not good to mix tabs and space characters in Python because of
+the fact that indention matters. To make it simple, use 4 spaces for
+indentation.</p>
+</blockquote>
+<p><code>if</code> statements can be followed by <code>elif</code> to check more conditions and an
+<code>else</code> block to run if no other conditions are true.</p>
+<pre><code class="language-python"># A basic if/else.
+
+if False:
+    print('1')
+else:
+    print('2')
+
+# 2 is printed.
+</code></pre>
+<pre><code class="language-python"># An example with remainders.
+
+num = 100
+
+if num % 3 == 0:
+    print('Divisible by 3.')
+elif num % 5 == 0:
+    print('Divisible by 5.')
+else:
+    print('Not divisble by 3 or 5.')
+</code></pre>
+<h2><a class="header" href="#for-loops" id="for-loops"><code>for</code> Loops</a></h2>
+<p>Python <code>for</code> loops are like for-each loops in other languages. A block is run
+multiple times with each element in an iterable object. Let's use an easy
+example:</p>
+<pre><code class="language-python"># Print the numbres from 0 to 9. 10 is an exclusive upper bound!
+for i in range(0, 10):
+    print(i)
+</code></pre>
+<p>Similarly, we can also use lists:</p>
+<pre><code class="language-python">aliases = ['yes', 'yeah', 'ye', 'mhmm', 'aye', 'yep']
+
+# Print out a bunch of ways to say yes.
+for alias in aliases:
+    print(alias)
+</code></pre>
+<blockquote>
+<p><em>Note</em>: The <code>range</code> function in Python returns a <em>range</em> object, which for
+all intents and purposes, is like an iterator. Essentially, iterators keep
+producing values when asked. So in this case, after the loop finishes a
+block, another value is being extracted from <code>range</code>.</p>
+<p>Back in the days of Python 2 (yes, I know, gross), <code>range</code> used to return a
+list directly. This can have some performance problems since you don't need
+to create all the elements you need ahead of time if you're not even going to
+use them. To convert a <em>range</em> to a list like in the first example you can
+use <code>list(range(0, 10))</code>.</p>
+</blockquote>
+<h2><a class="header" href="#while-loops" id="while-loops"><code>while</code> Loops</a></h2>
+<p><code>while</code> loops repeat a block while a condition is <code>False</code>.</p>
+<p>Here's an example:</p>
+<pre><code class="language-python">text = ''
+
+# Just keep asking the user to type in 1.
+while text != '1':
+    text = input('Please enter the number one: ')
+
+print('Okay, thanks.')
+</code></pre>
+<p>The <code>input</code> function prompts a user to type something in and then hit enter.</p>
+<p>To run the example above you'll need to place this in a file and run it like
+in the second part of the
+<a href="the-basics/../getting-started/hello-world.html">Hello World Chapter</a>.</p>
+<blockquote>
+<p><em>Note</em>: The above example won't actually work in Python 2, since the <code>input</code>
+function coerces numbers into <code>int</code> types instead of leaving all input as
+strings like in Python 3. If the example isn't working. You might be using
+Python 2.</p>
+</blockquote>
+<p>Hopefully you can think of better uses of <code>while</code> loops.</p>
+<h2><a class="header" href="#break-and-continue" id="break-and-continue"><code>break</code> and <code>continue</code></a></h2>
+<p><code>break</code> and <code>continue</code> can be used to alter the flow of a <code>for</code> or <code>while</code>
+loop.</p>
+<p><code>break</code> will cause the loop it is in to stop.</p>
+<pre><code class="language-python">a = 1
+
+# Keep looping until stopped manually.
+while True:
+    # Increment the number by 2.
+    a += 2
+
+    # Stop when it's 9.
+    if a == 9:
+        break
+
+# This should print 9.
+print(a)
+</code></pre>
+<p><code>continue</code> skips the rest of the loop and makes the loop go to the next
+iteration.</p>
+<pre><code class="language-python"># Loop through even values from 2 to 20.
+for i in range(2, 21, 2):
+    # Skip if this is a multiple of 6.
+    if i % 6 == 0:
+        continue
+
+    print(i)
+
+# The numbers 2, 4, 8, 10, 14, 16, and 20 are printed above.
+</code></pre>
+<p>Note that for nested loops, <code>break</code> and <code>continue</code> apply to the inner-most
+loop.</p>
+<h2><a class="header" href="#for--else-and-while--else" id="for--else-and-while--else"><code>for</code> ... <code>else</code> and <code>while</code> ... <code>else</code></a></h2>
+<p>These two constructs are rare in Python. However they're included here in this
+chapter for completeness.</p>
+<p>The <code>else</code> block on a <code>for</code> or <code>while</code> loop is run if the <em>loop did not
+<code>break</code></em>, i.e., if the loop was able to run all the way through and finish on
+its own without needing the <code>break</code> statement.</p>
+<p>See the following example:</p>
+<pre><code class="language-python"># Some cool things out there.
+cool_things = ['ice cream', 'Antarctica', 'BoJack Horseman',
+               'the emoji with the face wearing sunglasses']
+
+# The things we want to find something cool in.
+things = ['fire', 'Rick and Morty', 'other emojis']
+
+# Go through each item and print out the first item that is cool.
+for thing in things:
+    if thing in cool_things:
+        print(thing + ' is cool.')
+        break
+else:
+    print('Nothing was cool. :/')
+</code></pre>
+<p>In the above, since none of the items in <code>things</code> are in <code>cool_things</code>, the
+loop will never print out anything and break, so then, the <code>else</code> block will
+say that nothing is there. If you add in an item from <code>cool_things</code> into
+<code>things</code> then the <code>else</code> block won't run.</p>
+<p>This is the typical use case of a <code>for</code> ... <code>else</code> or <code>while</code> ... <code>else</code>: to
+handle when something wasn't found and the loop wasn't stopped on a successful
+case.</p>
+<p>Use this sparingly.</p>
+<h2><a class="header" href="#try--except-statements" id="try--except-statements"><code>try</code> ... <code>except</code> Statements</a></h2>
+<p><code>try</code> ... <code>except</code> blocks allow for code that might fail to execute.</p>
+<p>Errors can be thrown with the <code>raise</code> keyword.</p>
+<pre><code class="language-python">try:
+    raise ValueError('This is not going to work')
+except ValueError:
+    print('an error was thrown')
+</code></pre>
+<p>In the above, we only handle an exception if it is of type <code>ValueError</code>. If the
+exception was not a <code>ValueError</code>, that block would not run and the exception
+would go up to the scope the <code>try</code> ... <code>except</code> is in. Make sure to use the
+correct exception for the use case instead of raising a general <code>Exception</code>.</p>
+<p>You can chain multiple <code>except</code> blocks to handle different types of exceptions.</p>
+<p>You can also use <code>as</code> to keep the exception object for use in the <code>except</code>
+block.</p>
+<pre><code class="language-python">try:
+    raise ValueError('This is not going to work')
+except ValueError as e:
+    print(e)
+</code></pre>
+<p>The above simply prints out the error.</p>
+<p>The <code>finally</code> block can be attached for code to execute regardless of what
+happens in the <code>try</code> or <code>except</code> block. This is good for cleanup open
+resources.</p>
+<pre><code class="language-python">try:
+    # Can't do this.
+    bad_math = 1 / 0
+except ValueError:
+    # This won't run since the above is going to raise a
+    # ZeroDivisionError.
+    print('will not run this block')
+finally:
+    # The error will still propagate up, but we can print something
+    # out before that happens.
+    print('Watch out: exception incoming!')
+</code></pre>
+<h2><a class="header" href="#list-comprehensions" id="list-comprehensions">List Comprehensions</a></h2>
+<p>In a normal imperative way, we can build up the elements of a list using a
+<code>for</code> loop. Let's say we want to make a list of the squares of 1 to 10. The
+most obvious way is this:</p>
+<pre><code class="language-python">squares = []
+
+for i in range(1, 11):
+    squares.append(i ** 2)
+</code></pre>
+<p>We just keep appending the square of each number from the <code>for</code> loop to the end
+of the loop.</p>
+<p>Another way of approaching this is to use Python <em>list comprehensions</em>. These
+effectively allow you to build lists with <code>for</code> loops in an inlined way.</p>
+<p>For the squares example, we can do that with the following list comprehension:</p>
+<pre><code class="language-python">squares = [i ** 2 for i in range(1, 11)]
+</code></pre>
+<p>The expression on the left goes in as each element of the list, and the loop
+logic goes after inside the list brackets.</p>
+<p>Use list comprehensions for simple things. A good rule is that a list
+comprehension that needs to wrap onto the next line is too long.</p>
+<h1><a class="header" href="#functions" id="functions">Functions</a></h1>
+<p>Functions are neat things. Let's do those.</p>
+<h2><a class="header" href="#a-basic-function" id="a-basic-function">A Basic Function</a></h2>
+<p>Here's a basic case of wrapping our hello world example into its own function.</p>
+<pre><code class="language-python">def say_hello():
+    print('Hello, World!')
+
+# Call the function.
+say_hello()
+</code></pre>
+<p><code>def</code> in Python is used for defining functions!</p>
+<p>If you either save this to a file and run the script, or run this in the
+interactive Python session on the command-line, you'll get the same print out
+as before.</p>
+<blockquote>
+<p><em>Note:</em> The convention in Python is to use <code>snake_case</code> naming for functions
+and variables.</p>
+</blockquote>
+<p>The function above has no return value! It's just is printing something out.
+Use <code>return</code> to return a value like in the <code>pow</code> example.</p>
+<h2><a class="header" href="#arguments" id="arguments">Arguments</a></h2>
+<p>Let's take our example above, but be able to say hello to specific people.
+We'll take an argument <code>person</code> and print that like <em>Hello, Joe!</em>, for example.</p>
+<pre><code class="language-python">def greet(person):
+    # Using the string format method to insert the name!
+    print('Hello, {:s}!'.format(person))
+
+# Prints out 'Hello, Joe!'
+greet('Joe')
+</code></pre>
+<h2><a class="header" href="#keyword-arguments" id="keyword-arguments">Keyword Arguments</a></h2>
+<p>Let's make a power function. This'll compute values like \( 5 ^ 3 \).</p>
+<pre><code class="language-python">def pow(base, exp):
+    return base ** exp
+
+num = pow(5, 3)
+print(num)  # 125
+</code></pre>
+<p>In the above we can see that in the function, <code>base</code> is assigned to <code>5</code> and
+<code>exp</code> is assigned to <code>3</code>. At the end we return the value so that we can assign
+the variable <code>num</code> from the result.</p>
+<p>...But what if we wanted to put the exponent first and the base second?</p>
+<p>Regular arguments entered into a function are what we call <em>positional
+arguments</em>, but we can label which argument is which with <em>keyword arguments</em>.</p>
+<p>Note that keyword arguments can only be entered after all the positional
+arguments.</p>
+<p>Here's how we can flip the arguments:</p>
+<pre><code class="language-python">num_2 = pow(exp=5, base=3)  # 3 ^ 5 = 243
+</code></pre>
+<p>And you can mix them together (note that keyword arguments can only be entered
+after all the positional arguments):</p>
+<pre><code class="language-python">num_3 = pow(5, exp=3)  # 125
+</code></pre>
+<h2><a class="header" href="#default-arguments" id="default-arguments">Default Arguments</a></h2>
+<p>Using a similar notation to putting keyword arguments in the function calls
+like in the above, we can give the arguments of a function default values.</p>
+<p>For the power example, we'll define another <code>pow</code> function but this time make 
+the exponent default to 2.</p>
+<pre><code class="language-python">def pow_2(base, exp=2):
+    return base ** exp
+
+num_4 = pow_2(5)     # 25
+num_5 = pow_2(5, 3)  # 125
+</code></pre>
+<p>And, of course, you can use keyword arguments when you call a function with
+default values, but you don't have to pass it if you don't want to.</p>
+<h1><a class="header" href="#modules" id="modules">Modules</a></h1>
+<p>Instead of starting this chapter with a snarky comment, we'll go straight into
+this topic.</p>
+<p>From time to time, naturally you're going to need to access Python code written
+in a different file.</p>
+<h2><a class="header" href="#working-with-pi" id="working-with-pi">Working with Pi</a></h2>
+<p>While you could hardcode the value of pi in every Python file you
+create, it's not exactly the most practical thing to do. So we'll need to
+<em>import</em> it. This will show several ways pi can be imported.</p>
+<p>The most basic way is to import the entire
+<a href="https://docs.python.org/3.6/library/math.html"><code>math</code> module</a> of Python.</p>
+<pre><code class="language-python">import math
+
+print('The value of pi is: {:.10f}'.format(math.pi))
+</code></pre>
+<blockquote>
+<p><em>Note</em>: This is using the Python 3 string formating function. This
+is similar to how you would do it in many languages with <code>sprintf</code>
+or like, except that instead of using percent signs, you place the
+formatting string inside curly braces with a colon before it. See
+<a href="https://docs.python.org/3.1/library/string.html#format-examples">the Python documentation</a>
+for examples.</p>
+</blockquote>
+<p>This will allow you to use anything in the <code>math</code> module as well. So we can do
+this:</p>
+<pre><code class="language-python">cos_pi = math.cos(math.pi)
+print('The value of cos(pi) is: {:.10f}'.format(cos_pi))
+</code></pre>
+<p>We don't really need to import <em>everything</em> in the <code>math</code> module. So we can
+also just import only pi. We won't be able to access <code>math.cos</code> with this. This
+also </p>
+<pre><code class="language-python">from math import pi
+
+print('The value of pi is stills: {:.10f}'.format(pi))
+
+math.cos(pi)  # This will error!
+</code></pre>
+<p>As an aside, you can import a module directly and do an <code>from</code> ... <code>import</code> on
+a module.</p>
+<p>This is valid (though strange):</p>
+<pre><code class="language-python">import math
+from math import pi
+
+print('The value of pi is stills: {:.10f}'.format(pi))
+
+math.cos(pi)  # Fine now.
+</code></pre>
+<blockquote>
+<p><em>Note</em>: You can import multiple things at the same time like
+<code>from math import pi, cos</code>, though importing too many things in a file like
+this can make it difficult to trace where certain functions are coming from.</p>
+</blockquote>
+<h2><a class="header" href="#aliasing-imports" id="aliasing-imports">Aliasing Imports</a></h2>
+<p>For some libraries, there's conventions for renaming them to a shorter name.</p>
+<p>Let's take <code>numpy</code> for example. This is a popular Python library that does fast
+numerical operations in Python. (You have to install this since it's not
+included by default in Python. We'll discuss how to do this later, but if
+you're feeling brave you can just execute <code>pip3.6 install numpy</code> in your
+terminal to install the package. You can also just take this example for
+granted.)</p>
+<p>To rename an import, you can use <code>as</code>.</p>
+<pre><code class="language-python">import numpy as np
+
+# This will print:
+#   array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1. ])
+#
+# Note that this is a numpy array instead of a regular Python list.
+print(np.arange(0.0, 1.1, 0.1))
+</code></pre>
+<p><code>numpy</code> is often shortened because of how often it is used. When a project uses
+<code>numpy</code> it is common to use it a ton.</p>
+<p>You can mix the <code>as</code> syntax with <code>from</code> and do something like
+<code>from math import pi as pie</code> if you'd really want to.</p>
+<p>Aliasing imports comes with a warning: <em>Don't alias something unless there's an
+established convention (like <code>numpy</code>) or unless you need to since another name
+is conflicting in the same file.</em> Using strange aliases in a file can make it
+very confusing for other programmers to read!</p>
+<h2><a class="header" href="#your-own-modules" id="your-own-modules">Your Own Modules</a></h2>
+<p>Now it's time for the opposite point of view. How do we make modules that we
+can use?</p>
+<p>Let's start with a sample directory setup inside a folder called
+<code>modules_intro/</code>:</p>
+<pre><code class="language-text">modules_intro
+├── __init__.py
+├── __main__.py
+├── one.py
+├── two.py
+└── nested
+    └── three.py
+</code></pre>
+<p>So what are all these files for?</p>
+<ul>
+<li><code>one.py</code> and <code>two.py</code> are just two normal Python modules. Nothing special
+here.</li>
+<li><code>three.py</code> is a Python module inside a nested directory. This makes importing
+a little different.</li>
+<li><code>__init__.py</code> and <code>__main__.py</code> are special module names that we'll talk
+about in a bit.</li>
+</ul>
+<h3><a class="header" href="#starting-with-onepy" id="starting-with-onepy">Starting with <code>one.py</code></a></h3>
+<p>For our first module, we'll just do something simple.</p>
+<p>Note the docstring syntax for giving a function documentation using a
+multi-line string.</p>
+<pre><code class="language-python"># one.py
+
+def get_numbers(upper):
+    &quot;&quot;&quot;Return all the integers from 0 to a limit, inclusive.
+
+    This is simply creating a range and then converting this into a
+    list.
+    &quot;&quot;&quot;
+
+    return list(range(0, upper + 1))
+
+
+# Prints [0, 1, 2, ..., 10].
+print(get_numbers(10))
+</code></pre>
+<p>This is straight-forward enough. If we are to run
+<code>python3.6 modules_intro/one.py</code> then the numbers will be printed out. Make
+sure that your current directory is the one that the <code>modules_intro/</code> folder is
+inside.</p>
+<p>Let's try something though: if you open up an interactive python session and
+import the <code>one.py</code> module, it'll print out the numbers when you import!</p>
+<pre><code class="language-text">$ python3.6
+&gt;&gt;&gt; import modules_intro.one
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+&gt;&gt;&gt; modules_intro.one.get_numbers(4)
+[0, 1, 2, 3, 4]
+</code></pre>
+<p>So that's not great at all. But we can see above that when we import the file,
+since it's inside the <code>modules_intro</code> folder, we just need to put a period to
+go down into the directly (and the <code>.py</code> extension is removed).</p>
+<p>Now let's keep the behavior of being able to run the file directly, but still
+be able to use our <code>get_numbers</code> function inside <code>one.py</code>. To do this, we have
+to put the <code>print(get_numbers(10))</code> inside an <code>if</code> statement that can check if
+the file is the <em>main</em> file or not:</p>
+<pre><code class="language-python"># one.py
+
+def get_numbers(upper):
+    &quot;&quot;&quot;Return all the integers from 0 to a limit, inclusive.
+
+    This is simply creating a range and then converting this into a
+    list.
+    &quot;&quot;&quot;
+
+    return list(range(0, upper + 1))
+
+
+if __name__ == '__main__':
+    # Prints [0, 1, 2, ..., 10] only when run directly.
+    print(get_numbers(10))
+</code></pre>
+<blockquote>
+<p><em>Note</em>: Things beginning and ending with double underscores are special in
+Python!</p>
+</blockquote>
+<p>Now both running <code>module_intro/one.py</code> and importing it do what we want.</p>
+<pre><code class="language-text">$ python3.6 modules_intro/one.py
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+$ python3.6
+&gt;&gt;&gt; import modules_intro.one
+&gt;&gt;&gt; modules_intro.one.get_numbers(4)
+[0, 1, 2, 3, 4]
+</code></pre>
+<p>When dealing with multi-file projects, or making a Python file that you might
+want to use more in the future, it's great to put the block of code you want to
+execute at runtime in an <code>if __name__ == '__main__':</code>.</p>
+<blockquote>
+<p><em>Note</em>: Many like to make a <em>main</em> function as well and make the <em>if main</em>
+part just be a wrapper for that:</p>
+<pre><code class="language-python">def main():
+    # Our main function logic...
+    pass
+
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+</blockquote>
+<h3><a class="header" href="#using-onepy-in-twopy" id="using-onepy-in-twopy">Using <code>one.py</code> in <code>two.py</code></a></h3>
+<p>Let's go to the next module, which is just in the same directory as <code>one.py</code>.</p>
+<p>Now, before we saw that to import <code>one.py</code> from the outside, we just did
+<code>import module_intro.one</code>. Importing a file in the <em>same</em> directory is a bit
+different.</p>
+<p>In <code>two.py</code> we'll have a simple factorial implementation, and a function that
+returns the factorial of numbers up to a value. For the second, function, we'll
+use the <code>get_numbers</code> function. Our factorial implementation is intended to be
+private and not used outside the module.</p>
+<pre><code class="language-python"># two.py
+
+from . import one
+
+
+# By convention, private functions start with an underscore.
+def _fac(n):
+    if n == 0:
+        return 1
+    else:
+        return n * _fac(n - 1)
+
+
+def get_fac(upper):
+    &quot;&quot;&quot;Return integer factorials up to and including a limit.&quot;&quot;&quot;
+    return [_fac(i) for i in one.get_numbers(upper)]
+</code></pre>
+<p>So to import an entire module from the same directory, we import the module
+name from <code>.</code>. Remember that <code>.</code> represents the current directory.</p>
+<p>Of course, we can test this with an interactive Python session:</p>
+<pre><code class="language-text">$ python3.6
+&gt;&gt;&gt; import modules_intro.two
+&gt;&gt;&gt; modules_intro.two.get_fac(6)
+[1, 1, 2, 6, 24, 120, 720]
+</code></pre>
+<h3><a class="header" href="#going-into-the-nested-folder-with-threepy" id="going-into-the-nested-folder-with-threepy">Going into the Nested Folder with <code>three.py</code></a></h3>
+<p>Now we'll move into the nested folder in <code>modules_intro/nested/three.py</code>. For
+this file we'll make a function that returns the sum of the factorials for a
+number and below:</p>
+<p>\[ \text{fac_sum}(n) = \sum_{i = 0}^{n}{i!} \]</p>
+<pre><code class="language-python"># three.py
+
+from ..two import get_fac
+
+
+def fac_sum(n):
+    &quot;&quot;&quot;Return the sum of the factorials up to and including a value.
+
+    This justs the built-in sum function in Python to do the work.
+    &quot;&quot;&quot;
+
+    return sum(get_fac(n))
+</code></pre>
+<p>In the above we can see that we use a <code>from</code> ... <code>import</code> to import the
+<code>get_fac</code> function directly. <code>..</code> is the directory above, and we can put the
+module name after that to be able to import <code>get_fac</code> out of it.</p>
+<h3><a class="header" href="#making-the-directory-work-like-a-module-with-__init__py" id="making-the-directory-work-like-a-module-with-__init__py">Making the Directory Work Like a Module with <code>__init__.py</code></a></h3>
+<p>So to use our <code>get_fac</code> function from the outside, we'd have to import it all
+way as <code>modules_intro.nested.three.get_fac</code>
+(or <code>from modules_intro.nested.three import get_fac</code>). Well, this is
+ridiculous, especially considering this is the highest level function.</p>
+<p>So what we can do is create a special file called <code>__init__.py</code> inside our
+directory. This allows for some custom behavior when we want to use our folder
+as a Python module. This file essentially represents the directory.</p>
+<p>Let's create it and import the <code>fac_sum</code> function:</p>
+<pre><code class="language-python"># __init__.py
+
+from .nested.three import fac_sum
+</code></pre>
+<p>So if we open up a Python interpreter we can now use it without having to go
+down deep where <code>fac_sum</code> is defined.</p>
+<pre><code class="language-text">$ python3.6
+&gt;&gt;&gt; import modules_intro
+&gt;&gt;&gt; modules_intro.fac_sum(10)
+4037914
+</code></pre>
+<p>This is a little bit of a weird behavior. Things in a Python module are
+accessible from the outside, including imports. We can use this to be able to
+lift functions and classes and whatnot to the top level.</p>
+<p>While you can use <code>__init__.py</code> as a simple thing that lifts up the
+definitions, some libraries use it to actually define a lot of there functions
+and whatnot there. It's a matter of style really.</p>
+<h3><a class="header" href="#giving-our-module-an-entrypoint-with-__main__py" id="giving-our-module-an-entrypoint-with-__main__py">Giving our Module an Entrypoint with <code>__main__.py</code></a></h3>
+<p>We know how to run a regular Python script... but how do you run a directory?
+Since we can make a directory work like a module with <code>__init__.py</code> will that
+run if we do <code>python3.6 modules_intro</code>? The short answer is no, but we can use
+another special file name to make this kind of setup work: <code>__main__.py</code>.</p>
+<p>As you might expect, <code>__main__.py</code> is a file that runs when you run a module
+from the command-line. As an example, we can just use the following contents
+to print out the sum of <code>fac_sum(10)</code>:</p>
+<pre><code class="language-python"># __main__.py
+
+from . import fac_sum
+
+
+print(fac_sum(10))
+</code></pre>
+<p>So now we can run try to run <code>modules_intro</code> from the command-line:</p>
+<pre><code class="language-shell">$ python3.6 modules_intro
+python3.6 modules_intro
+Traceback (most recent call last):
+  File &quot;/path/to/.../python3.6/runpy.py&quot;, line 193, in _run_module_as_main
+    &quot;__main__&quot;, mod_spec)
+  File &quot;/path/to/.../python3.6/runpy.py&quot;, line 85, in _run_code
+    exec(code, run_globals)
+  File &quot;modules_intro/__main__.py&quot;, line 3, in &lt;module&gt;
+    from . import fac_sum
+ImportError: attempted relative import with no known parent package
+</code></pre>
+<p>...So we need to do one more thing. Python doesn't like this at all. What you
+actually need to do to run this is to pass the <code>-m</code> flag on the command-line
+which indicates that you are running a module. Why the error appears above is
+kind of complicated because Python has a convoluted import system, but just
+trust me on this.</p>
+<pre><code class="language-shell">$ python3.6 -m modules_intro
+4037914
+</code></pre>
+<p>You can make this more exciting if you were to ask for input for the number, or
+even better, to accept it as a command-line argument, though this is just a
+simple example.</p>
+<blockquote>
+<p><em>Note</em>: The <code>-m</code> flag extends more to just a module in your current
+directory: it also extends to any module in Python. For example, you run
+<code>pytest</code> (a popular Python testing framework) this way. This can resolve
+problems for when you have the same thing installed across multiple Python
+versions, e.g., <code>python3.6 -m pytest</code> and <code>python3.5 -m pytest</code> will allow
+both to work, when one of the versions will shadow the other when just using
+<code>pytest</code>.</p>
+</blockquote>
+<h1><a class="header" href="#file-io" id="file-io">File I/O</a></h1>
+<p>In this section, we will explore some of the basic methods you can use in python to read and write files. </p>
+<h3><a class="header" href="#opening-a-file" id="opening-a-file">Opening a File</a></h3>
+<p>Python's built-in function <code>open()</code> is used to open files. The return of this function is a file object. </p>
+<pre><code class="language-python">&gt;&gt;&gt; f = open(&quot;test.txt&quot;)    # open file in current directory
+&gt;&gt;&gt; f = open(&quot;C:/Python33/README.txt&quot;)  # specifying full path
+</code></pre>
+<p>We can specify the mode while opening a file. In mode, we specify whether we want to read <code>'r'</code>, write <code>'w'</code> or append <code>'a'</code> to the file. We also specify if we want to open the file in text mode or binary mode.</p>
+<p>The default is reading in text mode. In this mode, we get strings when reading from the file.</p>
+<p>On the other hand, binary mode returns bytes and this is the mode to be used when dealing with non-text files like image or exe files.</p>
+<p>The following is how to write in text-mode: </p>
+<pre><code class="language-python">f = open(&quot;test.txt&quot;,'w')  # write in text mode
+</code></pre>
+<h3><a class="header" href="#write-to-file" id="write-to-file">Write to File</a></h3>
+<p>We will now show to write to a file using the <code>'w'</code> mode.</p>
+<pre><code class="language-python">with open(&quot;test.txt&quot;,'w') as f:
+   f.write(&quot;my first file\n&quot;)
+   f.write(&quot;This second line\n&quot;)
+</code></pre>
+<p>This code creates a new file <code>test.txt</code> in the current working directory if the file doesn't exist. If it already exists, using mode <code>'w'</code>, the file will be overwritten. </p>
+<h3><a class="header" href="#reading-files" id="reading-files">Reading Files</a></h3>
+<pre><code class="language-python">&gt;&gt;&gt; f = open(&quot;test.txt&quot;,'r')
+&gt;&gt;&gt; f.read()     # read in the rest till end of file
+</code></pre>
+<p>You can also read lines through a for loop:</p>
+<pre><code class="language-python">&gt;&gt;&gt; for line in f:
+...     print(line, end = '')
+...
+This is my first file
+This file
+contains three lines
+</code></pre>
+<h1><a class="header" href="#objects" id="objects">Objects</a></h1>
+<p>Like other languages, Python has objects. This chapter shows a brief example
+of how you can implement some basic classes with inheritance.</p>
+<pre><code class="language-python">class Animal:
+    &quot;&quot;&quot;A organism in the kingdom Animalia.&quot;&quot;&quot;
+
+    def __init__(self):
+        &quot;&quot;&quot;Create a new animal.&quot;&quot;&quot;
+        self._is_alive = True
+
+    def kill(self):
+        &quot;&quot;&quot;Make the animal not live anymore. Tragic. :(&quot;&quot;&quot;
+        self._is_alive = False
+
+    @property
+    def is_alive(self):
+        &quot;&quot;&quot;Return if the animal is alive.
+
+        We don't want people to just be able to bring it back to life
+        since that's not how nature works. So this makes the is_alive
+        property be read-only.
+        &quot;&quot;&quot;
+
+        return self._is_alive
+
+
+class Dog(Animal):
+    &quot;&quot;&quot;A member of the genus Canis (canines).&quot;&quot;&quot;
+
+    def __init__(self):
+        &quot;&quot;&quot;Create a new dog.&quot;&quot;&quot;
+        super().__init__()
+
+    def bark(self, times=1):
+        &quot;&quot;&quot;Make the characteristic dog sound.
+
+        This only works when the dog is alive. If it isn't, then
+        nothing happens. Really this should throw a custom
+        DeadDogException or something but w/e.
+        &quot;&quot;&quot;
+
+        if self.is_alive:
+            for i in range(0, times):
+                print('Woof.')
+
+
+class Cat(Animal):
+    &quot;&quot;&quot;Pets that are like dogs, but better.&quot;&quot;&quot;
+
+    def __init__(self, lives_remaining=9):
+        &quot;&quot;&quot;Create a new cat.&quot;&quot;&quot;
+        super().__init__()
+
+        self.lives_remaining = lives_remaining
+
+    def kill(self):
+        &quot;&quot;&quot;Risk the cat's life. It takes a bit to kill a cat.&quot;&quot;&quot;
+        self.lives_remaining -= 1
+
+        if self.lives_remaining == 0:
+            # Callthe original kill method for animals.
+            super().kill()
+
+
+# Let's make an orca.
+shamu = Animal()
+
+# It should be alive by default.
+print(shamu.is_alive)  # True
+
+# Note that we can't do this!
+# shamu.is_alive = False
+
+# Rip.
+shamu.kill()
+
+# We can also make a dog which can also die like other animals. But,
+# dogs can also bark.
+spot = Dog()
+
+spot.bark()   # Bark once.
+spot.bark(2)  # Bark twice.
+
+# Cats are interesting since they override the default kill method.
+cat = Cat()
+
+cat.kill()
+
+print(cat.is_alive)  # True
+
+# Take out the other lives.
+for i in range(0, 8):
+    cat.kill()
+
+print(cat.is_alive)  # False
+
+# We can provide a number in the constructor for how many lives the
+# Cat has. This one isn't as lucky.
+cat_2 = Cat(1)
+
+cat_2.kill()
+
+print(cat_2.is_alive)  # False
+</code></pre>
+<p>Some things to note:</p>
+<ul>
+<li><code>__init__</code> serves as the constructor for the class. You can accept parameters
+(including keyword arguments). Note that there can only be one constructor.</li>
+<li>A <code>self</code> argument is the first in each method (as well as <code>__init__</code>). Though
+<code>self</code> is not a keyword, this is a strong convention in the language. <code>self</code>
+contains the instance of the class that the method was called on.</li>
+<li>Multiple inheritance is a thing, but for simplicity we just have on here.</li>
+<li>No <code>new</code> keyword or the like is required for creating an instance.</li>
+<li>Use <code>TitleCase</code> for naming the class.</li>
+<li>Private members of a class should have names that start with an underscore by
+convention.</li>
+<li>Properties allow you to make a function that works like a variable.
+Properties can also have setters though that is not shown here.</li>
+<li><code>super()</code> is a somewhat magic built-in function that returns the super-class.</li>
+<li>Defining the same method name on a sub-class shadows the super-class. Though
+it can still be accessed with <code>super()</code>.</li>
+</ul>
+<blockquote>
+<p><em>Note</em>: A neat way to reason about why <code>self</code> is there, is to see a
+de-sugared way of calling methods. In the above, we could actually call the
+methods like this (though it is awkward):</p>
+<pre><code class="language-python">fido = Dog()
+
+Dog.bark(fido, 3)  # The dog will bark three times.
+Dog.kill(fido)     # Now fido can't bark anymore.
+
+Dog.bark(fido)  # Nothing happens. :/
+</code></pre>
+<p>We can see more explicitly that the instance of <code>fido</code> is just being passed
+as the first argument!</p>
+</blockquote>
+<h1><a class="header" href="#pip" id="pip">pip</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-105339892-2', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
